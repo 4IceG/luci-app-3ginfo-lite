@@ -34,4 +34,4 @@ opkg install luci-app-3ginfo-lite_1.0.2-08072021_all.ipk
 
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Preview / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podgląd
 
-![](https://raw.github)
+![](https://raw.githubusercontent.com/4IceG/Personal_data/master/zrzuty/1.8.8F/3ginfo-lite.png)
