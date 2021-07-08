@@ -21,7 +21,7 @@
 		}
 	},
 
-	"admin/modem/3ginfo-lite/config": {
+	"admin/modem/3ginfo-lite/3gconfig": {
 		"title": "Configuration",
 		"order": 30,
 		"action": {
