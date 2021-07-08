@@ -1,86 +1,65 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:9
 msgid "Information about 3G/4G connection"
 msgstr "Informacja o statusie połączenia 3G/4G"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:10
 msgid "Details"
 msgstr "Szczegóły"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:10
 msgid "USB debug information"
 msgstr "Debugowanie portu USB"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:11
 msgid "Configuration"
 msgstr "Konfiguracja"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:110
 msgid "General Information"
 msgstr "Informacje ogólne"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:111
 msgid "Modem Information"
 msgstr "Informacje o modemie"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:112
 msgid "Signal Information"
 msgstr "Informacje o sygnale"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:113
 msgid "Cell Information"
 msgstr "Informacje o sieci komórkowej"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:114
 msgid "Mode:"
 msgstr "Tryb pracy:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:115
 msgid "Operator:"
 msgstr "Operator:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:117
 msgid "Signal strength:"
 msgstr "Siła sygnału:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:119
 msgid "Modem type:"
 msgstr "Typ modemu:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:124
 msgid "Additional information"
 msgstr "Informacje dodatkowe"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:124
 msgid "Revision / Firmware:"
 msgstr "Rewizja / Wersja firmware:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:124
 msgid "Communication Port:"
 msgstr "Port do komunikacji:"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:124
 msgid "Chip Temperature:"
 msgstr "Temperatura układu:"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:11
 msgid "Configuration 3ginfo-lite"
 msgstr "Konfiguracja 3ginfo-lite"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:12
 msgid "Configuration panel for the 3ginfo-lite application."
 msgstr "Panel konfiguracyjny dla aplikacji 3ginfo-lite."
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:17
 msgid "Network"
 msgstr "Sieć"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:20
 msgid "Port for communication with the modem"
 msgstr "Port do komunikacji"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:17
 msgid "Protocol:"
 msgstr "Protokół:"
