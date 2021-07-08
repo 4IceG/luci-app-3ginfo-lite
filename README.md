@@ -1,1 +1,37 @@
 # luci-app-3ginfo-lite
+
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/4IceG/luci-app-3ginfo-lite?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/4IceG/luci-app-3ginfo-lite?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/4IceG/luci-app-3ginfo-lite?style=flat-square)
+![GitHub All Releases](https://img.shields.io/github/downloads/4IceG/luci-app-3ginfo-lite/total)
+
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32">
+Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with mPCI-E and USB 3G/LTE modems.
+
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32">
+Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa na modemach mPCI-E oraz USB 3G/LTE.
+
+## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Instalacja
+``` bash
+#Modem drivers are required for proper operation.
+opkg install kmod-usb-serial kmod-usb-serial-option
+
+#Dependency required.
+opkg install sms-tool
+
+#Install app.
+opkg install luci-app-3ginfo-lite_1.0.2-08072021_all.ipk
+```
+
+``` bash
+#Full supported & tested devices:
+
+ - Quectel EM12/EM160R-GL
+ - Huawei E3372/E3276
+
+```
+
+
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Preview / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podgląd
+
+![](https://raw.github)
