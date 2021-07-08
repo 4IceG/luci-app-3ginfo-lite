@@ -5,11 +5,29 @@
 ![GitHub forks](https://img.shields.io/github/forks/4IceG/luci-app-3ginfo-lite?style=flat-square)
 ![GitHub All Releases](https://img.shields.io/github/downloads/4IceG/luci-app-3ginfo-lite/total)
 
+Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/easyconfig/addon
+
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32">
 Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with mPCI-E and USB 3G/LTE modems.
 
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32">
 Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa na modemach mPCI-E oraz USB 3G/LTE.
+
+``` bash
+#Supported & tested devices:
+ - Quectel EM12/EM160R-GL
+ - Huawei E3372/E3276
+ 
+ #NOT tested devices (Or not fully supported):
+ - Quectel EC20
+ - Sierra Wireless MC7710
+ - ASKEY WWHC050
+ - ZTE MF821
+ - BroadMobi BM806U
+ - Quectel EP06
+ - Mikrotik R11e-LTE
+
+```
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Instalacja
 ``` bash
@@ -21,14 +39,6 @@ opkg install sms-tool
 
 #Install app.
 opkg install luci-app-3ginfo-lite_1.0.2-08072021_all.ipk
-```
-
-``` bash
-#Full supported & tested devices:
-
- - Quectel EM12/EM160R-GL
- - Huawei E3372/E3276
-
 ```
 
 
