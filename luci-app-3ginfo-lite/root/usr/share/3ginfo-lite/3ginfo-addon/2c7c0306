@@ -1,0 +1,30 @@
+# Quectel EP06
+
+. "$RES/3ginfo-addon/05c69215"
+
+O=$(sms_tool -d $DEVICE at "AT+QCAINFO")
+T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "pss"/{print $4}')
+[ -z "$T" ] && T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "pcc"/{print $4}')
+if [ -n "$T" ]; then
+	case $T in
+		*"LTE BAND 1") MODE=$(band 1 "LTE ");;
+		*"LTE BAND 3") MODE=$(band 3 "LTE ");;
+		*"LTE BAND 7") MODE=$(band 7 "LTE ");;
+		*"LTE BAND 8") MODE=$(band 8 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 20 "LTE ");;
+		*) MODE=${T:-$MODE};;
+	esac
+
+	T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "sss"/{print $4}')
+	[ -z "$T" ] && T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "scc"/{print $4}')
+	if [ -n "$T" ]; then
+		case $T in
+			*"LTE BAND 1") MODE="$MODE / "$(band 1 "");;
+			*"LTE BAND 3") MODE="$MODE / "$(band 3 "");;
+			*"LTE BAND 7") MODE="$MODE / "$(band 7 "");;
+			*"LTE BAND 8") MODE="$MODE / "$(band 8 "");;
+			*"LTE BAND 20") MODE="$MODE / "$(band 20 "");;
+			*) MODE="$MODE / "${T:-$MODE};;
+		esac
+	fi
+fi
