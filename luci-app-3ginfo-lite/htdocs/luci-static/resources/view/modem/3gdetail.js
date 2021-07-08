@@ -19,7 +19,7 @@ return view.extend({
 					if (p < 0)
 						icon = L.resource('icons/3ginfo-0.png');
 					else if (p == 0)
-						icon = L.resource('icons/3ginfo-0.pn');
+						icon = L.resource('icons/3ginfo-0.png');
 					else if (p < 20)
 						icon = L.resource('icons/3ginfo-0-20.png');
 					else if (p < 40)
