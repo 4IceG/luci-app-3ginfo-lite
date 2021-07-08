@@ -115,16 +115,16 @@ if [ -n "$T" ]; then
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSSI":"'$RSSI'"}'
 fi
-T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $6}')
-if [ -n "$T" ]; then
-	SINR=${T##*:}" dB"
-	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $15}')
-	if [ -n "$T" ]; then
-		SINR="$SINR / "${T##*:}" dB"
-	fi
-	[ -n "$ADDON" ] && ADDON="$ADDON,"
-	ADDON="$ADDON"'{"SINR":"'$SINR'"}'
-fi
+#T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $6}')
+#if [ -n "$T" ]; then
+#	SINR=${T##*:}" dB"
+#	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $15}')
+#	if [ -n "$T" ]; then
+#		SINR="$SINR / "${T##*:}" dB"
+#	fi
+#	[ -n "$ADDON" ] && ADDON="$ADDON,"
+#	ADDON="$ADDON"'{"SINR":"'$SINR'"}'
+#fi
 #T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $8}')
 #if [ -n "$T" ]; then
 #	BW=${T##*:}" MHz"
