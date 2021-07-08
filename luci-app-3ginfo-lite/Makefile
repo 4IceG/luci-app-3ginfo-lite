@@ -1,5 +1,5 @@
 # Copyright 2021 Rafał Wabik - IceG - From eko.one.pl forum
-# Licensed to the public under the Apache License 2.0.
+# MIT License
 
 include $(TOPDIR)/rules.mk
 
