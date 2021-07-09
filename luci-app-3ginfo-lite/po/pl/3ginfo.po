@@ -59,7 +59,7 @@ msgid "Network"
 msgstr "Sieć"
 
 msgid "Port for communication with the modem"
-msgstr "Port do komunikacji"
+msgstr "Port do komunikacji z modemem"
 
 msgid "Protocol:"
 msgstr "Protokół:"
