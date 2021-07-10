@@ -14,11 +14,11 @@ Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with m
 Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa na modemach mPCI-E oraz USB 3G/LTE.
 
 ``` bash
-#Supported & tested devices:
+Supported & tested devices:
  - Quectel EM12/EM160R-GL
  - Huawei E3372/E3276
  
- #NOT tested devices (Or not fully supported):
+NOT tested devices (Or not fully supported):
  - Quectel EC20
  - Sierra Wireless MC7710
  - ASKEY WWHC050
