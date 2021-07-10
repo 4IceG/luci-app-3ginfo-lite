@@ -125,15 +125,15 @@ MODEL=$(echo $FW2 | awk -F 'ati|Rev' '{print $2}'| xargs)
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
-PV=$(cat /sys/kernel/debug/usb/devices | grep "Driver=")
-
-if echo "$PV" | grep -q "Driver=qmi_wwan"
+PV=$(cat /sys/kernel/debug/usb/devices)
+PVCUT=$(echo $PV | awk -F 'Vendor=2c7c ProdID=0512' '{print $2}' | cut -c-1220)
+if echo "$PVCUT" | grep -q "Driver=qmi_wwan"
 then
     PROTO="QMI"
-elif echo "$PV" | grep -q "Driver=cdc_mbim"
+elif echo "$PVCUT" | grep -q "Driver=cdc_mbim"
 then
     PROTO="MBIM"
-elif echo "$PV" | grep -q "Driver=cdc_ether"
+elif echo "$PVCUT" | grep -q "Driver=cdc_ether"
 then
     PROTO="ECM"
 fi
