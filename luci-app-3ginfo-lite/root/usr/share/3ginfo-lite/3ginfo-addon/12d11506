@@ -48,18 +48,18 @@ MODEL=$(echo $MODELD | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}
 
 # Protocol
 # Driver=qmi_wwan & Driver=cdc_mbim & Driver=cdc_ether & Driver=huawei_cdc_ncm
-PV=$(cat /sys/kernel/debug/usb/devices | grep "Driver=")
-
-if echo "$PV" | grep -q "Driver=qmi_wwan"
+PV=$(cat /sys/kernel/debug/usb/devices)
+PVCUT=$(echo $PV | awk -F 'Vendor=12d1 ProdID=1506' '{print $2}' | cut -c-1268)
+if echo "$PVCUT" | grep -q "Driver=qmi_wwan"
 then
     PROTO="QMI"
-elif echo "$PV" | grep -q "Driver=cdc_mbim"
+elif echo "$PVCUT" | grep -q "Driver=cdc_mbim"
 then
     PROTO="MBIM"
-elif echo "$PV" | grep -q "Driver=cdc_ether"
+elif echo "$PVCUT" | grep -q "Driver=cdc_ether"
 then
     PROTO="ECM"
-elif echo "$PV" | grep -q "Driver=huawei_cdc_ncm"
+elif echo "$PVCUT" | grep -q "Driver=huawei_cdc_ncm"
 then
     PROTO="NCM"
 fi
