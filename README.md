@@ -32,14 +32,27 @@ NOT tested devices (Or not fully supported):
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Instalacja
 ``` bash
-#Modem drivers are required for proper operation.
+Modem drivers are required for proper operation.
 opkg install kmod-usb-serial kmod-usb-serial-option
 
-#Dependency required.
+Dependency required.
 opkg install sms-tool
 
-#Install app.
-opkg install luci-app-3ginfo-lite_1.0.2-08072021_all.ipk
+Install app.
+opkg install luci-app-3ginfo-lite_1.0.3-11072021_all.ipk
+
+If there is no application in the menu, the following code should be added to the file:
+/usr/share/luci/menu.d/luci-base.json
+
+"admin/modem": {
+		"title": "Modem",
+		"order": 30,
+		"action": {
+			"type": "firstchild",
+			"recurse": true
+		}
+	},
+
 ```
 
 
