@@ -1,14 +1,24 @@
 {
-	"admin/modem/3ginfo-lite": {
-		"title": "Information about 3G/4G connection",
+	"admin/modem": {
+		"title": "Modem",
 		"order": 3,
 		"action": {
-			"type": "alias",
-			"path": "admin/modem/3ginfo-lite/3gdetail"
-		},
+			"type": "firstchild",
+			"recurse": true
+		}
+	},
+
+	"admin/modem/3ginfo-lite": {
+		"title": "Information about 3G/4G connection",
+		"order": 30,
+		"action": {
+			"type": "view",
+			"path": "modem/3gdetail"
+		}
+
+
 		"depends": {
-			"acl": [ "luci-app-3ginfo" ],
-			"uci": { "3ginfo": true }
+			"acl": [ "luci-app-3ginfo" ]
 		}
 	},
 
