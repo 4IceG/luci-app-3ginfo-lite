@@ -1,6 +1,6 @@
 #!/bin/sh
 # Copyright 2020-2021 Rafał Wabik (IceG) - From eko.one.pl forum
-# Licensed to the GNU General Public License v3.0.
+# MIT License
 
 work=false
 for port in /dev/ttyUSB*
