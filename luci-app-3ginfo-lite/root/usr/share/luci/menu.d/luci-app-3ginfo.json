@@ -1,7 +1,7 @@
 {
 	"admin/modem/3ginfo-lite": {
 		"title": "Information about 3G/4G connection",
-		"order": 30,
+		"order": 3,
 		"action": {
 			"type": "alias",
 			"path": "admin/modem/3ginfo-lite/3gdetail"
