@@ -18,5 +18,4 @@ rm -rf /tmp/testusb
 if [ $work != false ]; then
 uci set 3ginfo.device=$work
 uci commit 3ginfo
-rm -r /tmp/luci-*
 fi
