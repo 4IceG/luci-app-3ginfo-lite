@@ -39,9 +39,9 @@ Dependency required.
 opkg install sms-tool
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.3-11072021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.3-12072021_all.ipk
 
-If there is no application in the menu, the following code should be added to the file:
+If there is no application in the menu, the following code should be added to the file.
 /usr/share/luci/menu.d/luci-base.json
 
 "admin/modem": {
