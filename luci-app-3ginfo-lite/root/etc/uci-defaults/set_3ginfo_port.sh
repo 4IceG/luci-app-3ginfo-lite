@@ -16,6 +16,6 @@ done
 rm -rf /tmp/testusb
 
 if [ $work != false ]; then
-uci set 3ginfo.device=$work
+uci set 3ginfo.@3ginfo[0].device=$work
 uci commit 3ginfo
 fi
