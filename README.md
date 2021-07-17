@@ -19,7 +19,7 @@ Supported & tested devices:
  - Quectel EM12/EM160R-GL
  - Huawei E3372/E3276
  
-NOT tested devices (Or not fully supported):
+NOT tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EC20
  - Sierra Wireless MC7710
  - ASKEY WWHC050
@@ -36,7 +36,7 @@ Modem drivers are required for proper operation.
 opkg install kmod-usb-serial kmod-usb-serial-option
 
 Dependency required.
-opkg install sms-tool
+opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
 
 Install app.
 opkg install luci-app-3ginfo-lite_1.0.3-14072021_all.ipk
@@ -46,7 +46,7 @@ opkg install luci-app-3ginfo-lite_1.0.3-14072021_all.ipk
 
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Preview / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podgląd
 
-![](https://raw.githubusercontent.com/4IceG/Personal_data/master/3ginfo-lite_1.0.3.png)
+![](https://raw.githubusercontent.com/4IceG/Personal_data/master/3ginfo-litehq.png)
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Thanks to / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podziękowania dla
 - [obsy (Cezary Jackiewicz)](https://github.com/obsy)
