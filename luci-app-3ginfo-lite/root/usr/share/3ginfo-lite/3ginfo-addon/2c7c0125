@@ -6,6 +6,7 @@ if [ -n "$T" ]; then
 	case "$T" in
 		*"LTE BAND 1") MODE=$(band 1 "LTE ");;
 		*"LTE BAND 3") MODE=$(band 3 "LTE ");;
+		*"LTE BAND 5") MODE=$(band 5 "LTE ");;
 		*"LTE BAND 7") MODE=$(band 7 "LTE ");;
 		*"LTE BAND 8") MODE=$(band 8 "LTE ");;
 		*"LTE BAND 20") MODE=$(band 20 "LTE ");;

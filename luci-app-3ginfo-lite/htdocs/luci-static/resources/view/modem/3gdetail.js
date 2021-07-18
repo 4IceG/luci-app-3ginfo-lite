@@ -4,7 +4,7 @@
 'require fs';
 
 /*
-	Copyright 2021 Rafał Wabik - IceG - From eko.one.pl forum
+	Copyright 2021 RafaÅ‚ Wabik - IceG - From eko.one.pl forum
 */
 
 return view.extend({
@@ -80,22 +80,46 @@ return view.extend({
 
 					if (document.getElementById('rssi')) {
 						var view = document.getElementById("rssi");
+						var z = json.rssi;
+						if (z.includes('dBm')) { 
+						view.textContent = json.rssi;
+						}
+						else {
 						view.textContent = json.rssi + ' dBm';
+						}
 					}
 
 					if (document.getElementById('rsrp')) {
 						var view = document.getElementById("rsrp");
+						var z = json.rsrp;
+						if (z.includes('dBm')) { 
+						view.textContent = json.rsrp;
+						}
+						else {
 						view.textContent = json.rsrp + ' dBm';
+						}
 					}
 
 					if (document.getElementById('sinr')) {
 						var view = document.getElementById("sinr");
+						var z = json.sinr;
+						if (z.includes('dB')) { 
+						view.textContent = json.sinr;
+						}
+						else {
 						view.textContent = json.sinr + ' dB';
+						}
 					}
 
 					if (document.getElementById('rsrq')) {
 						var view = document.getElementById("rsrq");
+						var z = json.rsrq;
+						if (z.includes('dB')) { 
+						view.textContent = json.rsrq;
+						}
+						else {
 						view.textContent = json.rsrq + ' dB';
+						}
 					}
 
 					if (document.getElementById('mccmnc')) {

@@ -138,6 +138,7 @@ fi
 
 T=$(echo "$O" | awk -F[:] '/^\+CCPUTEMP/ {print $2}' | xargs)
 if [ -n "$T" ]; then
+	TEMP="$T &deg;C"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"Temperatura":"'$T' &deg;C"}'
 fi

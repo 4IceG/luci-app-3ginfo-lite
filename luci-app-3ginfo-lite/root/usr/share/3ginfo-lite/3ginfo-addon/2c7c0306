@@ -1,4 +1,4 @@
-# Quectel EP06
+# Quectel EP06-E
 
 . "$RES/3ginfo-addon/05c69215"
 
@@ -9,9 +9,15 @@ if [ -n "$T" ]; then
 	case $T in
 		*"LTE BAND 1") MODE=$(band 1 "LTE ");;
 		*"LTE BAND 3") MODE=$(band 3 "LTE ");;
+		*"LTE BAND 5") MODE=$(band 5 "LTE ");;
 		*"LTE BAND 7") MODE=$(band 7 "LTE ");;
 		*"LTE BAND 8") MODE=$(band 8 "LTE ");;
 		*"LTE BAND 20") MODE=$(band 20 "LTE ");;
+		*"LTE BAND 28") MODE=$(band 28 "LTE ");;
+		*"LTE BAND 32") MODE=$(band 32 "LTE ");;
+		*"LTE BAND 38") MODE=$(band 38 "LTE ");;
+		*"LTE BAND 40") MODE=$(band 40 "LTE ");;
+		*"LTE BAND 41") MODE=$(band 41 "LTE ");;
 		*) MODE=${T:-$MODE};;
 	esac
 
@@ -19,11 +25,17 @@ if [ -n "$T" ]; then
 	[ -z "$T" ] && T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "scc"/{print $4}')
 	if [ -n "$T" ]; then
 		case $T in
-			*"LTE BAND 1") MODE="$MODE / "$(band 1 "");;
-			*"LTE BAND 3") MODE="$MODE / "$(band 3 "");;
-			*"LTE BAND 7") MODE="$MODE / "$(band 7 "");;
-			*"LTE BAND 8") MODE="$MODE / "$(band 8 "");;
-			*"LTE BAND 20") MODE="$MODE / "$(band 20 "");;
+		*"LTE BAND 1") MODE=$(band 1 "LTE ");;
+		*"LTE BAND 3") MODE=$(band 3 "LTE ");;
+		*"LTE BAND 5") MODE=$(band 5 "LTE ");;
+		*"LTE BAND 7") MODE=$(band 7 "LTE ");;
+		*"LTE BAND 8") MODE=$(band 8 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 20 "LTE ");;
+		*"LTE BAND 28") MODE=$(band 28 "LTE ");;
+		*"LTE BAND 32") MODE=$(band 32 "LTE ");;
+		*"LTE BAND 38") MODE=$(band 38 "LTE ");;
+		*"LTE BAND 40") MODE=$(band 40 "LTE ");;
+		*"LTE BAND 41") MODE=$(band 41 "LTE ");;
 			*) MODE="$MODE / "${T:-$MODE};;
 		esac
 	fi

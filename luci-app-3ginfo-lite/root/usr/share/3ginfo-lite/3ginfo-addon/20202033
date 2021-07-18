@@ -10,16 +10,19 @@ if [ -n "$T" ]; then
 fi
 T=$(echo "$O" | awk -F[,:] '/^RSRP:/ {print $2}' | xargs)
 if [ -n "$T" ]; then
+	RSRP='$T'
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSRP":"'$T' dBm"}'
 fi
 T=$(echo "$O" | awk -F[,:] '/^RSRQ:/ {print $2}' | xargs)
 if [ -n "$T" ]; then
+	RSRQ='$T'
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSRQ":"'$T' dB"}'
 fi
 T=$(echo "$O" | awk -F[,:] '/^SINR:/ {print $2}' | xargs)
 if [ -n "$T" ]; then
+	RINR='$T'
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"SINR":"'$T' dB"}'
 fi

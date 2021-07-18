@@ -24,6 +24,7 @@ T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $4}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
+		RSCP="-'$T'"
 		ADDON="$ADDON"'{"RSCP":"-'$T' dBm"}'
 	fi
 fi
@@ -38,6 +39,7 @@ T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $6}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
+		RSRQ="-'$T'"
 		ADDON="$ADDON"'{"RSRQ":"-'$T' dB"}'
 	fi
 fi
@@ -45,6 +47,7 @@ T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $7}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
+		RSRP="-'$T'"
 		ADDON="$ADDON"'{"RSRP":"-'$T' dBm"}'
 	fi
 fi
