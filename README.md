@@ -25,7 +25,7 @@ NOT tested devices (Not fully supported, are waiting for the code to be added):
  - ASKEY WWHC050
  - ZTE MF821
  - BroadMobi BM806U
- - Quectel EP06
+ - Quectel EP06-E
  - Mikrotik R11e-LTE
 
 ```
@@ -39,7 +39,7 @@ Dependency required.
 opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.3-14072021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.4-18072021_all.ipk
 
 ```
 
