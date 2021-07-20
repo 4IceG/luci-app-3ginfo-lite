@@ -37,14 +37,10 @@ fi
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
 DEV2=$(echo $OF | tr -s "\n"  | xargs)
-FWA=${DEV2:0}
-FWB=$(echo $FWA | awk -F 'Model:' '{print $2}'| xargs)
-FW=$(echo $FWB | awk -F 'Revision:|IMEI' '{print $2}'| xargs)
-MODELA=$(echo $FWA | awk -F 'ati|Rev' '{print $2}'| xargs)
-MODELB=$(echo $MODELA | awk -F 'Manufacturer:|Model:' '{print $2}'| xargs)
-MODELC=$(echo $MODELA | awk -F 'Model:' '{print $2}'| xargs)
-MODELD="$MODELB $MODELC"
-MODEL=$(echo $MODELD | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+MODELB=$(echo $DEV2 | awk -F 'Manufacturer:|Revision:' '{print $2}'| xargs)
+MODELC=$(echo $MODELB | sed 's/Model://' | xargs)
+MODEL=$(echo $MODELC | awk '{print toupper(substr($0,0,1))tolower(substr($0,2))}')
+FW=$(echo $DEV2 | awk -F 'Revision:|IMEI' '{print $2}'| xargs)
 
 # Protocol
 # Driver=qmi_wwan & Driver=cdc_mbim & Driver=cdc_ether & Driver=huawei_cdc_ncm
