@@ -18,8 +18,11 @@ Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa na modem
 Supported & tested devices:
  - Quectel EM12/EM160R-GL
  - Huawei E3372/E3276
+
+Not supported & tested devices:
+ - Huawei e5786 (modem responds only to the "ATI" command)
  
-NOT tested devices (Not fully supported, are waiting for the code to be added):
+Not tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EC20
  - Sierra Wireless MC7710
  - ASKEY WWHC050
