@@ -14,6 +14,27 @@ if [ -n "$T" ]; then
 	esac
 fi
 
+# Modem
+OF=$(sms_tool -d $DEVICE at "ati")
+DEVV=$(echo $OF | tr -s "\n"  | xargs)
+FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
+MODEL=$(echo $DEVV | awk -F 'ati|Rev' '{print $2}'| xargs)
+
+# Protocol
+# DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
+PV=$(cat /sys/kernel/debug/usb/devices)
+PVCUT=$(echo $PV | awk -F 'Vendor=2c7c ProdID=0125' '{print $2}' | cut -c-1220)
+if echo "$PVCUT" | grep -q "Driver=qmi_wwan"
+then
+    PROTO="QMI"
+elif echo "$PVCUT" | grep -q "Driver=cdc_mbim"
+then
+    PROTO="MBIM"
+elif echo "$PVCUT" | grep -q "Driver=cdc_ether"
+then
+    PROTO="ECM"
+fi
+
 T=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $4}' | xargs)
 if [ "x$T" = "xLTE" ]; then
 #	CELLID=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $8}' | xargs)
