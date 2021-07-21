@@ -118,10 +118,9 @@ fi
 
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
-DEV2=$(echo $OF | tr -s "\n"  | xargs)
-FW2=${DEV2:0}
-FW=$(echo $FW2 | awk -F 'Revision:' '{print $2}'| xargs)
-MODEL=$(echo $FW2 | awk -F 'ati|Rev' '{print $2}'| xargs)
+DEVV=$(echo $OF | tr -s "\n"  | xargs)
+FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
+MODEL=$(echo $DEVV | awk -F 'ati|Rev' '{print $2}'| xargs)
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
