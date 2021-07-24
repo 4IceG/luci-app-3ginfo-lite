@@ -20,7 +20,7 @@ Supported & tested devices:
  - Huawei E3372/E3276
 
 Not supported & tested devices:
- - Huawei e5786 (modem responds only to the "ATI" command)
+ - Huawei e5786 | No documentation on AT commands.
  
 Not tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EC20
@@ -30,6 +30,7 @@ Not tested devices (Not fully supported, are waiting for the code to be added):
  - BroadMobi BM806U
  - Quectel EP06-E
  - Mikrotik R11e-LTE
+ - Mikrotik R11e-LTE6
 
 ```
 
@@ -42,7 +43,7 @@ Dependency required.
 opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.4-18072021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.4-24072021_all.ipk
 
 ```
 
