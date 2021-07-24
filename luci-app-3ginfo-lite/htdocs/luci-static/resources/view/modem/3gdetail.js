@@ -4,7 +4,7 @@
 'require fs';
 
 /*
-	Copyright 2021 RafaÅ‚ Wabik - IceG - From eko.one.pl forum
+	Copyright 2021 Rafał Wabik - IceG - From eko.one.pl forum
 */
 
 return view.extend({
