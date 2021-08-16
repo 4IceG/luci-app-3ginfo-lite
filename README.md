@@ -36,14 +36,18 @@ Not tested devices (Not fully supported, are waiting for the code to be added):
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Instalacja
 ``` bash
+> For conventional modems.
 Modem drivers are required for proper operation.
 opkg install kmod-usb-serial kmod-usb-serial-option
+
+> For Huawei HiLink modems.
+opkg install wget-nossl
 
 Dependency required.
 opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.4-24072021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.5-16082021_all.ipk
 
 ```
 
