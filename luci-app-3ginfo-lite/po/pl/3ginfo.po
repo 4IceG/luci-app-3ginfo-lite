@@ -43,8 +43,8 @@ msgstr "Informacje dodatkowe"
 msgid "Revision / Firmware:"
 msgstr "Rewizja / Wersja firmware:"
 
-msgid "Communication Port:"
-msgstr "Port do komunikacji:"
+msgid "IP adress / Communication Port:"
+msgstr "Adres IP / Port do komunikacji:"
 
 msgid "Chip Temperature:"
 msgstr "Temperatura układu:"
@@ -58,8 +58,11 @@ msgstr "Panel konfiguracyjny dla aplikacji 3ginfo-lite."
 msgid "Network"
 msgstr "Sieć"
 
-msgid "Port for communication with the modem"
-msgstr "Port do komunikacji z modemem"
+msgid "IP adress / Port for communication with the modem"
+msgstr "Adres IP / Port do komunikacji z modemem"
+
+msgid "If the modem is traditional, select one of the available ttyUSB ports, in the case of a HiLink device, enter the IP address 192.168.X.X under which the modem is available."
+msgstr "Jeśli modem jest tradycyjny wybierz jeden z dostępnych portów ttyUSB, w przypadku urządzenia typu HiLink należy wprowadzić adres IP 192.168.X.X pod którym dostępny jest modem."
 
 msgid "Protocol:"
 msgstr "Protokół:"

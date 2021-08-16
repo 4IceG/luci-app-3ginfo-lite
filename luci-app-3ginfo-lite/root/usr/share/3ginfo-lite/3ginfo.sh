@@ -37,7 +37,7 @@ if [ "x$DEVICE" = "x" ]; then
 		fi
 	done
 	DEVICE=$(cat /tmp/modem)
-	uci set 3ginfo.device=$DEVICE
+	uci set 3ginfo.@3ginfo[0].device=$DEVICE
 	uci commit 3ginfo
 fi
 
@@ -45,6 +45,20 @@ if [ "x$DEVICE" = "x" ]; then
 	echo '{"error":"Device not found"}'
 	exit 0
 fi
+
+	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
+	if [ -z "$SEC" ]; then
+		getpath $DEVICE
+		PORIG=$P
+		for DEV in /sys/class/tty/* /sys/class/usbmisc/*; do
+			getpath "/dev/"${DEV##/*/}
+			if [ "x$PORIG" = "x$P" ]; then
+				SEC=$(uci show network | grep "/dev/"${DEV##/*/} | cut -f2 -d.)
+				[ -n "$SEC" ] && break
+			fi
+		done
+	fi
+
 
 #O=$(gcom -d $DEVICE -s $RES/3ginfo.gcom 2>/dev/null)
 O=$(sms_tool -d $DEVICE at "AT+CSQ;+COPS=3,0;+COPS?;+COPS=3,2;+COPS?;+CREG=2;+CREG?")
@@ -119,12 +133,29 @@ if [ -n "$T" ]; then
 	esac
 fi
 
+DEVICE=$(uci -q get 3ginfo.@3ginfo[0].device)
+if echo "x$DEVICE" | grep -q "192.168."; then
+	if grep -q "Vendor=1bbb" /sys/kernel/debug/usb/devices; then
+		. $RES/3ginfo-hilink/alcatel_hilink.sh $DEVICE
+	fi
+	if grep -q "Vendor=12d1" /sys/kernel/debug/usb/devices; then
+		. $RES/3ginfo-hilink/huawei_hilink.sh $DEVICE
+	fi
+	if grep -q "Vendor=19d2" /sys/kernel/debug/usb/devices; then
+		. $RES/3ginfo-hilink/zte.sh $DEVICE
+	fi
+	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
+	SEC=${SEC:-wan}
+else
+
 _DEVS=$(awk '/Vendor=/{gsub(/.*Vendor=| ProdID=| Rev.*/,"");print}' /sys/kernel/debug/usb/devices | sort -u)
 for _DEV in $_DEVS; do
 	if [ -e "$RES/3ginfo-addon/$_DEV" ]; then
 		. "$RES/3ginfo-addon/$_DEV"
 	fi
 done
+
+fi
 
 cat <<EOF
 {

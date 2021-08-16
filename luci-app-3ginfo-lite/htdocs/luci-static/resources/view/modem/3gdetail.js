@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 'require view';
 'require poll';
 'require fs';
@@ -70,7 +70,12 @@ return view.extend({
 					if (document.getElementById('temp')) {
 						var view = document.getElementById("temp");
 						var t = json.mtemp;
+						if (t == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = t.replace('&deg;', '°');
+						}
 					}
 
 					if (document.getElementById('csq')) {
@@ -129,12 +134,27 @@ return view.extend({
 
 					if (document.getElementById('lac')) {
 						var view = document.getElementById("lac");
-						view.textContent = json.lac_hex  + ' (' + json.lac_dec + ')' ;
+						if (json.lac_dec == '' || json.lac_hex == '') { 
+						var lc = json.lac_hex   + ' ' + json.lac_dec;
+						var ld = lc.split(' ').join('');
+						view.textContent = ld;
+						}
+						else {
+						view.textContent = json.lac_hex   + ' (' + json.lac_dec + ')' ;
+						}
+
 					}
 
 					if (document.getElementById('cid')) {
 						var view = document.getElementById("cid");
+						if (json.cid_dec == '' || json.cid_hex == '') { 
+						var cc = json.cid_hex   + ' ' + json.cid_dec;
+						var cd = cc.split(' ').join('');
+						view.textContent = cd;
+						}
+						else {
 						view.textContent = json.cid_hex   + ' (' + json.cid_dec + ')' ;
+						}
 					}
 
 
@@ -169,7 +189,7 @@ return view.extend({
 					E('div', { 'class': 'td left', 'id': 'fw' }, [ '-' ]),
 					]),
 				E('tr', { 'class': 'tr' }, [
-					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Communication Port:')]),
+					E('div', { 'class': 'td left', 'width': '33%' }, [ _('IP adress / Communication Port:')]),
 					E('div', { 'class': 'td left', 'id': 'cport' }, [ '-' ]),
 					]),
 				E('tr', { 'class': 'tr' }, [

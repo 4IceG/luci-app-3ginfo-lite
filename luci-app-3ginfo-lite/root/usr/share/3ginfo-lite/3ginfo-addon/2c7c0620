@@ -120,7 +120,11 @@ fi
 OF=$(sms_tool -d $DEVICE at "ati")
 DEVV=$(echo $OF | tr -s "\n"  | xargs)
 FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
-MODEL=$(echo $DEVV | awk -F 'ati|Rev' '{print $2}'| xargs)
+MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $1}'| xargs)
+if [ -z "$MODEL" ]
+then
+      MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $2}'| xargs)
+fi
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
