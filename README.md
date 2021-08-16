@@ -19,8 +19,7 @@ Supported & tested devices:
  - Quectel EM12/EM160R-GL
  - Huawei E3372/E3276
 
-Not supported & tested devices:
- - Huawei e5786 | No documentation on AT commands.
+Test support for HiLink modems.
  
 Not tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EC20
@@ -31,6 +30,7 @@ Not tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EP06-E
  - Mikrotik R11e-LTE
  - Mikrotik R11e-LTE6
+ - Huawei e5786 (mobile-wifi / HiLink)
 
 ```
 
