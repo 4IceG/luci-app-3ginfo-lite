@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 'require view';
 'require poll';
 'require fs';
@@ -39,39 +39,69 @@ return view.extend({
 
 					if (document.getElementById('operator')) {
 						var view = document.getElementById("operator");
+						if (json.operator_name == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.operator_name;
+						}
 					}
 
 					if (document.getElementById('mode')) {
 						var view = document.getElementById("mode");
+						if (json.mode == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.mode;
+						}
 					}
 
 					if (document.getElementById('modem')) {
 						var view = document.getElementById("modem");
+						if (json.modem == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.modem;
+						}
 					}
 
 					if (document.getElementById('fw')) {
 						var view = document.getElementById("fw");
+						if (json.firmware == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.firmware;
+						}
 					}
 
 					if (document.getElementById('cport')) {
 						var view = document.getElementById("cport");
+						if (json.cport == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.cport;
+						}
 					}
 
 					if (document.getElementById('protocol')) {
 						var view = document.getElementById("protocol");
+						if (json.protocol == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.protocol;
+						}
 					}
 
 					if (document.getElementById('temp')) {
 						var view = document.getElementById("temp");
 						var t = json.mtemp;
 						if (t == '') { 
-						view.textContent = '-';
+						view.textContent = '- °C';
 						}
 						else {
 						view.textContent = t.replace('&deg;', '°');
@@ -80,50 +110,75 @@ return view.extend({
 
 					if (document.getElementById('csq')) {
 						var view = document.getElementById("csq");
+						if (json.csq == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.csq;
+						}
 					}
 
 					if (document.getElementById('rssi')) {
 						var view = document.getElementById("rssi");
-						var z = json.rssi;
-						if (z.includes('dBm')) { 
-						view.textContent = json.rssi;
+						if (json.rssi == '') { 
+						view.textContent = '- dBm';
 						}
 						else {
-						view.textContent = json.rssi + ' dBm';
+							var z = json.rssi;
+							if (z.includes('dBm')) { 
+							view.textContent = json.rssi;
+							}
+							else {
+							view.textContent = json.rssi + ' dBm';
+							}
 						}
 					}
 
 					if (document.getElementById('rsrp')) {
 						var view = document.getElementById("rsrp");
-						var z = json.rsrp;
-						if (z.includes('dBm')) { 
-						view.textContent = json.rsrp;
+						if (json.rsrp == '') { 
+						view.textContent = '- dBm';
 						}
 						else {
-						view.textContent = json.rsrp + ' dBm';
+							var z = json.rsrp;
+							if (z.includes('dBm')) { 
+							view.textContent = json.rsrp;
+							}
+							else {
+							view.textContent = json.rsrp + ' dBm';
+							}
 						}
 					}
 
 					if (document.getElementById('sinr')) {
 						var view = document.getElementById("sinr");
-						var z = json.sinr;
-						if (z.includes('dB')) { 
-						view.textContent = json.sinr;
+						if (json.sinr == '') { 
+						view.textContent = '- dB';
 						}
 						else {
-						view.textContent = json.sinr + ' dB';
+							var z = json.sinr;
+							if (z.includes('dB')) { 
+							view.textContent = json.sinr;
+							}
+							else {
+							view.textContent = json.sinr + ' dB';
+							}
 						}
 					}
 
 					if (document.getElementById('rsrq')) {
 						var view = document.getElementById("rsrq");
-						var z = json.rsrq;
-						if (z.includes('dB')) { 
-						view.textContent = json.rsrq;
+						if (json.rsrq == '') { 
+						view.textContent = '- dB';
 						}
 						else {
-						view.textContent = json.rsrq + ' dB';
+							var z = json.rsrq;
+							if (z.includes('dB')) { 
+							view.textContent = json.rsrq;
+							}
+							else {
+							view.textContent = json.rsrq + ' dB';
+							}
 						}
 					}
 
