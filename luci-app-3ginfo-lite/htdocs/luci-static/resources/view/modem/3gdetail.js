@@ -110,7 +110,7 @@ return view.extend({
 
 					if (document.getElementById('csq')) {
 						var view = document.getElementById("csq");
-						if (json.csq == '') { 
+						if (json.csq == '' || json.csq == '0') { 
 						view.textContent = '-';
 						}
 						else {
@@ -184,7 +184,12 @@ return view.extend({
 
 					if (document.getElementById('mccmnc')) {
 						var view = document.getElementById("mccmnc");
+						if (json.operator_mcc == '' & json.operator_mnc == '') { 
+						view.textContent = '-';
+						}
+						else {
 						view.textContent = json.operator_mcc + " " + json.operator_mnc;
+						}
 					}
 
 					if (document.getElementById('lac')) {
