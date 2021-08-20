@@ -1,5 +1,3 @@
-﻿# Huawei Hilink
-
 #!/bin/sh
 
 IP=$1
@@ -138,8 +136,7 @@ else
 	class=$(getvalue device-basic_information classify)
 	[ -n "$MODEL" ] && "MODEL=Huawei $MODEL ($class)"
 fi
-if echo "$MODEL" | grep -q "E57"
-then
+if (( echo "$MODEL" | grep -q "E57" )) || (( echo "$MODEL" | grep -q "e57" )); then
 	CLA=$(getvalue device-information Classify)
 	CLB=$(getvalue device-basic_information classify)
 	MODEL="Huawei $MODEL"
@@ -158,8 +155,7 @@ if [ -n "$FW" ]; then
 fi
 if [ -z "$FW" ]
 then
-	if echo "$MODEL" | grep -q "E57"
-	then
+	if (( echo "$MODEL" | grep -q "E57" )) || (( echo "$MODEL" | grep -q "e57" )); then
 		OF=$(sms_tool -d /dev/ttyUSB0 at "ati")
 		DEV2=$(echo $OF | tr -s "\n"  | xargs)
 		FW=$(echo $DEV2 | awk -F 'Revision:|IMEI' '{print $2}'| xargs)
