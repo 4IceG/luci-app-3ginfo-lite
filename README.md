@@ -20,7 +20,7 @@ Supported & tested devices:
  - Quectel EP06-E
  - Huawei E3372/E3276
  - Huawei E3276 HiLink
- - Huawei e5786 (mobile-wifi / HiLink)
+ - Huawei E5786 (mobile-wifi / HiLink)
  
 Not tested devices (Not fully supported, are waiting for the code to be added):
  - Quectel EC20
