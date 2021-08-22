@@ -27,7 +27,13 @@ return view.extend({
 		o.default = 'wan';
 		o.rmempty = false;
 
-		o = s.option(form.Value, 'device', _('IP adress / Port for communication with the modem'), _('If the modem is traditional, select one of the available ttyUSB ports, in the case of a HiLink device, enter the IP address 192.168.X.X under which the modem is available.'));
+		o = s.option(form.Value, 'device', 
+			_('IP adress / Port for communication with the modem'), 
+			_("Select the appropriate settings. <br /> \
+				<br />Traditional modem. <br /> \
+				Select one of the available ttyUSBX ports.<br /> \
+				<br />HiLink modem. <br /> \
+				Enter the IP address 192.168.X.X under which the modem is available."));
 		devs.forEach(function(dev) {
 			o.value('/dev/' + dev.name);
 		});
