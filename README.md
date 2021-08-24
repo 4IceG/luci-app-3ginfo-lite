@@ -22,7 +22,7 @@ Supported & tested devices:
  - Huawei E3276 HiLink
  - Huawei E5786 (mobile-wifi / HiLink)
  
-Not tested devices (Not all data can be shown. Scripts need to be corrected):
+Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Quectel EC20
  - Sierra Wireless MC7710
  - ASKEY WWHC050
