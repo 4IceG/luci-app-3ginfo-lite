@@ -1,4 +1,9 @@
 #!/bin/sh
+#
+# (c) 2010-2021 Cezary Jackiewicz <cezary@eko.one.pl>
+#
+# (c) 2021 modified by Rafał Wabik - IceG - From eko.one.pl forum
+#
 
 IP=$1
 [ -z "$IP" ] && exit 0
@@ -34,7 +39,7 @@ case $MODEN in
 esac
 echo "^SYSINFOEX:x,x,x,x,,x,\"$MODE\",$MODEN,\"$MODE\""
 
-OPER=$(getvalue getWanInfo "network_name")
+COPS=$(getvalue getWanInfo "network_name")
 echo "+COPS: 0,0,\"$OPER\",x"
 
 SIGNAL=$(getvaluen getImgInfo "signal")
@@ -49,7 +54,7 @@ esac
 echo "+CSQ: $CSQ,99"
 
 MODEL=$(getvalue getSysteminfo "dev_name")
-echo "DEVICE:Alcatel $MODEL"
+echo MODEL="Alcatel $MODEL"
 
 if [ "x$2" != "xdebug" ]; then
 	for f in $files; do

@@ -1,4 +1,9 @@
 #!/bin/sh
+#
+# (c) 2010-2021 Cezary Jackiewicz <cezary@eko.one.pl>
+#
+# (c) 2021 modified by Rafał Wabik - IceG - From eko.one.pl forum
+#
 
 IP=$1
 [ -z "$IP" ] && exit 0
@@ -67,9 +72,8 @@ else
 	fi
 fi
 
-
-MODE=$(getvaluen monitoring-status CurrentNetworkType)
-case $MODE in
+MODEN=$(getvaluen monitoring-status CurrentNetworkType)
+case $MODEN in
 	1)  MODE="GSM";;
 	2)  MODE="GPRS";;
 	3)  MODE="EDGE";;
@@ -134,7 +138,7 @@ if [ -n "$MODEL" ]; then
 else
 	MODEL=$(getvalue device-basic_information devicename)
 	class=$(getvalue device-basic_information classify)
-	[ -n "$MODEL" ] && "MODEL=Huawei $MODEL ($class)"
+	[ -n "$MODEL" ] && MODEL="Huawei $MODEL ($class)"
 fi
 
 FW=$(getvalue device-information SoftwareVersion)
@@ -148,7 +152,6 @@ COPSB=$(echo "${COPSA}" | cut -c1-3)
 COPSC=$(echo -n $COPSA | tail -c 2)
 COPS_MCC="$COPSB"
 COPS_MNC="$COPSC"
-
 
 COPS=$(getvalue net-current-plmn ShortName)
 
