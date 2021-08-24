@@ -22,7 +22,7 @@ Supported & tested devices:
  - Huawei E3276 HiLink
  - Huawei E5786 (mobile-wifi / HiLink)
  
-Not tested devices (Not fully supported, are waiting for the code to be added):
+Not tested devices (Not all data can be shown. Scripts need to be corrected):
  - Quectel EC20
  - Sierra Wireless MC7710
  - ASKEY WWHC050
@@ -30,6 +30,7 @@ Not tested devices (Not fully supported, are waiting for the code to be added):
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
  - Mikrotik R11e-LTE6
+ - HiLink modems (ZTE / Alcatel)
 
 ```
 
@@ -46,7 +47,7 @@ Dependency required.
 opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.6-20082021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.7-24082021_all.ipk
 
 ```
 
