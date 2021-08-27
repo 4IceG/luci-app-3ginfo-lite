@@ -1,4 +1,4 @@
-# Quectel EC20-E
+# Quectel EC20-E/EC25
 
 O=$(sms_tool -d $DEVICE at "at+qtemp;+qnwinfo;+qeng=\"servingcell\";+qspn")
 T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO/ {print $2"/"$4}' | xargs)
@@ -31,7 +31,7 @@ if [ "x$T" = "xLTE" ]; then
 	RSRP=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $15}' | xargs)
 	RSRQ=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $16}' | xargs)
 	RSSI=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $17}' | xargs)
-	SINR=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $18}' | xargs)
+	SINR=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $18}' | xargs | awk '{printf "%.1f\n", $1*0.2-20}')
 #	SRXLEV=$(echo "$O" | awk -F[,:] '/^\+QENG:/ {print $19}' | xargs)
 #	[ -n "$ADDON" ] && ADDON="$ADDON,"
 #	ADDON="$ADDON"'{"CELLID":"'$CELLID'"}'
@@ -62,4 +62,30 @@ fi
 T=$(echo "$O" | awk -F[,:] '/^\+QSPN/ {print $4}' | xargs)
 if [ -n "$T" ]; then
 	COPS="$T"
+fi
+
+
+# Modem
+OF=$(sms_tool -d $DEVICE at "ati")
+DEVV=$(echo $OF | tr -s "\n"  | xargs)
+FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
+MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $1}'| xargs)
+if [ -z "$MODEL" ]
+then
+      MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $2}'| xargs)
+fi
+
+# Protocol
+# DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
+PV=$(cat /sys/kernel/debug/usb/devices)
+PVCUT=$(echo $PV | awk -F 'Vendor=2c7c ProdID=0306' '{print $2}' | cut -c-1220)
+if echo "$PVCUT" | grep -q "Driver=qmi_wwan"
+then
+    PROTO="QMI"
+elif echo "$PVCUT" | grep -q "Driver=cdc_mbim"
+then
+    PROTO="MBIM"
+elif echo "$PVCUT" | grep -q "Driver=cdc_ether"
+then
+    PROTO="ECM"
 fi
