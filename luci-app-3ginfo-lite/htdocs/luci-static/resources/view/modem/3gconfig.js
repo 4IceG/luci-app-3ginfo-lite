@@ -20,7 +20,7 @@ return view.extend({
 		var m, s, o;
 		m = new form.Map('3ginfo', _('Configuration 3ginfo-lite'), _('Configuration panel for the 3ginfo-lite application.'));
 
-		s = m.section(form.TypedSection, '3ginfo', '<p>&nbsp;</p>', _(''));
+		s = m.section(form.TypedSection, '3ginfo', '', _(''));
 		s.anonymous = true;
 
 		o = s.option(form.Value, 'network', _('Network'));

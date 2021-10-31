@@ -4,6 +4,12 @@ msgstr "Content-Type: text/plain; charset=UTF-8"
 msgid "Information about 3G/4G connection"
 msgstr "Informacja o statusie połączenia 3G/4G"
 
+msgid "More information about the 3ginfo on the"
+msgstr "Więcej informacji o 3ginfo na"
+
+msgid "eko.one.pl forum"
+msgstr "forum eko.one.pl"
+
 msgid "Details"
 msgstr "Szczegóły"
 

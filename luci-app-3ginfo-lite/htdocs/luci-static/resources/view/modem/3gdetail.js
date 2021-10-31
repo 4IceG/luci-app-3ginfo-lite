@@ -222,6 +222,7 @@ return view.extend({
 		});
 		return E([], [
 			E('h2', {}, [ _('3ginfo-lite') ]),
+			E('div', { class: 'cbi-section-descr' }, _('More information about the 3ginfo on the')+ ' <a href="https://eko.one.pl/?p=openwrt-3ginfo" target="_blank">' + _('eko.one.pl forum') + '</a>.'),
 			E('h4', {}, [ _('General Information') ]),
 			E('table', { 'class': 'table' }, [
 				E('tr', { 'class': 'tr' }, [
@@ -301,18 +302,8 @@ return view.extend({
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('CID: ')]),
 					E('div', { 'class': 'td left', 'id': 'cid' }, [ '-' ]),
 					]),
-				E('tr', { 'class': 'tr' }, [
-					E('div', { 'class': 'td left', 'width': '33%' }, [ _('')]),
-					E('div', { 'class': 'td left' }, ['']),
-					]),
 
 			]),
-
-			E('div', { 'class': 'left',}, [
-					E('div', { 'class': 'ifacebadge',}, [
-						E('a', { href: 'https://eko.one.pl/forum/viewtopic.php?pid=240837#p240837' },'e1')
-					])
-			])
 
 		]);
 	},
