@@ -25,6 +25,7 @@ Supported devices:
  
 Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Sierra Wireless MC7710
+ - Sierra Wireless EM7455
  - ASKEY WWHC050
  - ZTE MF821
  - BroadMobi BM806U
@@ -44,10 +45,10 @@ opkg install kmod-usb-serial kmod-usb-serial-option
 opkg install wget-nossl
 
 Dependency required.
-opkg install sms-tool_2021-05-07-e9efc352-1_XXXXXX.ipk
+opkg install sms-tool_2021-08-24-57a68d07-1_XXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.7-27082021_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.8-2021-10-31_all.ipk
 
 ```
 
