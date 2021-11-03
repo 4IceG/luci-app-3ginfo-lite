@@ -61,7 +61,7 @@ if [ -n "$T" ]; then
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSSI":"'${T// //}' dBm"}'
 fi
-T=$(echo "$O" | awk '/RSRP/ {print $7}' | xargs)
+T=$(echo "$O" | awk '/^PCC.*RSRP/ {print $7}' | xargs)
 if [ -n "$T" ]; then
 	RSRP="'${T// //}' dBm"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
