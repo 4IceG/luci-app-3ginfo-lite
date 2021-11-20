@@ -48,7 +48,7 @@ Dependency required.
 opkg install sms-tool_2021-08-24-57a68d07-1_XXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.8-2021-10-31_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.8-20211120_all.ipk
 
 ```
 
