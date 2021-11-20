@@ -1,6 +1,6 @@
 # Mikrotik R11e-LTE6
 
-O=$(sms_tool -d $DEVICE at "at+cesq;+zcainfo?")
+O=$(sms_tool -d $DEVICE at "at+cesq;+zcainfo?;+zpas?;+zcellinfo?")
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $4}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
@@ -30,47 +30,35 @@ if [ -n "$T" ]; then
 	fi
 fi
 
+T=$(echo "$O" | awk -F[,:] '/^\+ZPAS/ {print $2}' | xargs)
+if [ -n "$T" ]; then
+	MODE=$T
+	T=$(echo "$O" | awk -F[,:] '/^\+ZCELLINFO/ {print $4}' | xargs)
+	if [ -n "$T" ]; then
+		case $T in
+			*"LTE B1") MODE=$(band 1 "$MODE ");;
+			*"LTE B3") MODE=$(band 3 "$MODE ");;
+			*"LTE B7") MODE=$(band 7 "$MODE ");;
+			*"LTE B8") MODE=$(band 8 "$MODE ");;
+			*"LTE B20") MODE=$(band 20 "$MODE ");;
+			*) MODE="$MODE / $T";;
+		esac
+	fi
+fi
+
 case "$MODE1" in
-	7*)
-		T=$(echo "$O" | awk -F[,] '/^\+ZCAINFO: /{print $2}')
-		if [ -n "$T" ]; then
-			if [ "$T" != "0" ]; then
-				case $T in
-					*"1") MODE=$(band 1 "LTE ");;
-					*"3") MODE=$(band 3 "LTE ");;
-					*"7") MODE=$(band 7 "LTE ");;
-					*"8") MODE=$(band 8 "LTE ");;
-					*"20") MODE=$(band 20 "LTE ");;
-					*) MODE=${T:-$MODE};;
-				esac
-			fi
-		fi
-		;;
 	9*)
-		T=$(echo "$O" | awk -F[,] '/^\+ZCAINFO: /{print $2}')
+		T=$(echo "$O" | awk -F[,] '/^\+ZCAINFO: /{print $11}')
 		if [ -n "$T" ]; then
 			if [ "$T" != "0" ]; then
 				case $T in
-					*"1") MODE=$(band 1 "LTE ");;
-					*"3") MODE=$(band 3 "LTE ");;
-					*"7") MODE=$(band 7 "LTE ");;
-					*"8") MODE=$(band 8 "LTE ");;
-					*"20") MODE=$(band 20 "LTE ");;
-					*) MODE=${T:-$MODE};;
+					*"1") MODE="$MODE / "$(band 1 "");;
+					*"3") MODE="$MODE / "$(band 3 "");;
+					*"7") MODE="$MODE / "$(band 7 "");;
+					*"8") MODE="$MODE / "$(band 8 "");;
+					*"20") MODE="$MODE / "$(band 20 "");;
+					*) MODE="$MODE / $T";;
 				esac
-				T=$(echo "$O" | awk -F[,] '/^\+ZCAINFO: /{print $11}')
-				if [ -n "$T" ]; then
-					if [ "$T" != "0" ]; then
-						case $T in
-							*"1") MODE="$MODE / "$(band 1 "");;
-							*"3") MODE="$MODE / "$(band 3 "");;
-							*"7") MODE="$MODE / "$(band 7 "");;
-							*"8") MODE="$MODE / "$(band 8 "");;
-							*"20") MODE="$MODE / "$(band 20 "");;
-							*) MODE="$MODE / "${T:-$MODE};;
-						esac
-					fi
-				fi
 			fi
 		fi
 		;;

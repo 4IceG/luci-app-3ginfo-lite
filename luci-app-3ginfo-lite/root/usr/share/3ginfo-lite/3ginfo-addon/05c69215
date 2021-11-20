@@ -1,20 +1,29 @@
-# Quectel EC20-E/EC25
+# Quectel EC20-E
+# Quectel EC25
 
 O=$(sms_tool -d $DEVICE at "at+qtemp;+qnwinfo;+qeng=\"servingcell\";+qspn")
+
+T=$(echo "$O" | awk -F[,:] '/^\+QTEMP/ {t=$2*1;if($3*1>t)t=$3*1;if($4*1>t)t=$4*1;printf "%d", t}')
+if [ -n "$T" ]; then
+	[ -n "$ADDON" ] && ADDON="$ADDON,"
+	TEMP="$T &deg;C"
+	ADDON="$ADDON"'{"Temperatura":"'$T' &deg;C"}'
+fi
+
 T=$(echo "$O" | awk -F[,:] '/^\+QNWINFO/ {print $2"/"$4}' | xargs)
 if [ -n "$T" ]; then
 	case "$T" in
 		*"LTE BAND 1") MODE=$(band 1 "LTE ");;
 		*"LTE BAND 3") MODE=$(band 3 "LTE ");;
-		*"LTE BAND 5") MODE=$(band 5 "LTE ");;
+		*"LTE BAND 7") MODE=$(band 5 "LTE ");;
 		*"LTE BAND 7") MODE=$(band 7 "LTE ");;
 		*"LTE BAND 8") MODE=$(band 8 "LTE ");;
 		*"LTE BAND 20") MODE=$(band 20 "LTE ");;
-		*"LTE BAND 28") MODE=$(band 28 "LTE ");;
-		*"LTE BAND 32") MODE=$(band 32 "LTE ");;
-		*"LTE BAND 38") MODE=$(band 38 "LTE ");;
-		*"LTE BAND 40") MODE=$(band 40 "LTE ");;
-		*"LTE BAND 41") MODE=$(band 41 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 28 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 32 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 38 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 40 "LTE ");;
+		*"LTE BAND 20") MODE=$(band 41 "LTE ");;
 		*) MODE="$T";;
 	esac
 fi
