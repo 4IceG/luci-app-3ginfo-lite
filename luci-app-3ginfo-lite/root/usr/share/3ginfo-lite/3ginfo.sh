@@ -2,7 +2,6 @@
 
 #
 # (c) 2010-2021 Cezary Jackiewicz <cezary@eko.one.pl>
-#
 # (c) 2021 modified by Rafał Wabik - IceG - From eko.one.pl forum
 #
 
@@ -58,6 +57,36 @@ fi
 			fi
 		done
 	fi
+
+
+CONN_TIME="-"
+RX="-"
+TX="-"
+
+NETUP=$(ifstatus $SEC | grep "\"up\": true")
+if [ -n "$NETUP" ]; then
+
+		CT=$(uci -q -P /var/state/ get network.$SEC.connect_time)
+		if [ -z $CT ]; then
+			CT=$(ifstatus $SEC | awk -F[:,] '/uptime/ {print $2}' | xargs)
+		else
+			UPTIME=$(cut -d. -f1 /proc/uptime)
+			CT=$((UPTIME-CT))
+		fi
+		if [ ! -z $CT ]; then
+			D=$(expr $CT / 60 / 60 / 24)
+			H=$(expr $CT / 60 / 60 % 24)
+			M=$(expr $CT / 60 % 60)
+			S=$(expr $CT % 60)
+			CONN_TIME=$(printf "%dd, %02d:%02d:%02d" $D $H $M $S)
+		fi
+		IFACE=$(ifstatus $SEC | awk -F\" '/l3_device/ {print $4}')
+		if [ -n "$IFACE" ]; then
+			RX=$(ifconfig $IFACE | awk -F[\(\)] '/bytes/ {printf "%s",$2}')
+			TX=$(ifconfig $IFACE | awk -F[\(\)] '/bytes/ {printf "%s",$4}')
+		fi
+
+fi
 
 
 #O=$(gcom -d $DEVICE -s $RES/3ginfo.gcom 2>/dev/null)
@@ -157,8 +186,12 @@ done
 
 fi
 
+
 cat <<EOF
 {
+"connt":"$CONN_TIME",
+"conntx":"$TX",
+"connrx":"$RX",
 "modem":"$MODEL",
 "mtemp":"$TEMP",
 "firmware":"$FW",
