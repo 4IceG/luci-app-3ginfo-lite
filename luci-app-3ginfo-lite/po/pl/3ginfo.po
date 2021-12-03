@@ -40,6 +40,9 @@ msgstr "Operator:"
 msgid "Signal strength:"
 msgstr "Siła sygnału:"
 
+msgid "Connection statistics:"
+msgstr "Statystyki połączenia:"
+
 msgid "Modem type:"
 msgstr "Typ modemu:"
 
