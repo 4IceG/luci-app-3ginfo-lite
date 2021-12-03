@@ -37,6 +37,16 @@ return view.extend({
 						view.innerHTML = String.format('<medium>%d%%</medium></br>' + '<img style="padding-left: 10px;" src="%s"/>', p, icon);
 					}
 
+					if (document.getElementById('connst')) {
+						var view = document.getElementById("connst");
+						if (json.connt == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = '⏱ '+ json.connt + ' | ⮟' + json.connrx + ' ⮝' + json.conntx;
+						}
+					}
+
 					if (document.getElementById('operator')) {
 						var view = document.getElementById("operator");
 						if (json.operator_name == '') { 
@@ -232,6 +242,10 @@ return view.extend({
 				E('tr', { 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Operator:')]),
 					E('div', { 'class': 'td left', 'id': 'operator' }, [ '-' ]),
+					]),
+				E('tr', { 'class': 'tr' }, [
+					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Connection statistics:')]),
+					E('div', { 'class': 'td left', 'id': 'connst' }, [ '-' ]),
 					]),
 				E('tr', { 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Mode:')]),
