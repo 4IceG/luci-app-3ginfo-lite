@@ -43,7 +43,7 @@ return view.extend({
 						view.textContent = '-';
 						}
 						else {
-						view.textContent = '⏱ '+ json.connt + ' | ⮟' + json.connrx + ' ⮝' + json.conntx;
+						view.textContent = '⏱ '+ json.connt + ' | ↓' + json.connrx + ' ↑' + json.conntx;
 						}
 					}
 
