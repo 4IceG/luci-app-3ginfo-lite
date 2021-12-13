@@ -85,16 +85,16 @@ msgid "Protocol:"
 msgstr "Protokół:"
 
 msgid "Signal strength very good"
-msgstr "Bardzo dobra siła sygnału"
+msgstr "Moc sygnału bardzo dobra"
 
 msgid "Good signal strength"
-msgstr "Dobra siła sygnału"
+msgstr "Moc sygnału dobra"
 
 msgid "Signal strength weak"
-msgstr "Siła sygnału słaba"
+msgstr "Moc sygnału słaba"
 
 msgid "Signal strength very weak"
-msgstr "Siła sygnału bardzo słaba"
+msgstr "Moc sygnału bardzo słaba"
 
 msgid "Excellent"
 msgstr "Doskonały"
