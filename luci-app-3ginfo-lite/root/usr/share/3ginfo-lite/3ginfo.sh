@@ -181,6 +181,7 @@ _DEVS=$(awk '/Vendor=/{gsub(/.*Vendor=| ProdID=| Rev.*/,"");print}' /sys/kernel/
 for _DEV in $_DEVS; do
 	if [ -e "$RES/3ginfo-addon/$_DEV" ]; then
 		. "$RES/3ginfo-addon/$_DEV"
+		break
 	fi
 done
 
