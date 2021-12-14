@@ -37,8 +37,9 @@ var pc = Math.floor((100 / mn) * vn);
 			pg.firstElementChild.style.background = 'red';
 			var tip = _('Signal strength very weak');
 			};
-		pg.firstElementChild.style.width = pc + '%';
-		pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
+pg.firstElementChild.style.width = pc + '%';
+//pg.style.width = '50%';
+pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 function rssi_bar(v, m) {
@@ -53,12 +54,12 @@ var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
 			pg.firstElementChild.style.background = 'lime';
 			var tip = _('Signal strength very good');
 			};
-		if (vn > -85 && vn < -75) 
+		if (vn >= -85 && vn <= -75) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
 			var tip = _('Good signal strength');
 			};
-		if (vn > -93 && vn < -86) 
+		if (vn >= -93 && vn <= -86) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
 			var tip = _('Signal strength weak');
@@ -68,9 +69,10 @@ var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
 			pg.firstElementChild.style.background = 'red';
 			var tip = _('Signal strength very weak');
 			};
-		pg.firstElementChild.style.width = pc + '%';
-		pg.firstElementChild.style.animationDirection = "reverse";
-		pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
+pg.firstElementChild.style.width = pc + '%';
+//pg.style.width = '50%';
+pg.firstElementChild.style.animationDirection = "reverse";
+pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 function rsrp_bar(v, m) {
@@ -79,18 +81,18 @@ var vn = parseInt(v) || 0;
 var mn = parseInt(m) || 100;
 if (vn > -50) { vn = -50 };
 if (vn < -140) { vn = -140 };
-var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
+var pc =  Math.floor(120*(1-(-50 - vn)/(-50 - mn)));
 		if (vn >= -79 ) 
 			{
 			pg.firstElementChild.style.background = 'lime';
 			var tip = _('Signal strength very good');
 			};
-		if (vn > -90 && vn < -80) 
+		if (vn >= -90 && vn <= -80) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
 			var tip = _('Good signal strength');
 			};
-		if (vn > -100 && vn < -91) 
+		if (vn >= -100 && vn <= -91) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
 			var tip = _('Signal strength weak');
@@ -100,16 +102,17 @@ var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
 			pg.firstElementChild.style.background = 'red';
 			var tip = _('Signal strength very weak');
 			};
-		pg.firstElementChild.style.width = pc + '%';
-		pg.firstElementChild.style.animationDirection = "reverse";
-		pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
+pg.firstElementChild.style.width = pc + '%';
+//pg.style.width = '50%';
+pg.firstElementChild.style.animationDirection = "reverse";
+pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 function sinr_bar(v, m) {
 var pg = document.querySelector('#sinr')
 var vn = parseInt(v) || 0;
 var mn = parseInt(m) || 100;
-var pc = Math.floor(100-(100*(1-((mn - vn)/(mn - 30)))));
+var pc = Math.floor(100-(100*(1-((mn - vn)/(mn - 25)))));
 		if (vn >= 21 ) 
 			{
 			pg.firstElementChild.style.background = 'lime';
@@ -130,28 +133,29 @@ var pc = Math.floor(100-(100*(1-((mn - vn)/(mn - 30)))));
 			pg.firstElementChild.style.background = 'red';
 			var tip = _('Cell edge');
 			};
-		pg.firstElementChild.style.width = pc + '%';
-		pg.firstElementChild.style.animationDirection = "reverse";
-		pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
+pg.firstElementChild.style.width = pc + '%';
+//pg.style.width = '50%';
+pg.firstElementChild.style.animationDirection = "reverse";
+pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 function rsrq_bar(v, m) {
 var pg = document.querySelector('#rsrq')
 var vn = parseInt(v) || 0;
 var mn = parseInt(m) || 100;
-var pc = Math.floor(125-(100/mn)*vn);
+var pc = Math.floor(130-(100/mn)*vn);
 if (vn > 0) { vn = 0; };
-		if (vn >= -10 ) 
+		if (vn >= -9 ) 
 			{
 			pg.firstElementChild.style.background = 'lime';
 			var tip = _('Excellent');
 			};
-		if (vn > -15 && vn < -10) 
+		if (vn >= -15 && vn <= -10) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
 			var tip = _('Good');
 			};
-		if (vn > -20 && vn < -15) 
+		if (vn >= -20 && vn <= -16) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
 			var tip = _('Mid cell');
@@ -161,9 +165,10 @@ if (vn > 0) { vn = 0; };
 			pg.firstElementChild.style.background = 'red';
 			var tip = _('Cell edge');
 			};
-		pg.firstElementChild.style.width = pc + '%';
-		pg.firstElementChild.style.animationDirection = "reverse";
-		pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
+pg.firstElementChild.style.width = pc + '%';
+//pg.style.width = '50%';
+pg.firstElementChild.style.animationDirection = "reverse";
+pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 return view.extend({
