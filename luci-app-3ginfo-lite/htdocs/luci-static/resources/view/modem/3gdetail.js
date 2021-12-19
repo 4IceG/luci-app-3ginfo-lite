@@ -20,25 +20,25 @@ var pc = Math.floor((100 / mn) * vn);
 		if (vn >= 20 && vn <= 31 ) 
 			{
 			pg.firstElementChild.style.background = 'lime';
-			var tip = _('Signal strength very good');
+			var tip = _('Very good');
 			};
 		if (vn >= 14 && vn <= 19) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
-			var tip = _('Good signal strength');
+			var tip = _('Good');
 			};
 		if (vn >= 10 && vn <= 13) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
-			var tip = _('Signal strength weak');
+			var tip = _('Weak');
 			};
 		if (vn <= 9 && vn >= 1) 
 			{
 			pg.firstElementChild.style.background = 'red';
-			var tip = _('Signal strength very weak');
+			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-//pg.style.width = '50%';
+pg.style.width = '50%';
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
@@ -52,25 +52,25 @@ var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
 		if (vn >= -74) 
 			{
 			pg.firstElementChild.style.background = 'lime';
-			var tip = _('Signal strength very good');
+			var tip = _('Very good');
 			};
 		if (vn >= -85 && vn <= -75) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
-			var tip = _('Good signal strength');
+			var tip = _('Good');
 			};
 		if (vn >= -93 && vn <= -86) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
-			var tip = _('Signal strength weak');
+			var tip = _('Weak');
 			};
 		if (vn < -94) 
 			{
 			pg.firstElementChild.style.background = 'red';
-			var tip = _('Signal strength very weak');
+			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-//pg.style.width = '50%';
+pg.style.width = '50%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -85,25 +85,25 @@ var pc =  Math.floor(120*(1-(-50 - vn)/(-50 - mn)));
 		if (vn >= -79 ) 
 			{
 			pg.firstElementChild.style.background = 'lime';
-			var tip = _('Signal strength very good');
+			var tip = _('Very good');
 			};
 		if (vn >= -90 && vn <= -80) 
 			{
 			pg.firstElementChild.style.background = 'yellow';
-			var tip = _('Good signal strength');
+			var tip = _('Good');
 			};
 		if (vn >= -100 && vn <= -91) 
 			{
 			pg.firstElementChild.style.background = 'darkorange';
-			var tip = _('Signal strength weak');
+			var tip = _('Weak');
 			};
 		if (vn < -100) 
 			{
 			pg.firstElementChild.style.background = 'red';
-			var tip = _('Signal strength very weak');
+			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-//pg.style.width = '50%';
+pg.style.width = '50%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -134,7 +134,7 @@ var pc = Math.floor(100-(100*(1-((mn - vn)/(mn - 25)))));
 			var tip = _('Cell edge');
 			};
 pg.firstElementChild.style.width = pc + '%';
-//pg.style.width = '50%';
+pg.style.width = '50%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -143,7 +143,7 @@ function rsrq_bar(v, m) {
 var pg = document.querySelector('#rsrq')
 var vn = parseInt(v) || 0;
 var mn = parseInt(m) || 100;
-var pc = Math.floor(130-(100/mn)*vn);
+var pc = Math.floor(125-(100/mn)*vn);
 if (vn > 0) { vn = 0; };
 		if (vn >= -9 ) 
 			{
@@ -166,7 +166,7 @@ if (vn > 0) { vn = 0; };
 			var tip = _('Cell edge');
 			};
 pg.firstElementChild.style.width = pc + '%';
-//pg.style.width = '50%';
+pg.style.width = '50%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -518,3 +518,4 @@ return view.extend({
 	handleSave: null,
 	handleReset: null
 });
+

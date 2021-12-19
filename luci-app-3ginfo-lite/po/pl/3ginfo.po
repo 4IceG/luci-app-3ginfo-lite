@@ -84,17 +84,17 @@ msgstr ""
 msgid "Protocol:"
 msgstr "Protokół:"
 
-msgid "Signal strength very good"
-msgstr "Moc sygnału bardzo dobra"
+msgid "Very good"
+msgstr "Bardzo dobry"
 
-msgid "Good signal strength"
-msgstr "Moc sygnału dobra"
+msgid "Good"
+msgstr "Dobry"
 
-msgid "Signal strength weak"
-msgstr "Moc sygnału słaba"
+msgid "Weak"
+msgstr "Słaby"
 
-msgid "Signal strength very weak"
-msgstr "Moc sygnału bardzo słaba"
+msgid "Very weak"
+msgstr "Bardzo słaby"
 
 msgid "Excellent"
 msgstr "Doskonały"
