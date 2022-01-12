@@ -15,7 +15,7 @@ Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa na modem
 
 
 ``` bash
-Supported devices:
+Supported devices (tested devices):
  - Quectel EM12/EM160R-GL
  - Quectel EP06-E
  - Quectel EC20/EC25
@@ -28,6 +28,7 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Sierra Wireless EM7455
  - ASKEY WWHC050
  - ZTE MF821
+ - ZTE MF286
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
  - Mikrotik R11e-LTE6
@@ -48,7 +49,7 @@ Dependency required.
 opkg install sms-tool_2021-12-03-d38898f4-1_XXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.9-20211218_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.9-20220112_all.ipk
 
 ```
 
