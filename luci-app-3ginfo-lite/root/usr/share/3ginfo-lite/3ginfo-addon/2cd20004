@@ -18,6 +18,7 @@ fi
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $6}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
+		RSRQ="-'$T' dB"
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		ADDON="$ADDON"'{"RSRQ":"-'$T' dB"}'
 	fi
@@ -25,6 +26,7 @@ fi
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $7}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
+		RSRP="-'$T' dBm"
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		ADDON="$ADDON"'{"RSRP":"-'$T' dBm"}'
 	fi
@@ -57,7 +59,7 @@ case "$MODE1" in
 					*"7") MODE="$MODE / "$(band 7 "");;
 					*"8") MODE="$MODE / "$(band 8 "");;
 					*"20") MODE="$MODE / "$(band 20 "");;
-					*) MODE="$MODE / $T";;
+					*) MODE="$MODE / B${T}";;
 				esac
 			fi
 		fi

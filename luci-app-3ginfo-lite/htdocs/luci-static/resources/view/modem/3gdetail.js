@@ -38,7 +38,7 @@ var pc = Math.floor((100 / mn) * vn);
 			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-pg.style.width = '50%';
+pg.style.width = '33%';
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
@@ -70,7 +70,7 @@ var pc =  Math.floor(100*(1-(-50 - vn)/(-50 - mn)));
 			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-pg.style.width = '50%';
+pg.style.width = '33%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -103,7 +103,7 @@ var pc =  Math.floor(120*(1-(-50 - vn)/(-50 - mn)));
 			var tip = _('Very weak');
 			};
 pg.firstElementChild.style.width = pc + '%';
-pg.style.width = '50%';
+pg.style.width = '33%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -134,7 +134,7 @@ var pc = Math.floor(100-(100*(1-((mn - vn)/(mn - 25)))));
 			var tip = _('Cell edge');
 			};
 pg.firstElementChild.style.width = pc + '%';
-pg.style.width = '50%';
+pg.style.width = '33%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
@@ -166,7 +166,7 @@ if (vn > 0) { vn = 0; };
 			var tip = _('Cell edge');
 			};
 pg.firstElementChild.style.width = pc + '%';
-pg.style.width = '50%';
+pg.style.width = '33%';
 pg.firstElementChild.style.animationDirection = "reverse";
 pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }

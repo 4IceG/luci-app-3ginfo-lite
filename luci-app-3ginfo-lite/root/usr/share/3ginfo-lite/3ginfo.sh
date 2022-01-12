@@ -1,8 +1,8 @@
 #!/bin/sh
 
 #
-# (c) 2010-2021 Cezary Jackiewicz <cezary@eko.one.pl>
-# (c) 2021 modified by Rafał Wabik - IceG - From eko.one.pl forum
+# (c) 2010-2022 Cezary Jackiewicz <cezary@eko.one.pl>
+# (c) 2021-2022 modified by Rafał Wabik - IceG - From eko.one.pl forum
 #
 
 band() {
