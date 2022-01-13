@@ -21,7 +21,7 @@ if [ -n "$T" ]; then
 		*"B29") MODE=$(band 29 "LTE ");;
 		*"B30") MODE=$(band 30 "LTE ");;
 		*"B41") MODE=$(band 41 "LTE ");;
-		*) MODE="LTE B${T}";;
+		*) MODE="LTE ${T}";;
 	esac
 
 	T=$(echo "$O" | awk -F: '/^LTE CA state:.*ACTIVE/ {print $3}' | xargs)
@@ -42,7 +42,7 @@ if [ -n "$T" ]; then
 			*"B29") MODE="{MODE/LTE/LTE_A} / "$(band 29 "");;
 			*"B30") MODE="{MODE/LTE/LTE_A} / "$(band 30 "");;
 			*"B41") MODE="{MODE/LTE/LTE_A} / "$(band 41 "");;
-			*) MODE="${MODE/LTE/LTE_A} / B${T}";;
+			*) MODE="${MODE/LTE/LTE_A} / ${T}";;
 		esac
 		
 	fi
