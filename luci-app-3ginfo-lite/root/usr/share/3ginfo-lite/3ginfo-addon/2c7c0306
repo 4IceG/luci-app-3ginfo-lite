@@ -18,7 +18,7 @@ if [ -n "$T" ]; then
 		*"LTE BAND 38") MODE=$(band 38 "LTE ");;
 		*"LTE BAND 40") MODE=$(band 40 "LTE ");;
 		*"LTE BAND 41") MODE=$(band 41 "LTE ");;
-		*) MODE="LTE B${T}";;
+		*) MODE="${T}";;
 	esac
 
 	T=$(echo "$O" | awk -F[,] '/^\+QCAINFO: "sss"/{print $4}')
@@ -36,7 +36,7 @@ if [ -n "$T" ]; then
 			*"LTE BAND 38") MODE="${MODE/LTE/LTE_A} / "$(band 38 "");;
 			*"LTE BAND 40") MODE="${MODE/LTE/LTE_A} / "$(band 40 "");;
 			*"LTE BAND 41") MODE="${MODE/LTE/LTE_A} / "$(band 41 "");;
-			*) MODE="${MODE/LTE/LTE_A} / B${T}";;
+			*) MODE="${MODE/LTE/LTE_A} / ${T}";;
 		esac
 	fi
 fi
