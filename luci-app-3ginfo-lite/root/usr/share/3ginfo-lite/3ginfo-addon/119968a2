@@ -10,7 +10,7 @@ if [ -n "$T" ]; then
 		*"B7") MODE=$(band 7 "LTE ");;
 		*"B8") MODE=$(band 8 "LTE ");;
 		*"B20") MODE=$(band 20 "LTE ");;
-		*) MODE="LTE B${T}";;
+		*) MODE="LTE ${T}";;
 	esac
 fi
 
