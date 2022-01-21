@@ -295,7 +295,7 @@ return view.extend({
 					if (document.getElementById('rssi')) {
 						var view = document.getElementById("rssi");
 						var viewn = document.getElementById("rssin");
-						if (json.rssi == '' || '-51') { 
+						if (json.rssi == '' || json.rssi >= '-50' ) { 
 						viewn.style.display = "none";
 						}
 						else {
