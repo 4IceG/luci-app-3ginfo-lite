@@ -294,8 +294,9 @@ return view.extend({
 
 					if (document.getElementById('rssi')) {
 						var view = document.getElementById("rssi");
-						if (json.rssi == '') { 
-						view.textContent = '- dBm';
+						var viewn = document.getElementById("rssin");
+						if (json.rssi == '' || '-51') { 
+						viewn.style.display = "none";
 						}
 						else {
 							var z = json.rssi;
@@ -310,9 +311,10 @@ return view.extend({
 					}
 
 					if (document.getElementById('rsrp')) {
-						var view = document.getElementById("rsrp");
+						var view = document.getElementById('rsrp');
+						var viewn = document.getElementById("rsrpn");
 						if (json.rsrp == '') { 
-						view.textContent = '- dBm';
+						viewn.style.display = "none";
 						}
 						else {
 							var z = json.rsrp;
@@ -330,8 +332,9 @@ return view.extend({
 
 					if (document.getElementById('sinr')) {
 						var view = document.getElementById("sinr");
+						var viewn = document.getElementById("sinrn");
 						if (json.sinr == '') { 
-						view.textContent = '- dB';
+						viewn.style.display = "none";
 						}
 						else {
 							var z = json.sinr;
@@ -346,8 +349,9 @@ return view.extend({
 
 					if (document.getElementById('rsrq')) {
 						var view = document.getElementById("rsrq");
+						var viewn = document.getElementById("rsrqn");
 						if (json.rsrq == '') { 
-						view.textContent = '- dB';
+						viewn.style.display = "none";
 						}
 						else {
 							var z = json.rsrq;
@@ -456,7 +460,7 @@ return view.extend({
 							}, E('div')
 						))
 					]),
-				E('tr', { 'class': 'tr' }, [
+				E('tr', { 'id': 'rssin', 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('RSSI: ')]),
 					E('div', { 'class': 'td' }, E('div', {
 							'id': 'rssi',
@@ -465,7 +469,7 @@ return view.extend({
 							}, E('div')
 						))
 					]),
-				E('tr', { 'class': 'tr' }, [
+				E('tr', { 'id': 'rsrpn', 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('RSRP: ')]),
 					E('div', { 'class': 'td' }, E('div', {
 							'id': 'rsrp',
@@ -474,7 +478,7 @@ return view.extend({
 							}, E('div')
 						))
 					]),
-				E('tr', { 'class': 'tr' }, [
+				E('tr', { 'id': 'sinrn', 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('SINR: ')]),
 					E('div', { 'class': 'td' }, E('div', {
 							'id': 'sinr',
@@ -483,7 +487,7 @@ return view.extend({
 							}, E('div')
 						))
 					]),
-				E('tr', { 'class': 'tr' }, [
+				E('tr', { 'id': 'rsrqn', 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('RSRQ: ')]),
 					E('div', { 'class': 'td' }, E('div', {
 							'id': 'rsrq',
@@ -518,4 +522,3 @@ return view.extend({
 	handleSave: null,
 	handleReset: null
 });
-
