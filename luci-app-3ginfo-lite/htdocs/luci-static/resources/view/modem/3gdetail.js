@@ -6,7 +6,6 @@
 /*
 	Copyright 2021 Rafał Wabik - IceG - From eko.one.pl forum
 	
-	
 	rssi/rsrp/rsrq/sinnr formulas for percentages taken from
 	https://github.com/koshev-msk/luci-app-modeminfo
 */
@@ -273,9 +272,10 @@ return view.extend({
 
 					if (document.getElementById('temp')) {
 						var view = document.getElementById("temp");
+						var viewn = document.getElementById("tempn");
 						var t = json.mtemp;
 						if (t == '') { 
-						view.textContent = '- °C';
+						viewn.style.display = "none";
 						}
 						else {
 						view.textContent = t.replace('&deg;', '°');
@@ -306,7 +306,8 @@ return view.extend({
 							}
 							else {
 							var rssi_min = -110;
-							rssi_bar(json.rssi + " dBm", rssi_min);							}
+							rssi_bar(json.rssi + " dBm", rssi_min);
+							}
 						}
 					}
 
@@ -343,7 +344,8 @@ return view.extend({
 							}
 							else {
 							var sinr_min = -21;
-							sinr_bar(json.sinr + " dB", sinr_min);							}
+							sinr_bar(json.sinr + " dB", sinr_min);
+							}
 						}
 					}
 
@@ -360,7 +362,8 @@ return view.extend({
 							}
 							else {
 							var rsrq_min = -20;
-							rsrq_bar(json.rsrq + " dB", rsrq_min);							}
+							rsrq_bar(json.rsrq + " dB", rsrq_min);
+							}
 						}
 					}
 
@@ -443,7 +446,7 @@ return view.extend({
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Protocol:')]),
 					E('div', { 'class': 'td left', 'id': 'protocol' }, [ '-' ]),
 					]),
-				E('tr', { 'class': 'tr' }, [
+				E('tr', { 'id': 'tempn', 'class': 'tr' }, [
 					E('div', { 'class': 'td left', 'width': '33%' }, [ _('Chip Temperature:')]),
 					E('div', { 'class': 'td left', 'id': 'temp' }, [ '-' ]),
 					]),
