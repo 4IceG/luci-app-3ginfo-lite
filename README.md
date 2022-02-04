@@ -29,6 +29,7 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - ASKEY WWHC050
  - ZTE MF821
  - ZTE MF286
+ - ZTE MF286D
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
  - Mikrotik R11e-LTE6
@@ -49,14 +50,14 @@ Dependency required.
 opkg install sms-tool_2021-12-03-d38898f4-1_XXX.ipk
 
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.9-20220113_all.ipk
+opkg install luci-app-3ginfo-lite_1.0.9-20220204_all.ipk
 
 ```
 
 
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Preview / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podgląd
 
-![](https://raw.githubusercontent.com/4IceG/Personal_data/master/luci-app-3ginfo-lite.gif)
+![](https://github.com/4IceG/Personal_data/blob/master/3ginfo-lite.gif?raw=true)
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="32"> Thanks to / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="32"> Podziękowania dla
 - [obsy (Cezary Jackiewicz)](https://github.com/obsy)
