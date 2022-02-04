@@ -32,7 +32,7 @@ msgid "Cell Information"
 msgstr "Informacje o sieci komórkowej"
 
 msgid "Mode:"
-msgstr "Tryb pracy:"
+msgstr "Technologia:"
 
 msgid "Operator:"
 msgstr "Operator:"
