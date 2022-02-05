@@ -7,7 +7,7 @@ case "$MODE1" in
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
-		RSSI="'$T' dBm"
+		RSSI="$T dBm"
 		ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 		;;
 	4*| \
@@ -25,19 +25,19 @@ case "$MODE1" in
 	7*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
-		RSRP="'$T' dBm"
+		RSRP="$T dBm"
 		ADDON="$ADDON"'{"RSRP":"'$T' dBm"}'
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $3}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
-		RSRQ="'$T' dB"
+		RSRQ="$T dB"
 		ADDON="$ADDON"'{"RSRQ":"'$T' dB"}'
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $4}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
-		RSSI="'$T' dBm"
+		RSSI="$T dBm"
 		ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $5}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
-		SINR="'$T' dB"
+		SINR="$T dB"
 		ADDON="$ADDON"'{"SINR":"'$T' dB"}'
 		T=$(echo "$O" | awk -F[,:\;] '/^\+ZCELLINFO/ {print $4}' | xargs)
 		case "$T" in
