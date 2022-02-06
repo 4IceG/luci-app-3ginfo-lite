@@ -16,25 +16,25 @@ fi
 
 T=$(echo "$O" | awk '/^RSSI/ {print $3}' | xargs)
 if [ -n "$T" ]; then
-	RSSI="'$T' dBm"
+	RSSI="$T"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 fi
 T=$(echo "$O" | awk '/^RSRP/ {print $3}' | xargs)
 if [ -n "$T" ]; then
-	RSRP="'$T' dBm"
+	RSRP="$T"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSRP":"'$T' dBm"}'
 fi
 T=$(echo "$O" | awk '/^RSRQ/ {print $3}' | xargs)
 if [ -n "$T" ]; then
-	RSRQ="'$T' dB"
+	RSRQ="$T"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"RSRQ":"'$T' dB"}'
 fi
 T=$(echo "$O" | awk '/^SINR/ {print $3}' | xargs)
 if [ -n "$T" ]; then
-	SINR="'$T' dB"
+	SINR="$T"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"SINR":"'$T' dB"}'
 fi

@@ -69,6 +69,7 @@ case "$MODE1" in
 					*) MODE="$MODE / B${T}";;
 				esac
 			fi
+			
 		fi
 		;;
 esac

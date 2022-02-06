@@ -87,7 +87,7 @@ fi
 
 T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $3}')
 if [ -n "$T" ]; then
-	RSRP=${T##*:}" dBm"
+	RSRP=${T##*:}
 	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $12}')
 	if [ -n "$T" ]; then
 		RSRP="$RSRP / "${T##*:}" dBm"
@@ -97,7 +97,7 @@ if [ -n "$T" ]; then
 fi
 T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $4}')
 if [ -n "$T" ]; then
-	RSRQ=${T##*:}" dB"
+	RSRQ=${T##*:}
 	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $13}')
 	if [ -n "$T" ]; then
 		RSRQ="$RSRQ / "${T##*:}" dB"
@@ -107,7 +107,7 @@ if [ -n "$T" ]; then
 fi
 T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $5}')
 if [ -n "$T" ]; then
-	RSSI=${T##*:}" dBm"
+	RSSI=${T##*:}
 	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $14}')
 	if [ -n "$T" ]; then
 		RSSI="$RSSI / "${T##*:}" dBm"
@@ -117,7 +117,7 @@ if [ -n "$T" ]; then
 fi
 #T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $6}')
 #if [ -n "$T" ]; then
-#	SINR=${T##*:}" dB"
+#	SINR=${T##*:}
 #	T=$(echo "$O" | awk -F[,] '/^\$QCAI/{print $15}')
 #	if [ -n "$T" ]; then
 #		SINR="$SINR / "${T##*:}" dB"
@@ -138,7 +138,7 @@ fi
 
 T=$(echo "$O" | awk -F[:] '/^\+CCPUTEMP/ {print $2}' | xargs)
 if [ -n "$T" ]; then
-	TEMP="'$T' &deg;C"
+	TEMP="$T &deg;C"
 	[ -n "$ADDON" ] && ADDON="$ADDON,"
 	ADDON="$ADDON"'{"Temperatura":"'$T' &deg;C"}'
 fi

@@ -4,6 +4,7 @@ O=$(sms_tool -d $DEVICE at "at+cesq;+zcainfo?;+zpas?;+zcellinfo?")
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $4}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
+		RSCP="-$T"
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		ADDON="$ADDON"'{"RSCP":"-'$T' dBm"}'
 	fi
@@ -18,7 +19,7 @@ fi
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $6}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
-		RSRQ="-'$T' dB"
+		RSRQ="-$T"
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		ADDON="$ADDON"'{"RSRQ":"-'$T' dB"}'
 	fi
@@ -26,7 +27,7 @@ fi
 T=$(echo "$O" | awk -F[,:] '/^\+CESQ/ {print $7}' | xargs)
 if [ -n "$T" ]; then
 	if [ "$T" != "255" ]; then
-		RSRP="-'$T' dBm"
+		RSRP="-$T"
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		ADDON="$ADDON"'{"RSRP":"-'$T' dBm"}'
 	fi
