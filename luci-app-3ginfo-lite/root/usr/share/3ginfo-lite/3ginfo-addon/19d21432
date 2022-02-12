@@ -3,13 +3,13 @@
 O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?;+zdon?")
 
 case "$MODE1" in
-	2*| \
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		RSSI="$T"
 		ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 		;;
+	2*| \
 	4*| \
 	5*| \
 	6*)
