@@ -1,15 +1,16 @@
 # ZTE MF286D
 
-O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?;+zdon?")
+#O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?;+zdon?")
+O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?")
 
 case "$MODE1" in
-	2*| \
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
 		RSSI="$T"
 		ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 		;;
+	2*| \
 	4*| \
 	5*| \
 	6*)
@@ -69,7 +70,6 @@ case "$MODE1" in
 					*) MODE="$MODE / B${T}";;
 				esac
 			fi
-			
 		fi
 		;;
 esac
@@ -103,7 +103,7 @@ then
     PROTO="ECM"
 fi
 
-T=$(echo "$O" | awk -F[,:] '/^\+ZDON/ {print $2}' | xargs)
-if [ -n "$T" ]; then
-	COPS="$T"
-fi
+#T=$(echo "$O" | awk -F[,:] '/^\+ZDON/ {print $2}' | xargs)
+#if [ -n "$T" ] && [ -z "$FORCE_PLMN" ]; then
+#	COPS="$T"
+#fi
