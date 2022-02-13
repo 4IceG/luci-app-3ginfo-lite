@@ -119,7 +119,12 @@ fi
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
 DEVV=$(echo $OF | tr -s "\n"  | xargs)
-FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
+#FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
+FWA=$(sms_tool -d $DEVICE at "AT+GMR" | tr -s "\n"  | xargs)
+FW=$(echo $FWA | cut -c 7-)
+
+COPS=$(echo $COPS | sed ':s;s/\(\<\S*\>\)\(.*\)\<\1\>/\1\2/g;ts')
+
 MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $1}'| xargs)
 if [ -z "$MODEL" ]
 then
