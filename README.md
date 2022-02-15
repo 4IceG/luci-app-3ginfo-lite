@@ -19,6 +19,9 @@ Supported devices (tested devices):
  - Quectel EM12/EM160R-GL
  - Quectel EP06-E
  - Quectel EC20/EC25
+ - ZTE MF821
+ - ZTE MF286
+ - ZTE MF286D
  - Huawei E3372/E3276
  - Huawei E3276 HiLink
  - Huawei E5786 (mobile-wifi / HiLink)
@@ -27,9 +30,6 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Sierra Wireless MC7710
  - Sierra Wireless EM7455
  - ASKEY WWHC050
- - ZTE MF821
- - ZTE MF286
- - ZTE MF286D
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
  - Mikrotik R11e-LTE6
