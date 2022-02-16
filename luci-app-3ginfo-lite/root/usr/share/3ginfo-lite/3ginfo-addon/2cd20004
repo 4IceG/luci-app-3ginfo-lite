@@ -49,7 +49,7 @@ if [ -n "$T" ]; then
 	fi
 fi
 
-case "$MODE1" in
+case "$MODE_NUM" in
 	9*)
 		T=$(echo "$O" | awk -F[,] '/^\+ZCAINFO: /{print $11}')
 		if [ -n "$T" ]; then

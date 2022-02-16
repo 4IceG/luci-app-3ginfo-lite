@@ -3,7 +3,7 @@
 #O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?;+zdon?")
 O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?")
 
-case "$MODE1" in
+case "$MODE_NUM" in
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
@@ -69,6 +69,7 @@ case "$MODE1" in
 					*"20") MODE="$MODE / "$(band 20 "");;
 					*) MODE="$MODE / B${T}";;
 				esac
+				MODE=$(echo $MODE | sed "s/LTE_A/LTE-A |/g")
 			fi
 		fi
 		;;
@@ -84,9 +85,11 @@ COPS=$(echo $COPS | sed ':s;s/\(\<\S*\>\)\(.*\)\<\1\>/\1\2/g;ts')
 
 MODELA=$(echo $DEVV | awk -F 'Revision: ' '{print $1}'| xargs)
 MODELB=$(echo $MODELA | awk -F 'Manufacturer: |CORPORATION' '{print $2}'| xargs)
-MODELC=$(echo $MODELA | awk -F 'Model: |MODULE' '{print $2}'| xargs)
+#MODELC=$(echo $MODELA | awk -F 'Model: |MODULE' '{print $2}'| xargs)
+MODELA=$(sms_tool -d $DEVICE at "AT+CGMM" | tr -s "\n"  | xargs)
+MODELACUT=$(echo $MODELA | cut -c 8-)
 
-MODEL="$MODELB "$MODELC
+MODEL="$MODELB "$MODELACUT
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER

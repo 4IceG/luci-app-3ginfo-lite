@@ -2,7 +2,7 @@
 
 O=$(sms_tool -d $DEVICE at "at+zcellinfo?")
 BAND=$(echo "$O" | awk -F[,:] '/^\+ZCELLINFO:/ {print $4}')
-case "$MODE1" in
+case "$MODE_NUM" in
 	7*)
 		case "$BAND" in
 			*"B1") MODE=$(band 1 "LTE ");;

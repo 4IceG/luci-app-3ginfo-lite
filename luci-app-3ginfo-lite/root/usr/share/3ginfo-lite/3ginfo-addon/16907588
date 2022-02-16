@@ -1,7 +1,6 @@
 # ASKEY WWHC050
 
 O=$(sms_tool -d $DEVICE at "at\$qcai?;+ccputemp;+cgcelli;+cgnws")
-
 T=$(echo "$O" | awk 'BEGIN{FS="BEARER:"}/^\+CGCELLI/{print $2}' | awk 'BEGIN{FS=","}{print $1}')
 
 case "$T" in

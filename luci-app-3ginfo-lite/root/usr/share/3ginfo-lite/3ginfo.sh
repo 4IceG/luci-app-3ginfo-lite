@@ -88,9 +88,7 @@ if [ -n "$NETUP" ]; then
 
 fi
 
-
-#O=$(gcom -d $DEVICE -s $RES/3ginfo.gcom 2>/dev/null)
-O=$(sms_tool -d $DEVICE at "AT+CSQ;+COPS=3,0;+COPS?;+COPS=3,2;+COPS?;+CREG=2;+CREG?")
+O=$(sms_tool -d $DEVICE at "AT+CSQ;+CPIN?;+COPS=3,0;+COPS?;+COPS=3,2;+COPS?;+CREG=2;+CREG?")
 
 # CSQ
 CSQ=$(echo "$O" | awk -F[,\ ] '/^\+CSQ/ {print $2}')
@@ -98,11 +96,9 @@ CSQ=$(echo "$O" | awk -F[,\ ] '/^\+CSQ/ {print $2}')
 [ "x$CSQ" = "x" ] && CSQ=-1
 if [ $CSQ -ge 0 -a $CSQ -le 31 ]; then
 	CSQ_PER=$(($CSQ * 100/31))
-	RSSI=$((2 * $CSQ - 113))
 else
 	CSQ="-"
-	RSSI="-"
-	CSQ_PER="0"
+	CSQ_PER=0
 fi
 
 # COPS numeric
@@ -125,19 +121,41 @@ if [ -z "$FORCE_PLMN" ]; then
 fi
 
 # CREG
-eval $(echo "$O" | awk -F[,] '/^\+CREG/ {gsub(/[[:space:]"]+/,"");printf "T=\"%d\";LAC_HEX=\"%X\";CID_HEX=\"%X\";LAC_DEC=\"%d\";CID_DEC=\"%d\";MODE1=\"%d\"", $2, "0x"$3, "0x"$4, "0x"$3, "0x"$4, $5}')
+eval $(echo "$O" | awk -F[,] '/^\+CREG/ {gsub(/[[:space:]"]+/,"");printf "T=\"%d\";LAC_HEX=\"%X\";CID_HEX=\"%X\";LAC_DEC=\"%d\";CID_DEC=\"%d\";MODE_NUM=\"%d\"", $2, "0x"$3, "0x"$4, "0x"$3, "0x"$4, $5}')
 case "$T" in
-	0*) REG="0";;
-	1*) REG="1";;
-	2*) REG="2";;
-	3*) REG="3";;
-	5*) REG="5";;
-	 *) REG="-";;
+	0*)
+		REG="0"
+		CSQ="-"
+		CSQ_PER=0
+		;;
+	1*)
+		REG="1"
+		;;
+	2*)
+		REG="2"
+		CSQ="-"
+		CSQ_PER=0
+		;;
+	3*)
+		REG="3"
+		CSQ="-"
+		CSQ_PER=0
+		;;
+	5*)
+		REG="5"
+		;;
+	*)
+		REG="-"
+		CSQ="-"
+		CSQ_PER=0
+		;;
 esac
 
 # MODE
-[ -z "$MODE1" -o "x$MODE1" = "x0" ] && MODE1=$(echo "$O" | awk -F[,] '/^\+COPS/ {print $4;exit}')
-case "$MODE1" in
+if [ -z "$MODE_NUM" ] || [ "x$MODE_NUM" = "x0" ]; then
+	MODE_NUM=$(echo "$O" | awk -F[,] '/^\+COPS/ {print $4;exit}')
+fi
+case "$MODE_NUM" in
 	2*) MODE="UMTS";;
 	3*) MODE="EDGE";;
 	4*) MODE="HSDPA";;
@@ -158,7 +176,7 @@ if [ -n "$T" ]; then
 	"+CME ERROR: 15"*) REG="SIM wrong";;
 	"+CME ERROR: 17"*) REG="SIM PIN2 required";;
 	"+CME ERROR: 18"*) REG="SIM PUK2 required";;
-			*) REG=$(echo "$T" | cut -f2 -d: | xargs);;
+	*) REG=$(echo "$T" | cut -f2 -d: | xargs);;
 	esac
 fi
 
