@@ -77,19 +77,18 @@ esac
 
 OF=$(sms_tool -d $DEVICE at "ati")
 DEVV=$(echo $OF | tr -s "\n"  | xargs)
-#FW=$(echo $DEVV | awk -F 'SVN|Revision:' '{print $2}'| xargs)
 FWA=$(sms_tool -d $DEVICE at "AT+GMR" | tr -s "\n"  | xargs)
-FW=$(echo $FWA | cut -c 7-)
+FW=$(echo $FWA | cut -c 8-)
 
 COPS=$(echo $COPS | sed ':s;s/\(\<\S*\>\)\(.*\)\<\1\>/\1\2/g;ts')
 
 MODELA=$(echo $DEVV | awk -F 'Revision: ' '{print $1}'| xargs)
 MODELB=$(echo $MODELA | awk -F 'Manufacturer: |CORPORATION' '{print $2}'| xargs)
-#MODELC=$(echo $MODELA | awk -F 'Model: |MODULE' '{print $2}'| xargs)
-MODELA=$(sms_tool -d $DEVICE at "AT+CGMM" | tr -s "\n"  | xargs)
-MODELACUT=$(echo $MODELA | cut -c 8-)
 
-MODEL="$MODELB "$MODELACUT
+MODELD=$(sms_tool -d $DEVICE at "AT+CGMM" | tr -s "\n"  | xargs)
+MODELDCUT=$(echo $MODELD | cut -c 9-)
+
+MODEL="$MODELB "$MODELDCUT
 
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER

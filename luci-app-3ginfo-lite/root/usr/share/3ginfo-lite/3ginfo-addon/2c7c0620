@@ -119,17 +119,15 @@ fi
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
 DEVV=$(echo $OF | tr -s "\n"  | xargs)
-#FW=$(echo $DEVV | awk -F 'Revision:' '{print $2}'| xargs)
 FWA=$(sms_tool -d $DEVICE at "AT+GMR" | tr -s "\n"  | xargs)
-FW=$(echo $FWA | cut -c 7-)
+FW=$(echo $FWA | cut -c 8-)
 
 COPS=$(echo $COPS | sed ':s;s/\(\<\S*\>\)\(.*\)\<\1\>/\1\2/g;ts')
 
-#MODEL=$(echo $DEVV | awk -F 'ati|Revision:' '{print $1}'| xargs)
 MODELA=$(sms_tool -d $DEVICE at "AT+CGMM" | tr -s "\n"  | xargs)
 MODELB=$(sms_tool -d $DEVICE at "AT+CGMI" | tr -s "\n"  | xargs)
-MODELACUT=$(echo $MODELA | cut -c 8-)
-MODELBCUT=$(echo $MODELB | cut -c 8-)
+MODELACUT=$(echo $MODELA | cut -c 9-)
+MODELBCUT=$(echo $MODELB | cut -c 9-)
 MODEL="$MODELBCUT "$MODELACUT
 if [ -z "$MODEL" ]
 then
@@ -150,3 +148,4 @@ elif echo "$PVCUT" | grep -q "Driver=cdc_ether"
 then
     PROTO="ECM"
 fi
+
