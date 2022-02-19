@@ -142,7 +142,7 @@ function rsrq_bar(v, m) {
 var pg = document.querySelector('#rsrq')
 var vn = parseInt(v) || 0;
 var mn = parseInt(m) || 100;
-var pc = Math.floor(125-(100/mn)*vn);
+var pc = Math.floor(115-(100/mn)*vn);
 if (vn > 0) { vn = 0; };
 		if (vn >= -9 ) 
 			{
