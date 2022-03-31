@@ -49,8 +49,17 @@ opkg install wget-nossl
 Dependency required.
 opkg install sms-tool_2021-12-03-d38898f4-1_XXX.ipk
 
+#The sms-tool package is not available in the OpenWrt core repository. 
+#Sms-tool is only available in the eko.one.pl forum repository. 
+#If you do not have an image from forum eko.one.pl you have to compile the package manually.
+
+#For images from the eko.one.pl forum we proceed:
+opkg update
+opkg install sms-tool
+
 Install app.
-opkg install luci-app-3ginfo-lite_1.0.15-20220316_all.ipk
+wget https://github.com/4IceG/luci-app-3ginfo-lite/releases/download/1.0.15-20220325/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk -O /tmp/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk
+opkg install /tmp/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk
 
 ```
 
