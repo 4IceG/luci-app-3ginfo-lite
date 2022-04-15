@@ -22,6 +22,7 @@ Supported devices (tested devices):
  - ZTE MF821
  - ZTE MF286
  - ZTE MF286D
+ - ZTE MF286R
  - Huawei E3372/E3276
  - Huawei E3276 HiLink
  - Huawei E5786 (mobile-wifi / HiLink)
