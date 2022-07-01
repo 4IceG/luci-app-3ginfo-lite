@@ -59,8 +59,8 @@ opkg update
 opkg install sms-tool
 
 Install app.
-wget https://github.com/4IceG/luci-app-3ginfo-lite/releases/download/1.0.15-20220325/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk -O /tmp/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk
-opkg install /tmp/luci-app-3ginfo-lite_1.0.15-20220325_all.ipk
+wget https://github.com/4IceG/luci-app-3ginfo-lite/releases/download/1.0.17-20220701/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk -O /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
+opkg install /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
 
 ```
 
