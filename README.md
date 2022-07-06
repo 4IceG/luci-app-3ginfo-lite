@@ -58,7 +58,9 @@ opkg install sms-tool_2021-12-03-d38898f4-1_XXX.ipk
 opkg update
 opkg install sms-tool
 
-Install app.
+#Package installation example
+Latest version ➜ https://github.com/4IceG/luci-app-3ginfo-lite/releases/latest
+
 wget https://github.com/4IceG/luci-app-3ginfo-lite/releases/download/1.0.17-20220701/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk -O /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
 opkg install /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
 
