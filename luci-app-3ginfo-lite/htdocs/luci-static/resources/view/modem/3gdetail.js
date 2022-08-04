@@ -544,6 +544,45 @@ return view.extend({
 						}
 					}
 
+					if (document.getElementById('tband')) {
+						var view = document.getElementById("tband");
+						if (json.tband == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = json.tband;
+						}
+					}
+
+					if (document.getElementById('tpci')) {
+						var view = document.getElementById("tpci");
+						if (json.tpci == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = json.tpci + ' ' + json.tearfcn;
+						}
+					}
+
+					if (document.getElementById('fband')) {
+						var view = document.getElementById("fband");
+						if (json.tband == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = json.fband;
+						}
+					}
+
+					if (document.getElementById('fpci')) {
+						var view = document.getElementById("fpci");
+						if (json.fpci == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = json.fpci + ' ' + json.fearfcn;
+						}
+					}
 
 			});
 		});
@@ -678,6 +717,24 @@ return view.extend({
 				E('tr', { 'class': 'tr' }, [
 					E('td', { 'class': 'td left', 'width': '33%' }, [ _('(S) PCI & (S) EARFCN: ')]),
 					E('td', { 'class': 'td left', 'id': 'spci' }, [ '-' ]),
+					]),
+				
+				E('tr', { 'class': 'tr' }, [
+					E('td', { 'class': 'td left', 'width': '33%' }, [ _('(T) band: ')]),
+					E('td', { 'class': 'td left', 'id': 'tband' }, [ '-' ]),
+					]),
+				E('tr', { 'class': 'tr' }, [
+					E('td', { 'class': 'td left', 'width': '33%' }, [ _('(T) PCI & (T) EARFCN: ')]),
+					E('td', { 'class': 'td left', 'id': 'tpci' }, [ '-' ]),
+					]),
+				
+				E('tr', { 'class': 'tr' }, [
+					E('td', { 'class': 'td left', 'width': '33%' }, [ _('(F) band: ')]),
+					E('td', { 'class': 'td left', 'id': 'fband' }, [ '-' ]),
+					]),
+				E('tr', { 'class': 'tr' }, [
+					E('td', { 'class': 'td left', 'width': '33%' }, [ _('(F) PCI & (F) EARFCN: ')]),
+					E('td', { 'class': 'td left', 'id': 'fpci' }, [ '-' ]),
 					]),
 			]),
 
