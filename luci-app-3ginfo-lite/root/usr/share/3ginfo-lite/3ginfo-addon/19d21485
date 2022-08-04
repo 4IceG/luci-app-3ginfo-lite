@@ -1,4 +1,4 @@
-# ZTE MF286D
+# ZTE MF286D/MF289F HW AT1
 
 #O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?;+zdon?")
 O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?")
