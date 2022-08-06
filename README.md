@@ -20,7 +20,7 @@ Supported devices (tested devices):
  - Quectel EP06-E
  - Quectel EC20/EC25
  - ZTE MF821
- - ZTE MF286
+ - ZTE MF286/MF286A/MF289F HW AT2
  - ZTE MF286D/MF289F HW AT1
  - ZTE MF286R (Modem comes in several versions, not all work stably)
  - Huawei E3372/E3276
