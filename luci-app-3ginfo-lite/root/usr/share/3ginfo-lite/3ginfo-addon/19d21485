@@ -8,6 +8,7 @@ case "$MODE_NUM" in
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
 		[ -n "$ADDON" ] && ADDON="$ADDON,"
+		RSSI="$T"
 		ADDON="$ADDON"'{"RSSI":"'$T' dBm"}'
 		if [ "x${LAC_DEC}" = "x0" ]; then
 			T=$(echo "$O" | awk -F[,:] '/^\+ZCELLINFO/ {print $2}' | xargs)
@@ -226,7 +227,7 @@ MODEL="$MODELB "$MODELDCUT
 # Protocol
 # DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
 PV=$(cat /sys/kernel/debug/usb/devices 2>/dev/null)
-PVCUT=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1432' '{print $2}' | cut -c-1220)
+PVCUT=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1485' '{print $2}' | cut -c-1220)
 if echo "$PVCUT" | grep -q "Driver=qmi_wwan"
 then
     PROTO="qmi"
@@ -242,4 +243,3 @@ fi
 #if [ -n "$T" ] && [ -z "$FORCE_PLMN" ]; then
 #	COPS="$T"
 #fi
-
