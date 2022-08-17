@@ -106,6 +106,9 @@ case "$MODE_NUM" in
 				*"7") MODE="${MODE/LTE/LTE_A} / "$(band 7 "");;
 				*"8") MODE="${MODE/LTE/LTE_A} / "$(band 8 "");;
 				*"20") MODE="${MODE/LTE/LTE_A} / "$(band 20 "");;
+				*"28") MODE="${MODE/LTE/LTE_A} / "$(band 28 "");;
+				*"32") MODE="${MODE/LTE/LTE_A} / "$(band 32 "");;
+				*"38") MODE="${MODE/LTE/LTE_A} / "$(band 38 "");;				
 				*) MODE="${MODE/LTE/LTE_A} / B${T}";;
 			esac
 			T=$(echo "$O" | awk -F[,:\;] '/^\+ZCAINFO/ {print $14}' | xargs)
@@ -131,6 +134,9 @@ case "$MODE_NUM" in
 					*"7") MODE="$MODE / "$(band 7 "");;
 					*"8") MODE="$MODE / "$(band 8 "");;
 					*"20") MODE="$MODE / "$(band 20 "");;
+					*"28") MODE="$MODE / "$(band 28 "");;
+					*"32") MODE="$MODE / "$(band 32 "");;
+					*"38") MODE="$MODE / "$(band 38 "");;					
 					*) MODE="$MODE / B${T}";;
 				esac
 			fi
