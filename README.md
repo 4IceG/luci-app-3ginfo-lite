@@ -27,6 +27,7 @@ Supported devices (tested devices):
  - Huawei E3372/E3276
  - Huawei E3276 HiLink
  - Huawei E5786 (mobile-wifi / HiLink)
+ - Telit Ln940 / HP lt4220
  
 Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Sierra Wireless MC7710
