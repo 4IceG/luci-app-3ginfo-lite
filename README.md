@@ -66,6 +66,29 @@ Latest version ➜ https://github.com/4IceG/luci-app-3ginfo-lite/releases/latest
 wget https://github.com/4IceG/luci-app-3ginfo-lite/releases/download/1.0.17-20220701/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk -O /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
 opkg install /tmp/luci-app-3ginfo-lite_1.0.17-20220701_all.ipk
 
+#The package can be added to Openwrt sources in two ways:
+
+cd feeds/luci/applications/
+git clone https://github.com/4IceG/luci-app-3ginfo-lite.git
+cd ../../..
+./scripts feeds update -a; ./scripts/feeds install -a
+make menuconfig
+
+or e.g.
+
+cd packages/
+git clone https://github.com/4IceG/luci-app-3ginfo-lite.git
+git pull
+make package/symlinks
+make menuconfig
+
+You may need to correct the file paths and the number of folders to look like this:
+feeds/luci/applications/luci-app-3ginfo-lite/Makefile
+or
+packages/luci-app-3ginfo-lite/Makefile
+
+Then you can compile the packages one by one, an example command:
+make V=s -j1 feeds/luci/applications/luci-app-3ginfo-lite/compile
 ```
 
 
