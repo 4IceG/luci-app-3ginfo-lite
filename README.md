@@ -56,11 +56,11 @@ opkg update
 opkg install sms-tool
 
 #1b. Download the sms-tool package and install manualy.
-#An example link to the package
+#An example link to the package.
 #https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
 
 #2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
-#For images downloaded from eko.one.pl
+#For images downloaded from eko.one.pl.
 #Installation procedure is similar, only there is no need to manually download the sms-tool package.
 opkg update
 opkg install luci-app-3ginfo-lite
