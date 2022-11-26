@@ -85,12 +85,12 @@ git pull
 make package/symlinks
 make menuconfig
 
-You may need to correct the file paths and the number of folders to look like this:
+#You may need to correct the file paths and the number of folders to look like this:
 feeds/luci/applications/luci-app-3ginfo-lite/Makefile
 or
 packages/luci-app-3ginfo-lite/Makefile
 
-Then you can compile the packages one by one, an example command:
+#Then you can compile the packages one by one, an example command:
 make V=s -j1 feeds/luci/applications/luci-app-3ginfo-lite/compile
 ```
 
