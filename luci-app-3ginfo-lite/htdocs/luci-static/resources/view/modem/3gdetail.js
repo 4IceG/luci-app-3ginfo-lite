@@ -12,7 +12,6 @@
 	Copyright 2021-2022 Rafał Wabik - IceG - From eko.one.pl forum
 	
 	Thanks to https://github.com/koshev-msk for the initial progress bar calculation for rssi/rsrp/rsrq/sinnr.
-
 */
 
 function csq_bar(v, m) {
