@@ -873,8 +873,17 @@ return view.extend({
 
 			if (searchsite.includes('btsearch')) {
 			//http://www.btsearch.pl/szukaj.php?mode=std&search=CellID
+			
+				var id_dec = json.cid_dec;
+				var id_hex = json.cid_hex;
+				var id_dec_conv = parseInt(id_hex, 16);
 
-			window.open(searchsite + json.cid_dec);
+				if ( id_dec.length > 2 ) {
+					window.open(searchsite + id_dec);
+				}
+				else {
+					window.open(searchsite + id_dec_conv);
+				}
 			}
 
 			if (searchsite.includes('lteitaly')) {
