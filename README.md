@@ -46,7 +46,7 @@ Modem drivers are required for proper operation.
 opkg install kmod-usb-serial kmod-usb-serial-option sms-tool
 ```
 
-#### Package dependencies for Huawei HiLink modems.
+#### Package dependencies for HiLink modems.
 ``` bash
 opkg install wget-nossl sms-tool
 ```
