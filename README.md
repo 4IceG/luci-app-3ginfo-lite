@@ -39,32 +39,37 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
 ```
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Instalacja
+
+#### Package dependencies for conventional modems.
+Modem drivers are required for proper operation.
 ``` bash
-#Package dependencies:
-
-#For conventional modems.
-#Modem drivers are required for proper operation.
 opkg install kmod-usb-serial kmod-usb-serial-option sms-tool
+```
 
-#For Huawei HiLink modems.
+#### Package dependencies for Huawei HiLink modems.
+``` bash
 opkg install wget-nossl sms-tool
+```
 
-#The sms-tool package is available in the OpenWrt Master repository.
+The sms-tool package is available in the OpenWrt Master repository.
 
-#1a. Install sms-tool from Master.
+#### 1a. Install sms-tool from Master.
+``` bash
 opkg update
 opkg install sms-tool
+```
 
-#1b. Download the sms-tool package and install manualy.
-#An example link to the package.
-#https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
-
-#2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
-#For images downloaded from eko.one.pl.
-#Installation procedure is similar, only there is no need to manually download the sms-tool package.
+#### 1b. Download the sms-tool package and install manualy.
+An example link to the package.
+``` bash
+https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
+```
+#### 2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
+For images downloaded from eko.one.pl.
+Installation procedure is similar, only there is no need to manually download the sms-tool package.
+``` bash
 opkg update
 opkg install luci-app-3ginfo-lite
-
 ```
 
 ## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> User compilation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Kompilacja przez użytkownika
