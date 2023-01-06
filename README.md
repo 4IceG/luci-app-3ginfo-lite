@@ -7,9 +7,9 @@
 
 Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/easyconfig/addon
 
-### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with mPCI-E/M.2 and USB 3G/LTE modems.
+#### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with mPCI-E/M.2 and USB 3G/LTE modems.
 
-### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa z modemami mPCI-E/M.2 oraz USB 3G/LTE.
+#### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa z modemami mPCI-E/M.2 oraz USB 3G/LTE.
 
 
 ``` bash
@@ -38,7 +38,7 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
 
 ```
 
-## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Instalacja
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Instalacja
 
 #### Package dependencies for conventional modems.
 Modem drivers are required for proper operation.
@@ -53,18 +53,20 @@ opkg install wget-nossl sms-tool
 
 The sms-tool package is available in the OpenWrt Master repository.
 
-#### 1a. Install sms-tool from Master.
+#### Step 1a. Install sms-tool from Master.
 ``` bash
 opkg update
 opkg install sms-tool
 ```
 
-#### 1b. Download the sms-tool package and install manualy.
+#### Step 1b. Download the sms-tool package and install manualy.
 An example link to the package.
+
+In the link below, replace ```*architecture*``` with the architecture of your router, e.g. arm_cortex-a7_neon-vfpv4, mipsel_24kc.
 ``` bash
 https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
 ```
-#### 2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
+#### Step 2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
 ``` bash
 opkg update
 opkg install luci-app-3ginfo-lite
@@ -72,7 +74,7 @@ opkg install luci-app-3ginfo-lite
 For images downloaded from eko.one.pl.
 Installation procedure is similar, only there is no need to manually download the sms-tool package.
 
-## <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> User compilation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Kompilacja przez użytkownika
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> User compilation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Kompilacja przez użytkownika
 ``` bash
 #The package can be added to Openwrt sources in two ways:
 
