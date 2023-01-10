@@ -1,79 +1,166 @@
-
 msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:9
-msgid "Information about 3G/4G connection"
-msgstr ""
+msgid "Information about 3G/4G/5G connection"
+msgstr "Informationen über die 3G/4G/5G-Verbindung"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:10
+msgid "More information about the 3ginfo on the %seko.one.pl forum%s."
+msgstr "Mehr informationen zu 3ginfo unter %sforum eko.one.pl%s."
+
+msgid "eko.one.pl forum"
+msgstr "Forum eko.one.pl"
+
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
-#: applications/luci-app-3ginfo/luasrc/controller/modem/3ginfo.lua:11
+msgid "USB debug information"
+msgstr "USB-Debug-Informationen"
+
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:106
-msgid "Information about 3G/4G connection"
-msgstr ""
+msgid "General Information"
+msgstr "allgemeine Informationen"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:110
-msgid "Status:"
-msgstr ""
+msgid "Modem Information"
+msgstr "Modem Informationen"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:111
-msgid "Connection time:"
-msgstr ""
+msgid "Cell / Signal Information"
+msgstr "Zellen-/Signalinformationen"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:112
-msgid "Downloaded:"
-msgstr ""
+msgid "Technology"
+msgstr "Technologie"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:113
-msgid "Uploaded:"
-msgstr ""
+msgid "Operator"
+msgstr "Netzbetreiber"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:114
-msgid "Mode:"
-msgstr ""
+msgid "Signal strength"
+msgstr "Signalstärke"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:115
-msgid "Operator:"
-msgstr ""
+msgid "Connection statistics"
+msgstr "Verbindungsstatistik"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:117
-msgid "Signal strength:"
-msgstr ""
+msgid "Modem type"
+msgstr "Modemtyp"
 
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:119
-msgid "Modem type:"
-msgstr ""
-
-#: applications/luci-app-3ginfo/luasrc/view/modem/3gdetail.lua:124
 msgid "Additional information"
-msgstr ""
+msgstr "zusätzliche Informationen"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:11
-msgid "Configuration 3ginfo"
-msgstr ""
+msgid "Revision / Firmware"
+msgstr "Revision / Firmware"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:12
-msgid "Configuration panel for the 3ginfo application."
-msgstr ""
+msgid "IP adress / Communication Port"
+msgstr "IP-Adresse / Verbindungsport"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:17
+msgid "Chip Temperature"
+msgstr "Chiptemperatur"
+
+msgid "Configuration 3ginfo-lite"
+msgstr "Konfiguration 3ginfo-lite"
+
+msgid "Configuration panel for the 3ginfo-lite application."
+msgstr "Konfigurationspanel für 3ginfo-lite."
+
 msgid "Network"
-msgstr ""
+msgstr "Netzwerk"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:20
-msgid "Device"
-msgstr ""
+msgid "IP adress / Port for communication with the modem"
+msgstr "IP-Adresse / Verbindungsport mit dem Modem"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:28
-msgid "SIM PIN (optional)"
-msgstr ""
+msgid "Protocol"
+msgstr "Protokoll"
 
-#: applications/luci-app-3ginfo/luasrc/model/cbi/modem/3gconfig.lua:31
-msgid "Language"
+msgid ""
+"Select the appropriate settings. <br /> <br />Traditional "
+"modem. <br /> Select one of the available ttyUSBX "
+"ports.<br /> <br />HiLink modem. <br /> Enter the IP address "
+"192.168.X.X under which the modem is available."
 msgstr ""
+"Passende Einstellung wählen. <br /> <br />Traditionelles "
+"modem. <br /> Einen der verfügbaren ttyUSBX"
+"Port wählen.<br /> <br />MHiLink Modem. <br /> IP-Adresse wie"
+"192.168.X.X angeben, unter der das Modem erreichbar ist."
+
+msgid "Very good"
+msgstr "Sehr gut"
+
+msgid "Good"
+msgstr "Gut"
+
+msgid "Weak"
+msgstr "Schwach"
+
+msgid "Very weak"
+msgstr "Sehr schwach"
+
+msgid "Excellent"
+msgstr "Exzellent"
+
+msgid "Good"
+msgstr "Gut"
+
+msgid "Mid cell"
+msgstr "Zellmitte"
+
+msgid "Cell edge"
+msgstr "Zellrand"
+
+msgid "SIM status"
+msgstr "SIM-Status"
+
+msgid "Not registered"
+msgstr "Nicht registriert"
+
+msgid "Registered"
+msgstr "Registriert"
+
+msgid "Registered (roaming)"
+msgstr "Registriert (roaming)"
+
+msgid "Searching.."
+msgstr "Suche.."
+
+msgid "Registering denied"
+msgstr "Registrierung abgelehnt"
+
+msgid "Waiting to read data from the modem..."
+msgstr "Daten des Modems werden gelesen..."
+
+msgid "Waiting for connection data..."
+msgstr "Auf Datenverbindung warten..."
+
+msgid "BTS Search"
+msgstr "BTS-Suche"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search BTS using Cell ID"
+msgstr "BTS-Suche mit der Cell ID"
+
+msgid "Hint: To set up a BTS search engine, all you have to do is select the dedicated website for your location."
+msgstr "Hinweis: Um eine BTS-Suchmaschine einzustellen muss nur eine Webseite für den aktuellen Standort angegeben werden."
+
+msgid "BTS search settings"
+msgstr "Einstellungen BTS-Suche"
+
+msgid "Website to search for BTS"
+msgstr "Webseite für BTS-Suche"
+
+msgid "Select a website for searching."
+msgstr "Webseite für dir Suche auswählen."
+
+msgid "SIM Slot"
+msgstr "SIM-Slot"
+
+msgid "Customizing the appearance of the package"
+msgstr "Aussehen des Pakets anpassen"
+
+msgid "Hint: The settings below allow you to customize the appearance of the progress bars."
+msgstr "Hinweis: Die Einstellungen unterhalb erlauben die Anpassung der Fortschrittsbalken."
+
+msgid "The width of the progress bars"
+msgstr "Die Breite der Fortschrittsbalken"
+
+msgid "Select the width of the progress bars."
+msgstr "Breite der Fortschrittsbalken auswählen."
