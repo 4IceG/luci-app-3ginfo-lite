@@ -257,6 +257,13 @@ case "$MODE_NUM" in
 	5*) MODE="HSUPA";;
 	6*) MODE="HSPA";;
 	7*) MODE="LTE";;
+        8*) MODE="EC-GSM-IoT";;             
+        9*) MODE="LTE NB-S1";;                 
+        10*) MODE="LTE connected to 5G Core Network";;
+        11*) MODE="5G connected to 5G Core Network";;
+        12*) MODE="5G SA";;              
+        13*) MODE="5G NSA";;                                                                 
+        14*) MODE="LTE/5G dual connectivity";;                                               
 	 *) MODE="-";;
 esac
 
