@@ -7,7 +7,7 @@
 'require tools.widgets as widgets'
 
 /*
-	Copyright 2021-2022 Rafał Wabik - IceG - From eko.one.pl forum
+	Copyright 2021-2023 Rafał Wabik - IceG - From eko.one.pl forum
 */
 
 return view.extend({
