@@ -917,9 +917,7 @@ return view.extend({
 
 			window.open(searchsite + json.operator_mcc + cutmnc + '.' + zzcid);
 			}
-
     		});
-
 		};
 
 		return m.render();
