@@ -11,6 +11,8 @@
 /*
 	Copyright 2021-2023 Rafał Wabik - IceG - From eko.one.pl forum
 	
+	Licensed to the GNU General Public License v3.0.
+	
 	Thanks to https://github.com/koshev-msk for the initial progress bar calculation for rssi/rsrp/rsrq/sinnr.
 */
 
