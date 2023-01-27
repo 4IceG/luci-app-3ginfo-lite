@@ -18,6 +18,7 @@ Supported devices (tested devices):
  - Quectel EP06-E
  - Quectel EC20/EC25
  - Quectel RG502Q
+ - Quectel RM520N-GL
  - ZTE MF821
  - ZTE MF286/MF286A/MF289F HW AT2
  - ZTE MF286D/MF289F HW AT1
