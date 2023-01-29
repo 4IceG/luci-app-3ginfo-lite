@@ -39,6 +39,12 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
 
 ```
 
+### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> What You Should Know / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Co powinieneś wiedzieć
+> My package will not work if you are using ModemManager.
+
+> Mój pakiet nie będzie działać jeżeli uzywasz ModemManager-a.
+
+
 ### <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Installation / <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Instalacja
 
 #### Package dependencies for conventional modems.
