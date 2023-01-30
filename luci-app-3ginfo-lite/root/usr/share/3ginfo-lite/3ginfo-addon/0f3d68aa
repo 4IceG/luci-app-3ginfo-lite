@@ -50,8 +50,15 @@ fi
 TAC_HEX=$(echo "$O" |awk -F: '/TAC:/ {print $3}' | awk '{ print $1 }' | xargs)
 TAC_DEC=$(echo "$O" | sed 's/[()]//g' |awk -F: '/TAC:/ {print $3}' | awk '{ print $2 }' | xargs)
 
-#PBAND=$(echo "$O" |awk -F: '/LTE bw:/ {print $3}' | xargs)
+
+
+BW=$(echo "$O" |awk -F: '/LTE bw:/ {print $3}' | xargs)
+RXCH=$(echo "$O" |awk -F: '/LTE Rx chan:/ {print $2}' | cut -f1 | xargs)
+TXCH=$(echo "$O" |awk -F: '/LTE Tx chan:/ {print $3}' | cut -f1 | xargs)
+
+PBAND="RxCh:$RXCH / TxCh:$TXCH / Bw:$BW"
 #EARFCN=$(echo "$O" |awk -F: '/^LTE Rx chan:/ {print $2}' | cut -f1 | xargs)
+PCI="-"
 
 # Modem
 OF=$(sms_tool -d $DEVICE at "ati")
@@ -72,7 +79,6 @@ fi
 # Integrated Circuit Card Identifier (ICCID)
 O=$(sms_tool -d $DEVICE at "AT+ICCID")
 NR_ICCID=$(echo "$O" | awk '/^ICCID/ {print $2}')
-
 
 PROTO=sierra
 
