@@ -73,11 +73,12 @@ In the link below, replace ```*architecture*``` with the architecture of your ro
 ``` bash
 https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
 ```
-#### Step 2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
+Example of package installation (file downloaded with wget-ssl).
 ``` bash
-opkg update
-opkg install luci-app-3ginfo-lite
+wget https://downloads.openwrt.org/snapshots/packages/aarch64_cortex-a72/packages/sms-tool_2022-03-21-f07699ab-1_aarch64_cortex-a72.ipk -O /tmp/sms-tool_2022-03-21.ipk
+opkg install /tmp/sms-tool_2022-03-21.ipk
 ```
+
 For images downloaded from eko.one.pl.
 Installation procedure is similar, only there is no need to manually download the sms-tool package.
 
