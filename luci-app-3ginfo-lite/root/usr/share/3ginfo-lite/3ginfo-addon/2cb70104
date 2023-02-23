@@ -3,7 +3,7 @@
 O=$(sms_tool -d $DEVICE at "at+gtccinfo?;+gtcainfo?")
 
 if [ "x$MODE" = "xLTE" ]; then
-	if grep -q "^SCC[1-9]:" <<<"$O"; then
+	if [[ "$O" == *"SCC"* ]]; then
 		MODE="LTE_A"
 	fi
 	T1=$(echo "$O" | grep -A 3 'LTE service cell' | grep '1,4,'${COPS_MCC}','${COPS_MNC}',')
