@@ -15,6 +15,7 @@ Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/e
 ``` bash
 Supported devices (tested devices):
  - Fibocom L860-GL
+ - Mikrotik R11e-LTE6
  - Quectel EM12/EM160R-GL
  - Quectel EP06-E
  - Quectel EC20/EC25
@@ -37,7 +38,6 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - ASKEY WWHC050
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
- - Mikrotik R11e-LTE6
  - HiLink modems (ZTE / Alcatel)
 
 ```
