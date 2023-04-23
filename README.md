@@ -63,23 +63,70 @@ opkg install wget-nossl sms-tool
 
 The sms-tool package is available in the OpenWrt Master repository.
 
-#### Step 1a. Install sms-tool from Master.
+#### Step 1a. Install sms-tool from Master (Only the current snapshot image).
 ``` bash
 opkg update
 opkg install sms-tool
 ```
 
-#### Step 1b. Download the sms-tool package and install manualy.
-An example link to the package.
+#### Step 1b. Download the sms-tool package and install manualy (For older stable version images).
 
-In the link below, replace ```*architecture*``` with the architecture of your router, e.g. arm_cortex-a7_neon-vfpv4, mipsel_24kc.
+   #### To install the sms-tool package, we need to know the architecture name for router.
+
+<details>
+   <summary>Pokaż jak znaleźć architekturę routera | Show how to find a router architecture.</summary>
+   
+
+   
+   > For example, we are looking for sms-tool for Zbtlink router ZBT-WE3526.   
+   
+   #### Step 1.
+   > We go to the page and enter the name of our router.  
+   https://firmware-selector.openwrt.org/
+   
+   
+   #### Step 2.
+   > Click on the folder icon and go to the image download page.   
+   
+   ![](https://github.com/4IceG/Personal_data/blob/master/OpenWrt%20Firmware%20Selector.png?raw=true)
+   
+   > It should take us to a page   
+   https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/
+   
+   #### Step 3.
+   > Then go into the "packages" folder at the bottom of the page.   
+   https://downloads.openwrt.org/snapshots/targets/ramips/mt7621/packages/
+   
+   > We check what the architecture name is for our router. All packets have names ending in mipsel_24kc.ipk, so the architecture we are looking for is mipsel_24kc.
+   
+
+</details>
+
+#### Example of sms-tool installation using the command line.
+> In the link below, replace ```*architecture*``` with the architecture of your router, e.g. arm_cortex-a7_neon-vfpv4, mipsel_24kc.
+
 ``` bash
-https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk
-```
-Example of package installation (file downloaded with wget-ssl).
-``` bash
-wget https://downloads.openwrt.org/snapshots/packages/aarch64_cortex-a72/packages/sms-tool_2022-03-21-f07699ab-1_aarch64_cortex-a72.ipk -O /tmp/sms-tool_2022-03-21.ipk
+wget https://downloads.openwrt.org/snapshots/packages/*architecture*/packages/sms-tool_2022-03-21-f07699ab-1_*architecture*.ipk -O /tmp/sms-tool_2022-03-21.ipk
 opkg install /tmp/sms-tool_2022-03-21.ipk
+```
+
+#### Another way is to download the package manually.
+> To do this, we go to the page.   
+https://downloads.openwrt.org/snapshots/packages/
+
+> We choose our architecture, e.g. arm_cortex-a7_neon-vfpv4, mipsel_24kc.   
+https://downloads.openwrt.org/snapshots/packages/mipsel_24kc/
+
+> Go to the "packages" folder.   
+https://downloads.openwrt.org/snapshots/packages/mipsel_24kc/packages/
+
+> Looking for "sms-tool_2022-03-21". We can use search by using Ctr + F and typing "sms-tool".
+Save the package to your computer for further installation on the router.
+
+#### Step 2. Add my repository (https://github.com/4IceG/Modem-extras) to the image and follow the commands.
+``` bash
+opkg update
+opkg install luci-app-3ginfo-lite
 ```
 
 For images downloaded from eko.one.pl.
