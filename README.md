@@ -19,6 +19,7 @@ Supported devices (tested devices):
  - Quectel EM12/EM160R-GL
  - Quectel EP06-E
  - Quectel EC20/EC25
+ - Quectel EC200T
  - Quectel RG502Q
  - Quectel RM520N-GL
  - ZTE MF821
@@ -35,6 +36,7 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Fibocom FM150-AE
  - Sierra Wireless MC7710
  - Sierra Wireless EM7455
+ - Sierra Wireless EM9190
  - ASKEY WWHC050
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
