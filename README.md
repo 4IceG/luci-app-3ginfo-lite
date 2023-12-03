@@ -37,6 +37,7 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Fibocom FM150-AE
  - Sierra Wireless MC7710
  - Sierra Wireless EM9190
+ - SIMCOM SIM8200EA-M2
  - ASKEY WWHC050
  - BroadMobi BM806U
  - Mikrotik R11e-LTE
