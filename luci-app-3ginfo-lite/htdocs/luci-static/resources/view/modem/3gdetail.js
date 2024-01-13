@@ -461,6 +461,21 @@ modemDialog: baseclass.extend({
 						}
 					}
 
+					if (document.getElementById('location')) {
+						var view = document.getElementById("location");
+						if (json.signal == 0 || json.signal == '') {
+						view.textContent = '-';
+						}
+						else {
+						if (json.location == '') { 
+						view.textContent = '-';
+						}
+						else {
+						view.textContent = json.location;
+						}
+						}
+					}
+
 					if (document.getElementById('sim')) {
 						var view = document.getElementById("sim");
 						var sv = document.getElementById("simv");
@@ -847,8 +862,13 @@ modemDialog: baseclass.extend({
 					]),
 				E('tr', { 'class': 'tr' }, [
 					E('td', { 'class': 'td left', 'width': '33%' }, [ _('Operator')]),
-					E('td', { 'class': 'td left', 'id': 'operator' }, [ '-' ]),
+					E('td', { 'class': 'td left' }, [
+						E('div', { 'class': 'right' }, [
+							E('div', { 'style': 'text-align:left;font-size:100%', 'id': 'operator' }, [ '-' ]),
+							E('div', { 'style': 'text-align:left;font-size:66%', 'id': 'location' }, [ '-' ]),
+						]),
 					]),
+				]),
 				E('tr', { 'class': 'tr' }, [
 					E('td', { 'class': 'td left', 'width': '33%' }, [ _('SIM status')]),
 					E('td', { 'class': 'td left'}, [

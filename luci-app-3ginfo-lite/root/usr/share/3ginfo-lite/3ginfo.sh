@@ -1,9 +1,9 @@
 #!/bin/sh
 
 #
-# (c) 2010-2023 Cezary Jackiewicz <cezary@eko.one.pl>
+# (c) 2010-2024 Cezary Jackiewicz <cezary@eko.one.pl>
 #
-# (c) 2021-2023 modified by Rafał Wabik - IceG - From eko.one.pl forum
+# (c) 2021-2024 modified by Rafał Wabik - IceG - From eko.one.pl forum
 #
 
 
@@ -151,20 +151,29 @@ band5g() {
 getdevicevendorproduct() {
 	devname="$(basename $1)"
 	case "$devname" in
+		'wwan'*'at'*)
+			devpath="$(readlink -f /sys/class/wwan/$devname/device)"
+			T=${devpath%/*/*/*}
+			if [ -e $T/vendor ] && [ -e $T/device ]; then
+				V=$(cat $T/vendor)
+				D=$(cat $T/device)
+				echo "pci/${V/0x/}${D/0x/}"
+			fi
+			;;
 		'ttyACM'*)
 			devpath="$(readlink -f /sys/class/tty/$devname/device)"
 			T=${devpath%/*}
-			echo "$(cat $T/idVendor)$(cat $T/idProduct)"
+			echo "usb/$(cat $T/idVendor)$(cat $T/idProduct)"
 			;;
 		'tty'*)
 			devpath="$(readlink -f /sys/class/tty/$devname/device)"
 			T=${devpath%/*/*}
-			echo "$(cat $T/idVendor)$(cat $T/idProduct)"
+			echo "usb/$(cat $T/idVendor)$(cat $T/idProduct)"
 			;;
 		*)
 			devpath="$(readlink -f /sys/class/usbmisc/$devname/device)"
 			T=${devpath%/*}
-			echo "$(cat $T/idVendor)$(cat $T/idProduct)"
+			echo "usb/$(cat $T/idVendor)$(cat $T/idProduct)"
 			;;
 	esac
 }
@@ -246,6 +255,8 @@ else
 fi
 
 # COPS numeric
+# see https://mcc-mnc.com/
+# Update: 13/01/2024 items: 2965
 COPS=""
 COPS_MCC=""
 COPS_MNC=""
@@ -258,12 +269,34 @@ fi
 if [ -z "$FORCE_PLMN" ]; then
 	COPS=$(echo "$O" | awk -F[\"] '/^\+COPS: .,0/ {print $2}')
 else
-	[ -n "$COPS_NUM" ] && COPS=$(awk -F[\;] '/^'$COPS_NUM';/ {print $2}' $RES/mccmnc.dat)
+	if [ -n "$COPS_NUM" ]; then
+		COPS=$(awk -F[\;] '/^'$COPS_NUM';/ {print $3}' $RES/mccmnc.dat)
+		LOC=$(awk -F[\;] '/^'$COPS_NUM';/ {print $2}' $RES/mccmnc.dat)
+	fi
 fi
 [ -z "$COPS" ] && COPS=$COPS_NUM
 
 COPZ=$(echo $COPS | sed ':s;s/\(\<\S*\>\)\(.*\)\<\1\>/\1\2/g;ts')
 COPS=$(echo $COPZ | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr($i,2) }}1')
+
+# operator location from temporary config
+LOCATIONFILE=/tmp/location
+if [ -e "$LOCATIONFILE" ]; then
+	touch $LOCATIONFILE
+	LOC=$(cat $LOCATIONFILE)
+	if [ -n "$LOC" ]; then
+		LOC=$(cat $LOCATIONFILE)
+	else
+		echo "-" > /tmp/location
+	fi
+else
+	LOC=$(awk -F[\;] '/^'$COPS_NUM';/ {print $2}' $RES/mccmnc.dat)
+	if [ -n "$LOC" ]; then
+		echo "$LOC" > /tmp/location
+	else
+		echo "-" > /tmp/location
+	fi
+fi
 
 T=$(echo "$O" | awk -F[,\ ] '/^\+CPIN:/ {print $0;exit}' | xargs)
 if [ -n "$T" ]; then
@@ -333,13 +366,13 @@ fi
 CONF_DEVICE=$(uci -q get 3ginfo.@3ginfo[0].device)
 if echo "x$CONF_DEVICE" | grep -q "192.168."; then
 	if grep -q "Vendor=1bbb" /sys/kernel/debug/usb/devices; then
-		. $RES/hilink/alcatel_hilink.sh $DEVICE
+		. $RES/modem/hilink/alcatel_hilink.sh $DEVICE
 	fi
 	if grep -q "Vendor=12d1" /sys/kernel/debug/usb/devices; then
-		. $RES/hilink/huawei_hilink.sh $DEVICE
+		. $RES/modem/hilink/huawei_hilink.sh $DEVICE
 	fi
 	if grep -q "Vendor=19d2" /sys/kernel/debug/usb/devices; then
-		. $RES/hilink/zte.sh $DEVICE
+		. $RES/modem/hilink/zte.sh $DEVICE
 	fi
 	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
 	SEC=${SEC:-wan}
@@ -352,7 +385,7 @@ if [ -e /usr/bin/sms_tool ]; then
 	if [ -e "$RES/modem/$VIDPID" ]; then
 		case $(cat /tmp/sysinfo/board_name) in
 			"zte,mf289f")
-				. "$RES/modem/19d21485"
+				. "$RES/modem/usb/19d21485"
 				;;
 			*)
 				. "$RES/modem/$VIDPID"
@@ -379,6 +412,7 @@ cat <<EOF
 "operator_name":"$COPS",
 "operator_mcc":"$COPS_MCC",
 "operator_mnc":"$COPS_MNC",
+"location":"$LOC",
 "mode":"$MODE",
 "registration":"$REG",
 "simslot":"$SSIM",
