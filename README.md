@@ -13,14 +13,18 @@ Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/e
 
 
 ``` bash
-Supported devices (tested devices):
+Supported devices (list may not be up to date):
  - Fibocom L860-GL
  - Mikrotik R11e-LTE6
  - Quectel EM12/EM160R-GL
  - Quectel EP06-E
  - Quectel EC20/EC25
  - Quectel EC200T
- - Quectel RG502Q
+ - Quectel EG18-EA
+ - Quectel RG500Q-EA
+ - Quectel RG502Q-EA
+ - Quectel RM500Q-GL
+ - Quectel RM502Q-AE
  - Quectel RM520N-GL
  - ZTE MF821
  - ZTE MF286/MF286A/MF289F HW AT2
