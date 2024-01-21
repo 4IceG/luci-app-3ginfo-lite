@@ -14,28 +14,45 @@ Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/e
 
 ``` bash
 Supported devices (list may not be up to date):
- - Fibocom L860-GL
- - Mikrotik R11e-LTE6
- - Quectel EM12/EM160R-GL
- - Quectel EP06-E
- - Quectel EC20/EC25
- - Quectel EC200T
- - Quectel EG18-EA
- - Quectel RG500Q-EA
- - Quectel RG502Q-EA
- - Quectel RM500Q-GL
- - Quectel RM502Q-AE
- - Quectel RM520N-GL
- - ZTE MF821
- - ZTE MF286/MF286A/MF289F HW AT2
- - ZTE MF286D/MF289F HW AT1
- - ZTE MF286R (Modem comes in several versions, not all work stably)
- - Huawei E3372/E3276
- - Huawei E3276 HiLink
- - Huawei E5786 (mobile-wifi / HiLink)
- - Sierra AirCard 320U
- - Sierra Wireless EM7455
- - Telit Ln940 / HP lt4220
+- ASKEY WWHC050
+- BroadMobi BM806U
+- DW5809e Dell Wireless 5809e Gobi 4G LTE Mobile Broadband Card (EM7305)
+- DW5811e Snapdragon X7 LTE (EM7455B)
+- DW5821e Snapdragon X20 LTE
+- Fibocom FM150-AE
+- Fibocom L860-GL
+- Huawei E3272/E3372/E3276
+- Mikrotik R11e-LTE
+- Mikrotik R11e-LTE6
+- NL952-EAU in ECM mode (LTE CAT18)
+- Qualcomm CDMA Technologies MSM
+- Quectel EC20-E
+- Quectel EC200T
+- Quectel EC25
+- Quectel EG06
+- Quectel EG18-EA
+- Quectel EM12-G
+- Quectel EM160R-GL
+- Quectel EP06
+- Quectel RG500Q-EA
+- Quectel RG502Q-EA
+- Quectel RM500Q-GL
+- Quectel RM520N-GL
+- Sierra Wireless 320u
+- Sierra Wireless EM7455
+- Sierra Wireless EM9190
+- Sierra Wireless MC7710
+- SIMCOM SIM8200EA-M2
+- Telit LE910-EUG
+- Telit LN940 (QMI) / Telit LN940 (MBIM) / HP lt4220 (MBIM) / HP lt4220 (QMI)
+- Telit LN940-CP
+- ZTE MF286
+- ZTE MF286A
+- ZTE MF286D
+- ZTE MF286R
+- ZTE MF289F
+- ZTE MF28D/MF290
+- ZTE MF821
  
 Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Fibocom FM150-AE
