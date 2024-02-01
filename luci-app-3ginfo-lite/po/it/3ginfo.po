@@ -164,3 +164,4 @@ msgstr "Larghezza delle barre di avanzamento"
 
 msgid "Select the width of the progress bars."
 msgstr "Seleziona la larghezza delle barre di avanzamento."
+

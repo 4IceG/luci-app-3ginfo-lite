@@ -281,9 +281,9 @@ COPS=$(echo $COPZ | awk '{for(i=1;i<=NF;i++){ $i=toupper(substr($i,1,1)) substr(
 
 isp=$(sms_tool -d $DEVICE at "AT+COPS?"|sed -n '2p'|cut -d '"' -f2|tr -d '\r')
 isp_num="$COPS_MCC $COPS_MNC"
+isp_numws="$COPS_MCC$COPS_MNC"
 
-if [[ "$COPS" = "$isp_num" ]];
-	then
+if [[ "$COPS" = "$isp_num" || "$COPS" = "$isp_numws" ]]; then
 	if [ -n "$isp" ]; then
 		COPS=$(awk -F[\;] '/^'$isp';/ {print $3}' $RES/mccmnc.dat)
 		LOC=$(awk -F[\;] '/^'$isp';/ {print $2}' $RES/mccmnc.dat)
