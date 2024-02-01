@@ -37,6 +37,7 @@ Supported devices (list may not be up to date):
 - Quectel RG500Q-EA
 - Quectel RG502Q-EA
 - Quectel RM500Q-GL
+- Quectel RM500U-CNV
 - Quectel RM520N-GL
 - Sierra Wireless 320u
 - Sierra Wireless EM7455
