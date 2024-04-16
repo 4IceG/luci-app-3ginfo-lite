@@ -1,4 +1,4 @@
-# Fibocom modems with ProdID=0e8d +GTUSBMODE=41
+# Fibocom modems with ProdID=0e8d +GTUSBMODE: 41
 # Fibocom FM350-GL
 
 convert_bw() {
@@ -34,11 +34,7 @@ case "$MODE_NUM" in
   11*) 
        MODE="5G SA |"
        ;;
-  13*) if echo "$O" | grep -q -E "^SCC"; then
-         MODE="LTE-A + 5G |"
-       else
-         MODE="LTE + 5G |"
-       fi
+  13*) MODE="5G NSA |"
        ;;
 esac
 
@@ -114,17 +110,17 @@ for LINE in $LINES; do
   T_DBW=$(echo "$LINE" | awk -F[:,] '/^PCC:/{print $5}')
   if [ -n "$T" ]; then
     DBW=""
-    if [ -n "$T_DBW" ]; then
-      DBW="@$(convert_bw $T_DBW)"
+    if [ -n "$T_DBW" -a "$T_DBW" -ne "0" ]; then
+      DBW=" @$(convert_bw $T_DBW)"
     fi
     if [ "$T" -lt "200" ]; then
       T=$((T - 100))
-      T_PBAND="${T_PBAND}$(band4g $T) ${DBW} + "
-      T_MODE="$T_MODE $(band4g $T) + "
+      T_PBAND="${T_PBAND}$(band4g $T)${DBW} + "
+      T_MODE="${T_MODE}$(band4g $T) + "
     elif [ "$T" -gt "500" ]; then
       T=$(echo "$T" | sed 's/^50//g')
-      T_PBAND="${T_PBAND}$(band5g $T) ${DBW} + "
-      T_MODE="$T_MODE $(band5g $T) + "
+      T_PBAND="${T_PBAND}$(band5g $T)${DBW} + "
+      T_MODE="${T_MODE}$(band5g $T) + "
     fi
   fi
 
@@ -165,18 +161,18 @@ for LINE in $LINES; do
   if [ -n "$T" ]; then
     T_DBW=$(echo "$LINE" | awk -F[:,] '/^SCC\s?'$IDX':2,./{print $7}')
     DBW=""
-    if [ -n "$T_DBW" ]; then
-      DBW="@$(convert_bw $T_DBW)"
+    if [ -n "$T_DBW" -a "$T_DBW" -ne "0" ]; then
+      DBW=" @$(convert_bw $T_DBW)"
     fi
     T2=""
     if [ "$T" -lt "200" ]; then
       T=$((T - 100))
-      T2="$(band4g $T) ${DBW}"
-      T_MODE="$T_MODE $(band4g $T) + "
+      T2="$(band4g $T)${DBW}"
+      T_MODE="${T_MODE}$(band4g $T) + "
     elif [ "$T" -gt "500" ]; then
       T=$(echo "$T" | sed 's/^50//g')
-      T2="$(band5g $T) ${DBW}"
-      T_MODE="$T_MODE $(band5g $T) + "
+      T2="$(band5g $T)${DBW}"
+      T_MODE="${T_MODE}$(band5g $T) + "
     fi
     if [ -n "$T2" ]; then
       case $IDX in
@@ -261,11 +257,11 @@ NETDRV=$(basename $(readlink -f $NETIF/../../driver))
 
 case $NETDRV in
   "qmi_wwan")
-    PROTO="QMI";;
+    PROTO="qmi";;
   "cdc_mbim")
-    PROTO="MBIM";;
+    PROTO="mbim";;
   "cdc_ether")
-     PROTO="ECM";;
+     PROTO="ecm";;
    "rndis_host")
-     PROTO="NCM";;
+     PROTO="ncm";;
 esac
