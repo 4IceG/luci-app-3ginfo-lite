@@ -170,7 +170,7 @@ for LINE in $LINES; do
     if [ "$T" -lt "200" ]; then
       T=$((T - 100))
       T2="$(band4g $T)${DBW}"
-      T_4G_MODE="${T_4G_MODE}$(band4g $T) + "
+      T_4G_MODE="${T_4G_MODE}$(band4g $T) / "
     elif [ "$T" -gt "500" ]; then
       T=$(echo "$T" | sed 's/^50//g')
       T2="$(band5g $T)${DBW}"
@@ -212,8 +212,8 @@ for LINE in $LINES; do
   IDX=$((IDX + 1))
 done
 
-T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/ + $//g')
 T_5G_MODE=$(echo "$T_5G_MODE" | sed 's/ + $//g')
+T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/\(.*\)\/ /\1/')
 
 if [ -n "$T_4G_PBAND" -a -n "$T_5G_PBAND" ]; then
   if [ -n "$T_5G_PBAND" ]; then
