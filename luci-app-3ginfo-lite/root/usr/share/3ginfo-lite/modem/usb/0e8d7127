@@ -213,7 +213,7 @@ for LINE in $LINES; do
 done
 
 T_5G_MODE=$(echo "$T_5G_MODE" | sed 's/ + $//g')
-T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/\(.*\)\/ /\1/')
+T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/ \/ $//')
 
 if [ -n "$T_4G_PBAND" -a -n "$T_5G_PBAND" ]; then
   if [ -n "$T_5G_PBAND" ]; then
