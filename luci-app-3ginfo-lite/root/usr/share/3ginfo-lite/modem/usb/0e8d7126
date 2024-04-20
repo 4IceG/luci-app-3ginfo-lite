@@ -65,7 +65,7 @@ if [ -n "$T1" ]; then
         PBAND="$(band4g $T)"
         ;;
       9)
-        T=$(echo "$T" | sed 's/^50//g')
+        T=$(echo "$T" | sed 's/^50//')
         T_MODE="$(band5g $T)"
         PBAND="$(band5g $T)"
         ;;
@@ -132,7 +132,7 @@ for LINE in $LINES; do
       T_4G_PCI="$T_PCI"
       T_4G_EARFCN="$T_EARFCN"
     elif [ "$T_BAND" -gt "500" ]; then
-      T_BAND=$(echo "$T_BAND" | sed 's/^50//g')
+      T_BAND=$(echo "$T_BAND" | sed 's/^50//')
       T_5G_MODE="$(band5g ${T_BAND}) + "      
       T_5G_PBAND="$(band5g ${T_BAND})${DBW}"
       T_5G_PCI="$T_PCI"
@@ -172,9 +172,9 @@ for LINE in $LINES; do
       T2="$(band4g $T)${DBW}"
       T_4G_MODE="${T_4G_MODE}$(band4g $T) / "
     elif [ "$T" -gt "500" ]; then
-      T=$(echo "$T" | sed 's/^50//g')
+      T=$(echo "$T" | sed 's/^50//')
       T2="$(band5g $T)${DBW}"
-      T_5G_MODE="${T_5G_MODE}$(band5g $T) + "
+      T_5G_MODE="${T_5G_MODE}$(band5g $T) / "
     fi
     if [ -n "$T2" ]; then
       case $IDX in
@@ -212,8 +212,8 @@ for LINE in $LINES; do
   IDX=$((IDX + 1))
 done
 
-T_5G_MODE=$(echo "$T_5G_MODE" | sed 's/ + $//g')
-T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/ \/ $//')
+T_4G_MODE=$(echo "$T_4G_MODE" | sed 's/ [\/\+] $//')
+T_5G_MODE=$(echo "$T_5G_MODE" | sed 's/ [\/\+] $//')
 
 if [ -n "$T_4G_PBAND" -a -n "$T_5G_PBAND" ]; then
   if [ -n "$T_5G_PBAND" ]; then
