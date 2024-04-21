@@ -45,7 +45,7 @@ Supported devices (list may not be up to date):
 - Sierra Wireless EM9190
 - Sierra Wireless MC7710
 - SIMCOM SIM8200EA-M2
-- Thales's Cinterion MV31-W
+- Thales Cinterion MV31-W
 - Telit LE910-EUG
 - Telit LN940 (QMI) / Telit LN940 (MBIM) / HP lt4220 (MBIM) / HP lt4220 (QMI)
 - Telit LN940-CP
