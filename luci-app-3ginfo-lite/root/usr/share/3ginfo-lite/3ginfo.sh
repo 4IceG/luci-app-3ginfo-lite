@@ -193,21 +193,6 @@ else
 	O=$(gcom -d $DEVICE -s $RES/info.gcom 2>/dev/null)
 fi
 
-
-CONFIG=modemdefine
-MODEMZ=$(uci show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
-if [ -z "$MODEMZ" ]; then
-	if [[ $MODEMZ > 1 ]]; then
-	SEC=$(uci -q get modemdefine.@general[0].main_network)
-	fi	
-	if [[ $MODEMZ = "0" ]]; then
-	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
-	fi
-	if [[ $MODEMZ = 1 ]]; then
-	SEC=$(uci -q get modemdefine.@modemdefine[0].network)
-	fi
-fi
-
 getpath() {
 	devname="$(basename $1)"
 	case "$devname" in
@@ -229,6 +214,18 @@ getpath() {
 		;;
 	esac
 }
+
+CONFIG=modemdefine
+MODEMZ=$(uci show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
+if [[ $MODEMZ > 1 ]]; then
+	SEC=$(uci -q get modemdefine.@general[0].main_network)
+	fi	
+	if [[ $MODEMZ = "0" ]]; then
+	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
+	fi
+	if [[ $MODEMZ = 1 ]]; then
+	SEC=$(uci -q get modemdefine.@modemdefine[0].network)
+fi
 
 	if [ -z "$SEC" ]; then
 		getpath $DEVICE

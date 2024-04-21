@@ -1,6 +1,6 @@
 # Dell DW5930e
 # Foxconn T99W175
-# Thales's Cinterion MV31-W
+# Thales Cinterion MV31-W
 
 O=$(sms_tool -d $DEVICE at "AT^TEMP?")
 
