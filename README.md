@@ -20,6 +20,7 @@ Supported devices (list may not be up to date):
 - DW5811e Snapdragon X7 LTE (EM7455B)
 - DW5821e Snapdragon X20 LTE
 - Fibocom FM150-AE
+- Fibocom FM350-GL
 - Fibocom L860-GL
 - Huawei E3272/E3372/E3276
 - Mikrotik R11e-LTE
@@ -44,6 +45,7 @@ Supported devices (list may not be up to date):
 - Sierra Wireless EM9190
 - Sierra Wireless MC7710
 - SIMCOM SIM8200EA-M2
+- Thales's Cinterion MV31-W
 - Telit LE910-EUG
 - Telit LN940 (QMI) / Telit LN940 (MBIM) / HP lt4220 (MBIM) / HP lt4220 (QMI)
 - Telit LN940-CP
