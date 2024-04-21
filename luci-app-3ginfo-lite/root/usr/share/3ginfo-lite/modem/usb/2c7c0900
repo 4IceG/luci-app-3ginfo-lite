@@ -78,6 +78,10 @@ if [ -n "$T" ]; then
 			B=$(echo $T | sed 's/"LTE BAND \(.*\)"/\1/')
 			MODE="$MODE $(band4g ${B})"
 			;;
+		*"NR N"*)
+			B=$(echo $T | sed 's/NR N\(.*\)/\1/')
+			MODE="$MODE $(band5g ${B})"
+			;;
 		*"NR5G BAND"*)
 			B=$(echo $T | sed 's/"NR5G BAND \(.*\)"/\1/')
 			MODE="$MODE $(band5g ${B})"
@@ -91,6 +95,10 @@ if [ -n "$T" ]; then
 				*"LTE-BAND"*)
 					B=$(echo $T | sed 's/"LTE-BAND-\(.*\)"/\1/')
 					MODE="$MODE / $(band4g ${B})"
+					;;
+				*"NR-N"*)
+					B=$(echo $T | sed 's/NR-N\(.*\)/\1/')
+					MODE="$MODE / $(band5g ${B})"
 					;;
 				*"NR5G-BAND"*)
 					B=$(echo $T | sed 's/"NR5G-BAND-\(.*\)"/\1/')
@@ -262,6 +270,10 @@ if [ -n "$T" ]; then
 		*"LTE BAND"*)
 			B=$(echo $T | sed 's/"LTE BAND \(.*\)"/\1/')
 			T2=$(band4g ${B})
+			;;
+		*"NR N"*)
+			B=$(echo $T | sed 's/NR N\(.*\)/\1/')
+			T2=$(band5g ${B})
 			;;
 		*"NR5G BAND"*)
 			B=$(echo $T | sed 's/"NR5G BAND \(.*\)"/\1/')
