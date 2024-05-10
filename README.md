@@ -15,7 +15,7 @@ Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/e
 ``` bash
 Supported devices (list may not be up to date):
 - ASKEY WWHC050
-- BroadMobi BM806U
+- BroadMobi BM806U (DLINK DWR-921 C1)
 - DW5809e Dell Wireless 5809e Gobi 4G LTE Mobile Broadband Card (EM7305)
 - DW5811e Snapdragon X7 LTE (EM7455B)
 - DW5821e Snapdragon X20 LTE
@@ -63,7 +63,6 @@ Not tested devices (Not all data can be shown and scripts need to be corrected):
  - Sierra Wireless EM9190
  - SIMCOM SIM8200EA-M2
  - ASKEY WWHC050
- - BroadMobi BM806U
  - Mikrotik R11e-LTE
  - HiLink modems (ZTE / Alcatel)
 
