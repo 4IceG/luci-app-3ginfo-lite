@@ -49,6 +49,7 @@ Supported devices (list may not be up to date):
 - Telit LE910-EUG
 - Telit LN940 (QMI) / Telit LN940 (MBIM) / HP lt4220 (MBIM) / HP lt4220 (QMI)
 - Telit LN940-CP
+- YUGA CLM920-NC5
 - ZTE MF286
 - ZTE MF286A
 - ZTE MF286D
