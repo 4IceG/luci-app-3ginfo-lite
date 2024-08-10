@@ -220,7 +220,7 @@ getpath() {
 # --- modemdefine - WAN config ---
 CONFIG=modemdefine
 MODEMZ=$(uci show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
-if [[ $MODEMZ > 1 ]]; then
+if [[ $MODEMZ -gt 1 ]]; then
 	SEC=$(uci -q get modemdefine.@general[0].main_network)
 	fi	
 	if [[ $MODEMZ = "0" ]]; then
