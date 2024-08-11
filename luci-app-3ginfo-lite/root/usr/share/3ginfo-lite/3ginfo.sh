@@ -219,28 +219,28 @@ getpath() {
 
 # --- modemdefine - WAN config ---
 CONFIG=modemdefine
-MODEMZ=$(uci show $CONFIG | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
+MODEMZ=$(uci show $CONFIG 2>/dev/null | grep -o "@modemdefine\[[0-9]*\]\.modem" | wc -l | xargs)
 if [[ $MODEMZ -gt 1 ]]; then
 	SEC=$(uci -q get modemdefine.@general[0].main_network)
-	fi	
-	if [[ $MODEMZ -eq 0 ]]; then
+fi
+if [[ $MODEMZ -eq 0 ]]; then
 	SEC=$(uci -q get 3ginfo.@3ginfo[0].network)
-	fi
-	if [[ $MODEMZ -eq 1 ]]; then
+fi
+if [[ $MODEMZ -eq 1 ]]; then
 	SEC=$(uci -q get modemdefine.@modemdefine[0].network)
 fi
 
-	if [ -z "$SEC" ]; then
-		getpath $DEVICE
-		PORIG=$P
-		for DEV in /sys/class/tty/* /sys/class/usbmisc/*; do
-			getpath "/dev/"${DEV##/*/}
-			if [ "x$PORIG" == "x$P" ]; then
-				SEC=$(uci show network | grep "/dev/"${DEV##/*/} | cut -f2 -d.)
-				[ -n "$SEC" ] && break
-			fi
-		done
-	fi	
+if [ -z "$SEC" ]; then
+	getpath $DEVICE
+	PORIG=$P
+	for DEV in /sys/class/tty/* /sys/class/usbmisc/*; do
+		getpath "/dev/"${DEV##/*/}
+		if [ "x$PORIG" == "x$P" ]; then
+			SEC=$(uci show network | grep "/dev/"${DEV##/*/} | cut -f2 -d.)
+			[ -n "$SEC" ] && break
+		fi
+	done
+fi
 # --- modemdefine config ---
 
 CONN_TIME="-"
@@ -309,7 +309,7 @@ if [ -z "$COPS" ]; then
 fi
 [ -z "$COPS" ] && COPS=$COPS_NUM
 
-if [[ $COPS =~ " " ]]; then
+if [[ "$COPS" =~ " " ]]; then
 	COPS=$(echo "$COPS" | awk '{if(NF==2 && tolower($1)==tolower($2)){print $1}else{print $0}}')
 fi
 
@@ -317,7 +317,7 @@ isp=$(sms_tool -d $DEVICE at "AT+COPS?"|sed -n '2p'|cut -d '"' -f2|tr -d '\r')
 isp_num="$COPS_MCC $COPS_MNC"
 isp_numws="$COPS_MCC$COPS_MNC"
 
-if [[ $COPS =~ ^[0-9]+$ ]]; then
+if [[ "$COPS" =~ ^[0-9]+$ ]]; then
     if [[ "$COPS" == "$isp_num" || "$COPS" == "$isp_numws" ]]; then
 	if [[ -n "$isp" ]]; then
 		COPS=$(awk -F[\;] '/^'$isp';/ {print $3}' $RES/mccmnc.dat | xargs)
