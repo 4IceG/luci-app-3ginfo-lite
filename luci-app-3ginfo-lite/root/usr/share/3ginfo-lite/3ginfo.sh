@@ -308,24 +308,29 @@ if [ -z "$COPS" ]; then
 	fi
 fi
 [ -z "$COPS" ] && COPS=$COPS_NUM
+case "$COPS" in
+    *\ *) 
+        COPS=$(echo "$COPS" | awk '{if(NF==2 && tolower($1)==tolower($2)){print $1}else{print $0}}')
+        ;;
+esac
 
-if [[ "$COPS" =~ " " ]]; then
-	COPS=$(echo "$COPS" | awk '{if(NF==2 && tolower($1)==tolower($2)){print $1}else{print $0}}')
-fi
-
-isp=$(sms_tool -d $DEVICE at "AT+COPS?"|sed -n '2p'|cut -d '"' -f2|tr -d '\r')
+isp=$(sms_tool -d "$DEVICE" at "AT+COPS?" | sed -n '2p' | cut -d '"' -f2 | tr -d '\r')
 isp_num="$COPS_MCC $COPS_MNC"
 isp_numws="$COPS_MCC$COPS_MNC"
 
-if [[ "$COPS" =~ ^[0-9]+$ ]]; then
-    if [[ "$COPS" == "$isp_num" || "$COPS" == "$isp_numws" ]]; then
-	if [[ -n "$isp" ]]; then
-		COPS=$(awk -F[\;] '/^'$isp';/ {print $3}' $RES/mccmnc.dat | xargs)
-		LOC=$(awk -F[\;] '/^'$isp';/ {print $2}' $RES/mccmnc.dat)
-	fi
-    fi
-fi
-
+case "$COPS" in
+    *[!0-9]* | '')
+	# Non-numeric characters or is blank
+        ;;
+    *) 
+        if [ "$COPS" = "$isp_num" ] || [ "$COPS" = "$isp_numws" ]; then
+            if [ -n "$isp" ]; then
+                COPS=$(awk -F[\;] '/^'"$isp"';/ {print $3}' $RES/mccmnc.dat | xargs)
+                LOC=$(awk -F[\;] '/^'"$isp"';/ {print $2}' $RES/mccmnc.dat)
+            fi
+        fi
+	;;
+esac
 
 # operator location from temporary config
 LOCATIONFILE=/tmp/location
@@ -348,14 +353,19 @@ if [ -e "$LOCATIONFILE" ]; then
 			fi
 	fi
 else
-	if [[ "$COPS_MCC$COPS_MNC" =~ ^[0-9]+$ ]]; then
-		if [ -n "$LOC" ]; then
-			LOC=$(awk -F[\;] '/^'$COPS_MCC$COPS_MNC';/ {print $2}' $RES/mccmnc.dat)
-				echo "$LOC" > /tmp/location
-			else
-				echo "-" > /tmp/location
-		fi
-	fi
+	case "$COPS_MCC$COPS_MNC" in
+    		*[!0-9]* | '')
+        	# Non-numeric characters or is blank
+        	;;
+    		*) 
+        		if [ -n "$LOC" ]; then
+            			LOC=$(awk -F[\;] '/^'"$COPS_MCC$COPS_MNC"';/ {print $2}' $RES/mccmnc.dat)
+            			echo "$LOC" > /tmp/location
+        		else
+            			echo "-" > /tmp/location
+        		fi
+        	;;
+	esac
 fi
 
 T=$(echo "$O" | awk -F[,\ ] '/^\+CPIN:/ {print $0;exit}' | xargs)
