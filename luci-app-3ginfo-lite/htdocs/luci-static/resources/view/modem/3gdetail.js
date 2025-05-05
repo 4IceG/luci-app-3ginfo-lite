@@ -10,7 +10,7 @@
 'require tools.widgets as widgets';
 
 /*
-	Copyright 2021-2024 Rafał Wabik - IceG - From eko.one.pl forum
+	Copyright 2021-2025 Rafał Wabik - IceG - From eko.one.pl forum
 	
 	Licensed to the GNU General Public License v3.0.
 	
@@ -849,7 +849,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('pband')) {
 						var view = document.getElementById("pband");
-						if (json.pband == '') { 
+						if (json.pband == '' || json.pband.includes('-')) { 
 						view.textContent = '-';
 						}
 						else {
@@ -864,7 +864,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('s1band')) {
 						var view = document.getElementById("s1band");
-						if (json.s1band == '') { 
+						if (json.s1band == '' || json.s1band.includes('-')) { 
 						view.textContent = '-';
 						}
 						else {
@@ -879,7 +879,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s2band')) {
 						var view = document.getElementById("s2band");
-						if (json.s2band == '') { 
+						if (json.s2band == '' || json.s2band.includes('-')) { 
 						view.textContent = '-';
 						}
 						else {
@@ -894,7 +894,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s3band')) {
 						var view = document.getElementById("s3band");
-						if (json.s3band == '') { 
+						if (json.s3band == '' || json.s3band.includes('-')) { 
 						view.textContent = '-';
 						}
 						else {
@@ -909,7 +909,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s4band')) {
 						var view = document.getElementById("s4band");
-						if (json.s4band == '') { 
+						if (json.s4band == '' || json.s4band.includes('-')) { 
 						view.textContent = '-';
 						}
 						else {
