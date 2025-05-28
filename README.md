@@ -177,7 +177,7 @@ Installation procedure is similar, only there is no need to manually download th
 cd feeds/luci/applications/
 git clone https://github.com/4IceG/luci-app-3ginfo-lite.git
 cd ../../..
-./scripts feeds update -a; ./scripts/feeds install -a
+./scripts/feeds update -a; ./scripts/feeds install -a
 make menuconfig
 
 or e.g.
