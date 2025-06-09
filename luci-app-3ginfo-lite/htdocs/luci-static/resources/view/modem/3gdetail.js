@@ -701,7 +701,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('csq')) {
 						var view = document.getElementById("csq");
-						if (json.signal == 0 || json.signal == '') {
+						if (json.signal == 0 || json.signal == '-') {
 						view.style.visibility = 'hidden';
 						}
 						else {
@@ -716,7 +716,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('rssi')) {
 						var view = document.getElementById("rssi");
-						if (json.rssi == '') { 
+						if (json.rssi == '-') { 
 						view.style.visibility = 'hidden';
 						}
 						else {
@@ -735,7 +735,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('rsrp')) {
 						var view = document.getElementById('rsrp');
-						if (json.rsrp == '') { 
+						if (json.rsrp == '-') { 
 						view.style.visibility = 'hidden';
 						}
 						else {
@@ -755,7 +755,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('sinr')) {
 						var view = document.getElementById("sinr");
-						if (json.sinr == '') { 
+						if (json.sinr == '-') { 
 						view.style.visibility = 'hidden';
 						}
 						else {
@@ -773,7 +773,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('rsrq')) {
 						var view = document.getElementById("rsrq");
-						if (json.rsrq == '') { 
+						if (json.rsrq == '-') { 
 						view.style.visibility = 'hidden';
 						}
 						else {
@@ -791,7 +791,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('mccmnc')) {
 						var view = document.getElementById("mccmnc");
-						if (json.operator_mcc == '' & json.operator_mnc == '') { 
+						if (json.operator_mcc == '-' & json.operator_mnc == '-') { 
 						view.textContent = '-';
 						}
 						else {
@@ -849,7 +849,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('pband')) {
 						var view = document.getElementById("pband");
-						if (json.pband == '' || json.pband.includes('-')) { 
+						if (json.pband == '-') { 
 						view.textContent = '-';
 						}
 						else {
@@ -864,7 +864,7 @@ simDialog: baseclass.extend({
 
 					if (document.getElementById('s1band')) {
 						var view = document.getElementById("s1band");
-						if (json.s1band == '' || json.s1band.includes('-')) { 
+						if (json.s1band == '-') { 
 						view.textContent = '-';
 						}
 						else {
@@ -879,7 +879,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s2band')) {
 						var view = document.getElementById("s2band");
-						if (json.s2band == '' || json.s2band.includes('-')) { 
+						if (json.s2band == '-') { 
 						view.textContent = '-';
 						}
 						else {
@@ -894,7 +894,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s3band')) {
 						var view = document.getElementById("s3band");
-						if (json.s3band == '' || json.s3band.includes('-')) { 
+						if (json.s3band == '-') { 
 						view.textContent = '-';
 						}
 						else {
@@ -909,7 +909,7 @@ simDialog: baseclass.extend({
 					
 					if (document.getElementById('s4band')) {
 						var view = document.getElementById("s4band");
-						if (json.s4band == '' || json.s4band.includes('-')) { 
+						if (json.s4band == '-') {  
 						view.textContent = '-';
 						}
 						else {
