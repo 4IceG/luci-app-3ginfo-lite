@@ -6,7 +6,7 @@
 ![GitHub All Releases](https://img.shields.io/github/downloads/4IceG/luci-app-3ginfo-lite/total)
 
 > [!NOTE]
-> Luci-app-3ginfo-lite is fork from https://github.com/obsy/packages/tree/master/easyconfig/files/usr/share/easyconfig/modem
+> Luci-app-3ginfo-lite is fork from https://github.com/obsy/modemdata
 >
 ><img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_United_Kingdom.png" height="24"> Luci-app-3ginfo-lite is a simplified version of the 3ginfo project. Works with mPCI-E/M.2 and USB 3G/LTE modems.   
 > <img src="https://raw.githubusercontent.com/4IceG/Personal_data/master/dooffy_design_icons_EU_flags_Poland.png" height="24"> Luci-app-3ginfo-lite jest uproszczoną wersją projektu 3ginfo. Działa z modemami mPCI-E/M.2 oraz USB 3G/LTE.
