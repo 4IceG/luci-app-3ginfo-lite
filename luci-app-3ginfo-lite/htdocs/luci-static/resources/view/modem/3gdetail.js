@@ -177,10 +177,13 @@ pg.setAttribute('title', '%s'.format(v) + ' | ' + tip + ' ');
 }
 
 function SIMdata(data) {
-	var sdata = JSON.parse(data);
+	var sdata = {};
+	try {
+		if (data) sdata = JSON.parse(data);
+	} catch(e) {}
 
-	if (sdata.simslot.length > 0) {
-		return ui.itemlist(E('span'), [
+	if (sdata.simslot && sdata.simslot.length > 0) {
+		return ui.itemlist(E('span'),[
 		_('SIM Slot'), sdata.simslot,
 		_('SIM IMSI'), sdata.imsi,
 		_('SIM ICCID'), sdata.iccid,
@@ -189,7 +192,7 @@ function SIMdata(data) {
 		]);
 	}
 	else {
-		return ui.itemlist(E('span'), [
+		return ui.itemlist(E('span'),[
 		_('SIM IMSI'), sdata.imsi,
 		_('SIM ICCID'), sdata.iccid,
 		_('Modem IMEI'), sdata.imei,
@@ -1147,19 +1150,28 @@ simDialog: baseclass.extend({
 		o.onclick = function() {
 
 		return uci.load('3ginfo').then(function() {
-		var searchsite = (uci.get('3ginfo', '@3ginfo[0]', 'website'));
+		var searchsite = uci.get('3ginfo', '@3ginfo[0]', 'website');
+
+			if (!searchsite) {
+				ui.addNotification(null, E('p', _('Search URL is not configured in 3ginfo.')), 'error');
+				return;
+			}
+
+			// Safe parsing to prevent 'undefined.length' and 'undefined.slice' crashes
+			var id_dec = (json && json.cid_dec) ? String(json.cid_dec) : "";
+			var id_hex = (json && json.cid_hex) ? String(json.cid_hex) : "";
+			var zzmnc = (json && json.operator_mnc) ? String(json.operator_mnc) : "";
+			var zzopmcc = (json && json.operator_mcc) ? String(json.operator_mcc) : "";
 
 			if (searchsite.includes('btsearch')) {
 			//http://www.btsearch.pl/szukaj.php?mode=std&search=CellID
 			
-				var id_dec = json.cid_dec;
-				var id_hex = json.cid_hex;
 				var id_dec_conv = parseInt(id_hex, 16);
 
 				if ( id_dec.length > 2 ) {
 					window.open(searchsite + id_dec);
 				}
-				else {
+				else if (!isNaN(id_dec_conv)) {
 					window.open(searchsite + id_dec_conv);
 				}
 			}
@@ -1167,34 +1179,30 @@ simDialog: baseclass.extend({
 			if (searchsite.includes('lteitaly')) {
 			//https://lteitaly.it/internal/map.php#bts=MCCMNC.CellIDdiv256
 
-			var zzmnc = json.operator_mnc;
 			var first = zzmnc.slice(0, 1);
 			var second = zzmnc.slice(1, 2);
-			var zzcid = Math.round(json.cid_dec/256);
-				if ( zzmnc.length == 3 ) {
-					if (first.includes('0')) {
-					var cutmnc = zzmnc.slice(1, 3);
-					}
-					if (first.includes('0') && second.includes('0')) {
-					var cutmnc = zzmnc.slice(2, 3);
-					}
-				}
-				if ( zzmnc.length == 2 ) {
-					var first = zzmnc.slice(0, 1);
-					if (first.includes('0')) {
-						var cutmnc = zzmnc.slice(1, 2);
-						}
-					else {
-					var cutmnc = zzmnc;
-						}
-					}
-				if ( zzmnc.length < 2 || !first.includes('0') && !second.includes('0')) {
-				var cutmnc = zzmnc;
-				}
+			var zzcid = Math.round(parseInt(id_dec || '0') / 256);
+			var cutmnc = zzmnc;
 
-			window.open(searchsite + json.operator_mcc + cutmnc + '.' + zzcid);
+				if ( zzmnc.length == 3 ) {
+					if (first === '0') {
+					cutmnc = zzmnc.slice(1, 3);
+					}
+					if (first === '0' && second === '0') {
+					cutmnc = zzmnc.slice(2, 3);
+					}
+				}
+				else if ( zzmnc.length == 2 ) {
+					if (first === '0') {
+						cutmnc = zzmnc.slice(1, 2);
+						}
+					}
+
+			window.open(searchsite + zzopmcc + cutmnc + '.' + zzcid);
 			}
-    		});
+    		}).catch(function(e) {
+				console.error('BTS search error:', e);
+			});
 		};
 
 		return m.render();
