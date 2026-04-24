@@ -1,0 +1,284 @@
+# Qualcomm 9207 / USB 1bbb:0196
+
+MODEL="Qualcomm 9207 (4108)"
+PROTO="rndis"
+
+lte_band_from_earfcn() {
+    case "$1" in
+        ''|*[!0-9]*)
+            return 0
+            ;;
+    esac
+
+    E="$1"
+    if [ "$E" -ge 0 ] && [ "$E" -le 599 ]; then
+        echo 1
+    elif [ "$E" -ge 600 ] && [ "$E" -le 1199 ]; then
+        echo 2
+    elif [ "$E" -ge 1200 ] && [ "$E" -le 1949 ]; then
+        echo 3
+    elif [ "$E" -ge 1950 ] && [ "$E" -le 2399 ]; then
+        echo 4
+    elif [ "$E" -ge 2400 ] && [ "$E" -le 2649 ]; then
+        echo 5
+    elif [ "$E" -ge 2750 ] && [ "$E" -le 3449 ]; then
+        echo 7
+    elif [ "$E" -ge 3450 ] && [ "$E" -le 3799 ]; then
+        echo 8
+    elif [ "$E" -ge 3800 ] && [ "$E" -le 4149 ]; then
+        echo 9
+    elif [ "$E" -ge 4150 ] && [ "$E" -le 4749 ]; then
+        echo 10
+    elif [ "$E" -ge 4750 ] && [ "$E" -le 4949 ]; then
+        echo 11
+    elif [ "$E" -ge 5010 ] && [ "$E" -le 5179 ]; then
+        echo 12
+    elif [ "$E" -ge 5180 ] && [ "$E" -le 5279 ]; then
+        echo 13
+    elif [ "$E" -ge 5280 ] && [ "$E" -le 5379 ]; then
+        echo 14
+    elif [ "$E" -ge 5730 ] && [ "$E" -le 5849 ]; then
+        echo 17
+    elif [ "$E" -ge 5850 ] && [ "$E" -le 5999 ]; then
+        echo 18
+    elif [ "$E" -ge 6000 ] && [ "$E" -le 6149 ]; then
+        echo 19
+    elif [ "$E" -ge 6150 ] && [ "$E" -le 6449 ]; then
+        echo 20
+    elif [ "$E" -ge 6450 ] && [ "$E" -le 6599 ]; then
+        echo 21
+    elif [ "$E" -ge 7700 ] && [ "$E" -le 8039 ]; then
+        echo 24
+    elif [ "$E" -ge 8040 ] && [ "$E" -le 8689 ]; then
+        echo 25
+    elif [ "$E" -ge 8690 ] && [ "$E" -le 9039 ]; then
+        echo 26
+    elif [ "$E" -ge 9210 ] && [ "$E" -le 9659 ]; then
+        echo 28
+    elif [ "$E" -ge 9660 ] && [ "$E" -le 9769 ]; then
+        echo 29
+    elif [ "$E" -ge 9770 ] && [ "$E" -le 9869 ]; then
+        echo 30
+    elif [ "$E" -ge 9870 ] && [ "$E" -le 9919 ]; then
+        echo 31
+    elif [ "$E" -ge 9920 ] && [ "$E" -le 10359 ]; then
+        echo 32
+    elif [ "$E" -ge 36000 ] && [ "$E" -le 36199 ]; then
+        echo 33
+    elif [ "$E" -ge 36200 ] && [ "$E" -le 36349 ]; then
+        echo 34
+    elif [ "$E" -ge 36350 ] && [ "$E" -le 36949 ]; then
+        echo 35
+    elif [ "$E" -ge 36950 ] && [ "$E" -le 37549 ]; then
+        echo 36
+    elif [ "$E" -ge 37550 ] && [ "$E" -le 37749 ]; then
+        echo 37
+    elif [ "$E" -ge 37750 ] && [ "$E" -le 38249 ]; then
+        echo 38
+    elif [ "$E" -ge 38250 ] && [ "$E" -le 38649 ]; then
+        echo 39
+    elif [ "$E" -ge 38650 ] && [ "$E" -le 39649 ]; then
+        echo 40
+    elif [ "$E" -ge 39650 ] && [ "$E" -le 41589 ]; then
+        echo 41
+    elif [ "$E" -ge 41590 ] && [ "$E" -le 43589 ]; then
+        echo 42
+    elif [ "$E" -ge 43590 ] && [ "$E" -le 45589 ]; then
+        echo 43
+    elif [ "$E" -ge 46790 ] && [ "$E" -le 54539 ]; then
+        echo 46
+    elif [ "$E" -ge 54540 ] && [ "$E" -le 55239 ]; then
+        echo 47
+    elif [ "$E" -ge 55240 ] && [ "$E" -le 56739 ]; then
+        echo 48
+    elif [ "$E" -ge 58240 ] && [ "$E" -le 59089 ]; then
+        echo 50
+    elif [ "$E" -ge 59090 ] && [ "$E" -le 59139 ]; then
+        echo 51
+    elif [ "$E" -ge 59140 ] && [ "$E" -le 60139 ]; then
+        echo 52
+    elif [ "$E" -ge 60140 ] && [ "$E" -le 60254 ]; then
+        echo 53
+    elif [ "$E" -ge 65536 ] && [ "$E" -le 66435 ]; then
+        echo 65
+    elif [ "$E" -ge 66436 ] && [ "$E" -le 67335 ]; then
+        echo 66
+    elif [ "$E" -ge 67336 ] && [ "$E" -le 67535 ]; then
+        echo 67
+    elif [ "$E" -ge 67536 ] && [ "$E" -le 67835 ]; then
+        echo 68
+    elif [ "$E" -ge 67836 ] && [ "$E" -le 68335 ]; then
+        echo 69
+    elif [ "$E" -ge 68336 ] && [ "$E" -le 68585 ]; then
+        echo 70
+    elif [ "$E" -ge 68586 ] && [ "$E" -le 68935 ]; then
+        echo 71
+    elif [ "$E" -ge 69036 ] && [ "$E" -le 69465 ]; then
+        echo 74
+    elif [ "$E" -ge 69466 ] && [ "$E" -le 70315 ]; then
+        echo 75
+    elif [ "$E" -ge 70316 ] && [ "$E" -le 70365 ]; then
+        echo 76
+    elif [ "$E" -ge 70366 ] && [ "$E" -le 70545 ]; then
+        echo 85
+    elif [ "$E" -ge 70546 ] && [ "$E" -le 70595 ]; then
+        echo 87
+    elif [ "$E" -ge 70596 ] && [ "$E" -le 70645 ]; then
+        echo 88
+    elif [ "$E" -ge 70646 ] && [ "$E" -le 70655 ]; then
+        echo 103
+    elif [ "$E" -ge 70656 ] && [ "$E" -le 70705 ]; then
+        echo 104
+    elif [ "$E" -ge 70706 ] && [ "$E" -le 71055 ]; then
+        echo 106
+    fi
+}
+
+parse_qc_cell_metrics() {
+    echo "$1" | awk -v prefix="$2" '
+        /^\$QCRSR[PQ][[:space:]]*:/ {
+            sub(/^\$QCRSR[PQ][[:space:]]*:[[:space:]]*/, "", $0)
+            n = split($0, a, ",")
+            idx = 0
+            for (i = 1; i + 2 <= n; i += 3) {
+                idx++
+                v1 = a[i]
+                v2 = a[i + 1]
+                v3 = a[i + 2]
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "", v1)
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "", v2)
+                gsub(/^[[:space:]]+|[[:space:]]+$/, "", v3)
+                gsub(/"/, "", v3)
+                printf "%s_%d_A=\"%s\";%s_%d_B=\"%s\";%s_%d_C=\"%s\";", prefix, idx, v1, prefix, idx, v2, prefix, idx, v3
+            }
+            printf "%s_COUNT=\"%d\";\n", prefix, idx
+        }
+    '
+}
+
+# Firmware
+O=$(sms_tool -d "$DEVICE" at 'AT+GMR' 2>/dev/null | tr -d '\r')
+T=$(echo "$O" | sed -n '2p' | xargs)
+[ -n "$T" ] && FW="$T"
+
+# IMEI
+O=$(sms_tool -d "$DEVICE" at 'AT+GSN' 2>/dev/null | tr -d '\r')
+T=$(echo "$O" | sed -n '2p' | xargs)
+[ -n "$T" ] && NR_IMEI="$T"
+
+# IMSI
+O=$(sms_tool -d "$DEVICE" at 'AT+CIMI' 2>/dev/null | tr -d '\r')
+T=$(echo "$O" | sed -n '2p' | xargs)
+[ -n "$T" ] && NR_IMSI="$T"
+
+# ICCID
+O=$(sms_tool -d "$DEVICE" at 'AT+ICCID' 2>/dev/null | tr -d '\r')
+T=$(echo "$O" | sed -n 's/^ICCID:[[:space:]]*\(.*\)$/\1/p' | head -n 1 | xargs)
+[ -n "$T" ] && NR_ICCID="$T"
+
+# TAC / ECI from vendor-specific CEREG layout.
+# Observed output on Qualcomm 4108:
+# +CEREG: 2,1,"A989","D0","A9EE06",7
+# where the first quoted field is TAC and the last quoted field is the LTE CI/ECI.
+O=$(sms_tool -d "$DEVICE" at 'AT+CEREG=2;+CEREG?' 2>/dev/null | tr -d '\r')
+Q1=$(echo "$O" | awk -F'"' '/^\+CEREG:/ {print $2; exit}' | tr '[:lower:]' '[:upper:]' | xargs)
+Q2=$(echo "$O" | awk -F'"' '/^\+CEREG:/ {print $4; exit}' | tr '[:lower:]' '[:upper:]' | xargs)
+Q3=$(echo "$O" | awk -F'"' '/^\+CEREG:/ {print $6; exit}' | tr '[:lower:]' '[:upper:]' | xargs)
+if [ -n "$Q1" ]; then
+    T_HEX="$Q1"
+    TAC_HEX="$Q1"
+    TAC_DEC=$(printf '%d\n' 0x"$Q1" 2>/dev/null)
+    T_DEC="$TAC_DEC"
+fi
+if [ -n "$Q3" ]; then
+    CID_HEX="$Q3"
+    CID_DEC=$(printf '%d\n' 0x"$Q3" 2>/dev/null)
+elif [ -n "$Q2" ]; then
+    CID_HEX="$Q2"
+    CID_DEC=$(printf '%d\n' 0x"$Q2" 2>/dev/null)
+fi
+
+# RSRP / PCI / EARFCN / PCC / SCC
+O=$(sms_tool -d "$DEVICE" at 'AT$QCRSRP?' 2>/dev/null | tr -d '\r')
+eval "$(parse_qc_cell_metrics "$O" "QCRSRP")"
+T="$QCRSRP_1_C"
+[ -n "$T" ] && RSRP="$T"
+T="$QCRSRP_1_A"
+[ -n "$T" ] && PCI="$T"
+T="$QCRSRP_1_B"
+if [ -n "$T" ]; then
+    EARFCN="$T"
+    B=$(lte_band_from_earfcn "$T")
+    [ -n "$B" ] && PBAND="$(band4g "$B")"
+fi
+
+if [ -n "$PCI" ] && [ -n "${QCRSRP_COUNT:-}" ] && [ "$QCRSRP_COUNT" -gt 1 ]; then
+    SCC_IDX=0
+    I=2
+    while [ "$I" -le "$QCRSRP_COUNT" ] && [ "$SCC_IDX" -lt 4 ]; do
+        eval "TPCI=\${QCRSRP_${I}_A}"
+        eval "TEARFCN=\${QCRSRP_${I}_B}"
+        if [ -n "$TPCI" ] && [ -n "$TEARFCN" ] && [ "$TPCI" = "$PCI" ] && [ "$TEARFCN" != "$EARFCN" ]; then
+            SCC_IDX=$((SCC_IDX + 1))
+            B=$(lte_band_from_earfcn "$TEARFCN")
+            [ -n "$B" ] && TBAND="$(band4g "$B")" || TBAND=""
+            case "$SCC_IDX" in
+                1)
+                    S1BAND="$TBAND"
+                    S1PCI="$TPCI"
+                    S1EARFCN="$TEARFCN"
+                    ;;
+                2)
+                    S2BAND="$TBAND"
+                    S2PCI="$TPCI"
+                    S2EARFCN="$TEARFCN"
+                    ;;
+                3)
+                    S3BAND="$TBAND"
+                    S3PCI="$TPCI"
+                    S3EARFCN="$TEARFCN"
+                    ;;
+                4)
+                    S4BAND="$TBAND"
+                    S4PCI="$TPCI"
+                    S4EARFCN="$TEARFCN"
+                    ;;
+            esac
+        fi
+        I=$((I + 1))
+    done
+fi
+
+# RSRQ
+O=$(sms_tool -d "$DEVICE" at 'AT$QCRSRQ?' 2>/dev/null | tr -d '\r')
+eval "$(parse_qc_cell_metrics "$O" "QCRSRQ")"
+T="$QCRSRQ_1_C"
+[ -n "$T" ] && RSRQ="$T"
+
+# RSSI from CSQ
+O=$(sms_tool -d "$DEVICE" at 'AT+CSQ' 2>/dev/null | tr -d '\r')
+T=$(echo "$O" | sed -n 's/^+CSQ:[[:space:]]*\([0-9][0-9]*\),.*/\1/p' | head -n 1 | xargs)
+if [ -n "$T" ] && [ "$T" -ge 0 ] && [ "$T" -le 31 ]; then
+    RSSI=$(( -113 + 2 * T ))
+fi
+
+# Legacy Qualcomm/Telit $QCSQ returns RSCP, ECIO, SIR, PATHLOSS, RSSI.
+# On Qualcomm 4108 firmware 1 [May 01 2016], AT^RFSTS? and AT^DEBUG? both
+# return ERROR, and AT$QCSQ reports tuples like:
+#   $QCSQ :-84,-2,0,0,-86
+# with PATHLOSS=0 even though the documented range is 46..148.
+# Treat this as an invalid placeholder and leave SINR unset.
+O=$(sms_tool -d "$DEVICE" at 'AT$QCSQ' 2>/dev/null | tr -d '\r')
+QSIR=$(echo "$O" | sed -n 's/^\$QCSQ[[:space:]]*:[[:space:]]*[^,]*,[^,]*,\([^,]*\),[^,]*,.*/\1/p' | head -n 1 | xargs)
+QPATH=$(echo "$O" | sed -n 's/^\$QCSQ[[:space:]]*:[[:space:]]*[^,]*,[^,]*,[^,]*,\([^,]*\),.*/\1/p' | head -n 1 | xargs)
+if [ -n "$QSIR" ] && [ -n "$QPATH" ]; then
+    case "$QSIR:$QPATH" in
+        *[!0-9:-]*)
+            ;;
+        *)
+            if [ "$QSIR" -ge -10 ] && [ "$QSIR" -le 20 ] && [ "$QPATH" -ge 46 ] && [ "$QPATH" -le 148 ]; then
+                SINR="$QSIR"
+            fi
+            ;;
+    esac
+fi
