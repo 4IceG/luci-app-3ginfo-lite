@@ -5,6 +5,10 @@
 #
 # (c) 2021-2025 modified by Rafał Wabik - IceG - From eko.one.pl forum
 #
+# (c) 2026 modified by ZyntaSolutions (ZyntaWRT): CEREG-first registration for
+#     data-only SIMs (see the "CEREG-first priority" block below). Same licence
+#     as upstream (GPL-3.0); this is the modification notice required by GPL-3.0 s.5(a).
+#
 
 
 band4g() {
@@ -197,7 +201,7 @@ fi
 
 O=""
 if [ -e /usr/bin/sms_tool ]; then
-	O=$(sms_tool -D -d $DEVICE at "AT+CSQ;+COPS=3,0;+COPS?;+COPS=3,2;+COPS?;+CREG=2;+CREG?;+CPIN?")
+	O=$(sms_tool -D -d $DEVICE at "AT+CSQ;+COPS=3,0;+COPS?;+COPS=3,2;+COPS?;+CREG=2;+CREG?;+CEREG=2;+CEREG?;+CPIN?")
 else
 	O=$(gcom -d $DEVICE -s $RES/info.gcom 2>/dev/null)
 fi
@@ -407,6 +411,17 @@ case "$T" in
 	6*) REG="6";;
 	7*) REG="7";;
 	*) REG="";;
+esac
+
+# CEREG-first priority: register data-only SIMs that the carrier denies on
+# the circuit-switched (CS) domain (CREG stat=3) but accepts on EPS/LTE.
+# When CEREG shows registered (1=home, 5=roaming) it overrides CREG.
+# CEREG is queried in the same combined AT call above — no extra serial
+# overhead. If CEREG shows registered (1=home, 5=roaming), it takes
+# priority over CREG.
+CEREG_STAT=$(echo "$O" | awk -F[,] '/^\+CEREG/{gsub(/[[:space:]"]+/,""); print $2}' | head -1)
+case "$CEREG_STAT" in
+	1|5) REG="$CEREG_STAT";;
 esac
 
 # MODE
