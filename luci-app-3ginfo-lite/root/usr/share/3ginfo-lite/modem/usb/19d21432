@@ -4,6 +4,36 @@
 
 O=$(sms_tool -d $DEVICE at "at+zrssi;+zcellinfo?;+zcainfo?")
 
+# Protocol
+# DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
+PV=$(cat /sys/kernel/debug/usb/devices 2>/dev/null)
+PV85=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1485' '{print $2}' | cut -c-1220)
+if [ -n "$PV85" ]; then
+    if echo "$PV85" | grep -q "Driver=qmi_wwan"
+    then
+    PROTO="qmi"
+    elif echo "$PV85" | grep -q "Driver=cdc_mbim"
+    then
+    PROTO="mbim"
+    elif echo "$PV85" | grep -q "Driver=cdc_ether"
+    then
+    PROTO="ecm"
+    fi
+fi
+PV32=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1432' '{print $2}' | cut -c-1220)
+if [ -n "$PV32" ]; then
+    if echo "$PV32" | grep -q "Driver=qmi_wwan"
+    then
+    PROTO="qmi"
+    elif echo "$PV32" | grep -q "Driver=cdc_mbim"
+    then
+    PROTO="mbim"
+    elif echo "$PV32" | grep -q "Driver=cdc_ether"
+    then
+    PROTO="ecm"
+    fi
+fi
+
 case "$MODE_NUM" in
 	3*)
 		T=$(echo "$O" | awk -F[,:] '/^\+ZRSSI/ {print $2}' | xargs)
@@ -34,25 +64,107 @@ case "$MODE_NUM" in
 		T=$(echo "$O" | awk -F[,:] '/^\+ZCELLINFO/ {print $4}' | xargs)
 		MODE="LTE $(band4g ${T/LTE B/})"
 
-		T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $3}' | xargs)
-		if [ -n "$T" ]; then
-			T1=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $6}' | xargs)
-			PBAND="$(band4g $T "") @$T1 MHz"
-			T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $2}' | xargs)
-			[ -n "$T" ] && PCI="$T"
-			T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $5}' | xargs)
-			[ -n "$T" ] && EARFCN="$T"
+		PBAND="-"
+		PCI="-"
+		EARFCN="-"
+		S1BAND="-"
+		S1PCI="-"
+		S1EARFCN="-"
+		S2BAND="-"
+		S2PCI="-"
+		S2EARFCN="-"
+		S3BAND="-"
+		S3PCI="-"
+		S3EARFCN="-"
+		S4BAND="-"
+		S4PCI="-"
+		S4EARFCN="-"
+
+		# Use the QMI control node attached to this modem's selected AT port.
+		QMI_DEVICE=""
+		getpath "$DEVICE"
+		QMI_PARENT="$P"
+		if [ -n "$QMI_PARENT" ]; then
+			for QMI_SYS in /sys/class/usbmisc/cdc-wdm*; do
+				[ -e "$QMI_SYS" ] || continue
+				getpath "/dev/${QMI_SYS##*/}"
+				if [ -n "$P" ] && [ "x$QMI_PARENT" = "x$P" ]; then
+					QMI_DEVICE="/dev/${QMI_SYS##*/}"
+					break
+				fi
+			done
 		fi
 
-		T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $9}' | xargs)
-		if [ -n "$T" ]; then
-			T1=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $11}' | xargs)
-			S1BAND="$(band4g $T "") @$T1 MHz"
-			MODE="${MODE/LTE/LTE_A} / $(band4g ${T})"
-			T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $7}' | xargs)
-			[ -n "$T" ] && S1PCI="$T"
-			T=$(echo "$O" | awk -F[,:] '/^\+ZCAINFO/ {print $10}' | xargs)
-			[ -n "$T" ] && S1EARFCN="$T"
+		CA_QMI=""
+		if [ -n "$QMI_DEVICE" ] && [ "x$PROTO" = "xqmi" ]; then
+			CA_QMI=$(uqmi -d "$QMI_DEVICE" --get-lte-cphy-ca-info 2>/dev/null)
+		fi
+		if [ -n "$CA_QMI" ]; then
+			T=$(printf '%s\n' "$CA_QMI" | jsonfilter -e '@.primary.band' 2>/dev/null)
+			if [ -n "$T" ]; then
+				T1=$(printf '%s\n' "$CA_QMI" | jsonfilter -e '@.primary.bandwidth' 2>/dev/null)
+				PBAND="$(band4g "$T")"
+				[ -n "$T1" ] && PBAND="$PBAND @$T1 MHz"
+				MODE="LTE $(band4g "$T")"
+			fi
+			# uqmi reports LTE physical cell IDs as cell_id; the UI calls these PCI.
+			T=$(printf '%s\n' "$CA_QMI" | jsonfilter -e '@.primary.cell_id' 2>/dev/null)
+			[ -n "$T" ] && PCI="$T"
+			T=$(printf '%s\n' "$CA_QMI" | jsonfilter -e '@.primary.channel' 2>/dev/null)
+			[ -n "$T" ] && EARFCN="$T"
+
+			CA_MODE=""
+			for IDX in 1 2 3 4; do
+				T=$(printf '%s\n' "$CA_QMI" | jsonfilter -e "@.secondary_${IDX}.state" 2>/dev/null)
+				[ "$T" = "activated" ] || continue
+				BAND=$(printf '%s\n' "$CA_QMI" | jsonfilter -e "@.secondary_${IDX}.band" 2>/dev/null)
+				BANDWIDTH=$(printf '%s\n' "$CA_QMI" | jsonfilter -e "@.secondary_${IDX}.bandwidth" 2>/dev/null)
+				CELL_ID=$(printf '%s\n' "$CA_QMI" | jsonfilter -e "@.secondary_${IDX}.cell_id" 2>/dev/null)
+				CHANNEL=$(printf '%s\n' "$CA_QMI" | jsonfilter -e "@.secondary_${IDX}.channel" 2>/dev/null)
+				BAND_NAME=""
+				[ -n "$BAND" ] && BAND_NAME=$(band4g "$BAND")
+
+				case "$IDX" in
+					1)
+						if [ -n "$BAND_NAME" ]; then
+							S1BAND="$BAND_NAME"
+							[ -n "$BANDWIDTH" ] && S1BAND="$S1BAND @$BANDWIDTH MHz"
+						fi
+						[ -n "$CELL_ID" ] && S1PCI="$CELL_ID"
+						[ -n "$CHANNEL" ] && S1EARFCN="$CHANNEL"
+						;;
+					2)
+						if [ -n "$BAND_NAME" ]; then
+							S2BAND="$BAND_NAME"
+							[ -n "$BANDWIDTH" ] && S2BAND="$S2BAND @$BANDWIDTH MHz"
+						fi
+						[ -n "$CELL_ID" ] && S2PCI="$CELL_ID"
+						[ -n "$CHANNEL" ] && S2EARFCN="$CHANNEL"
+						;;
+					3)
+						if [ -n "$BAND_NAME" ]; then
+							S3BAND="$BAND_NAME"
+							[ -n "$BANDWIDTH" ] && S3BAND="$S3BAND @$BANDWIDTH MHz"
+						fi
+						[ -n "$CELL_ID" ] && S3PCI="$CELL_ID"
+						[ -n "$CHANNEL" ] && S3EARFCN="$CHANNEL"
+						;;
+					4)
+						if [ -n "$BAND_NAME" ]; then
+							S4BAND="$BAND_NAME"
+							[ -n "$BANDWIDTH" ] && S4BAND="$S4BAND @$BANDWIDTH MHz"
+						fi
+						[ -n "$CELL_ID" ] && S4PCI="$CELL_ID"
+						[ -n "$CHANNEL" ] && S4EARFCN="$CHANNEL"
+						;;
+				esac
+
+				if [ -n "$BAND_NAME" ]; then
+					[ -n "$CA_MODE" ] && CA_MODE="$CA_MODE + "
+					CA_MODE="$CA_MODE$BAND_NAME"
+				fi
+			done
+			[ -n "$CA_MODE" ] && MODE="${MODE/LTE/LTE_A} / $CA_MODE"
 		fi
 		;;
 esac
@@ -98,35 +210,6 @@ if [ -n "$NR_D" ]; then
 	NR_ICCID="$NR_D"
 fi
 
-# Protocol
-# DRIVER=QMI_WWAN & DRIVER=CDC_MBIM & DRIVER=CDC_ETHER
-PV=$(cat /sys/kernel/debug/usb/devices 2>/dev/null)
-PV85=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1485' '{print $2}' | cut -c-1220)
-if [ -n "$PV85" ]; then
-    if echo "$PV85" | grep -q "Driver=qmi_wwan"
-    then
-    PROTO="qmi"
-    elif echo "$PV85" | grep -q "Driver=cdc_mbim"
-    then
-    PROTO="mbim"
-    elif echo "$PV85" | grep -q "Driver=cdc_ether"
-    then
-    PROTO="ecm"
-    fi
-fi
-PV32=$(echo $PV | awk -F 'Vendor=19d2 ProdID=1432' '{print $2}' | cut -c-1220)
-if [ -n "$PV32" ]; then
-    if echo "$PV32" | grep -q "Driver=qmi_wwan"
-    then
-    PROTO="qmi"
-    elif echo "$PV32" | grep -q "Driver=cdc_mbim"
-    then
-    PROTO="mbim"
-    elif echo "$PV32" | grep -q "Driver=cdc_ether"
-    then
-    PROTO="ecm"
-    fi
-fi
 
 #T=$(echo "$O" | awk -F[,:] '/^\+ZDON/ {print $2}' | xargs)
 #if [ -n "$T" ] && [ -z "$FORCE_PLMN" ]; then
